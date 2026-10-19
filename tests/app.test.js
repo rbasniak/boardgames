@@ -20,3 +20,17 @@ test('renders all sections in both languages, including every manual page',()=>{
 test('expansions, maps, roles and edge choices persist and render without broken assets',()=>{go('#mission');for(const exp of ['eagle','escalation','kraken'])change({exp},'',true,'checkbox');change({field:'rank'},'3');change({list:'defenderEdges'},'hunter',true,'checkbox');change({list:'sniperEdges'},'goodboy',true,'checkbox');for(const map of ['launch','pens','water','nest','village','carrier']){click({map});for(const side of ['sniper','defender']){click({role:side});for(const view of ['mission','icons','quick','setup','victory','turns','examples']){go('#'+view);verify();}}}const saved=JSON.parse(memory.get('boardgames.sniper-elite.v1'));assert.equal(saved.map,'carrier');assert.equal(saved.role,'defender');assert(saved.expansions.includes('kraken'));});
 test('deep links select the correct role and search filters rendered rules',()=>{go('#turns/shoot');assert.equal(JSON.parse(memory.get('boardgames.sniper-elite.v1')).role,'sniper');listeners.input({target:{id:'search',value:'zzz-no-rule'}});assert(results.innerHTML.includes('No rules found'));go('#turns/attack');assert.equal(JSON.parse(memory.get('boardgames.sniper-elite.v1')).role,'defender');});
 test('setup checkboxes persist and configuration changes clear stale checks',()=>{go('#setup');change({check:'board'},'',true,'checkbox');assert(JSON.parse(memory.get('boardgames.sniper-elite.v1')).checks.includes('board'));click({map:'launch'});assert.deepEqual(JSON.parse(memory.get('boardgames.sniper-elite.v1')).checks,[]);});
+test('defender cards, source tags and component groups render as scannable instructions',()=>{
+ click({lang:'en'});click({role:'defender'});go('#turns');
+ assert(container.innerHTML.indexOf('id="defender-turn"')<container.innerHTML.indexOf('id="defender-move"'));
+ assert(!container.innerHTML.includes('id="bag"'));
+ assert(container.innerHTML.includes('Available action · 1 squad action'));
+ assert(container.innerHTML.includes('origin-core'));
+ assert(container.innerHTML.includes('class="instruction-list"'));
+ assert(container.innerHTML.includes('<details class="enemy-reference"'));
+ go('#setup');
+ assert.equal((container.innerHTML.match(/data-check="component-sniper"/g)||[]).length,1);
+ assert(container.innerHTML.includes('<span class="component-line">1 sniper miniature</span>'));
+ assert(container.innerHTML.includes('<span class="component-line">1 dry-erase marker</span>'));
+ assert(container.innerHTML.includes('<span class="component-line">1 shot bag</span>'));
+});

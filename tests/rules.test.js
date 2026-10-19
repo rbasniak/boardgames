@@ -11,3 +11,23 @@ test('base loadout, Eagle modules and Kraken exceptions filter correctly',()=>{l
 test('every rule and example has bilingual text and a real source page',()=>{const ids=new Set();for(const r of [...rules,...examples]){assert(!ids.has(r.id),r.id);ids.add(r.id);assert(r.title.pt&&r.title.en&&r.body.pt&&r.body.en,r.id);assert(books[r.book]&&r.page>=1&&r.page<=books[r.book].pages,r.id);assert(existsSync(new URL(`../sniper-elite/assets/${r.book}-${r.page}.webp`,import.meta.url)),r.id);}});
 test('all maps across all expansion combinations produce valid setup and references',()=>{for(let mask=0;mask<8;mask++){const expansions=['eagle','escalation','kraken'].filter((_,i)=>mask&(1<<i));for(const m of maps){const s=normalize({map:m.id,expansions});const steps=setup(s);assert(steps.length>=7);assert(components(s).length>=6);for(const r of [...rules,...examples].filter(r=>applies(r,s)))assert(r.body.en&&r.body.pt);}}});
 test('all original manual pages and PDFs are bundled',()=>{for(const [id,b] of Object.entries(books)){assert(existsSync(new URL(`../sniper-elite/manuals/${id}.pdf`,import.meta.url)));for(let i=1;i<=b.pages;i++)assert(existsSync(new URL(`../sniper-elite/assets/${id}-${i}.webp`,import.meta.url)));}});
+
+test('turn groups lead with the selected role and distinguish all seven defender actions',async()=>{
+ const {turnGroups,actionIds}=await import('../sniper-elite/rules.js');
+ const groups=turnGroups(normalize({role:'defender'}));
+ assert.equal(groups[0].rules[0].id,'defender-turn');
+ assert(!groups.flatMap(g=>g.rules).some(r=>r.id==='bag'));
+ assert.equal(groups.find(g=>g.id==='actions').rules.length,7);
+ assert.deepEqual(groups.find(g=>g.id==='actions').rules.map(r=>r.id),actionIds.defender);
+ assert.equal(groups.find(g=>g.id==='alternative').rules[0].id,'intel');
+});
+test('components have source tags and separate lines without splitting their checkbox group',async()=>{
+ const {instructionLines}=await import('../sniper-elite/rules.js');
+ const s=normalize({map:'nest',expansions:['eagle']});
+ const list=components(s);
+ assert.equal(list.find(c=>c.id==='map').book,'eagle');
+ assert.deepEqual(instructionLines(list.find(c=>c.id==='sniper').body.en),['1 sniper miniature','1 dry-erase marker','1 shot bag']);
+ for(const item of list){assert(books[item.book]);assert(item.id&&item.body.pt&&item.body.en);}
+ assert.deepEqual(instructionLines('Move first; then shoot. Return the tokens.'),['Move first','then shoot','Return the tokens.']);
+ assert(setup(s).find(r=>r.id==='board').sources.includes('eagle'));
+});
