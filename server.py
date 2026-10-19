@@ -9,6 +9,7 @@ MANUALS = {
     "/manuals/eagle.pdf": ROOT / "manuals" / "eagle.pdf",
     "/manuals/kraken.pdf": ROOT / "manuals" / "kraken.pdf",
     "/manuals/escalation.pdf": ROOT / "manuals" / "escalation.pdf",
+    "/manuals/not-enough-mana_core.pdf": ROOT / "manuals" / "not-enough-mana_core.pdf",
 }
 
 
