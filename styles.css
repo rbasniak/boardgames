@@ -899,6 +899,26 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.glossary-intro {
+  max-width: 860px;
+  margin: -7px 0 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.glossary-references {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.glossary-references .source-link {
+  min-height: 30px;
+  padding: 6px 9px;
+  font-size: 9px;
+}
+
 .info-card {
   padding: 16px;
 }
