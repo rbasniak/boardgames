@@ -276,13 +276,6 @@
     return { sniper: "base", specialOps: false, rank: 1, edges: emptyEdgeSelections() };
   }
 
-  const localManuals = {
-    core: "file:///C:/Users/rodrigo.basniak/OneDrive%20-%20AVEVA%20Solutions%20Limited/Documents/%21rbasniak/Personal/Rulebooks/SE%20Core%20_Rulebook1_webquality3.pdf",
-    eagle: "file:///C:/Users/rodrigo.basniak/OneDrive%20-%20AVEVA%20Solutions%20Limited/Documents/%21rbasniak/Personal/Rulebooks/SE%20Expansion%20_Rulebook_webquality2.pdf",
-    kraken: "file:///C:/Users/rodrigo.basniak/OneDrive%20-%20AVEVA%20Solutions%20Limited/Documents/%21rbasniak/Personal/Rulebooks/Sniper_Elite_Operation_Kraken_Rulebook.pdf",
-    escalation: "file:///C:/Users/rodrigo.basniak/OneDrive%20-%20AVEVA%20Solutions%20Limited/Documents/%21rbasniak/Personal/Rulebooks/Sniper_Elite_Escalation_Rulebook.pdf"
-  };
-
   const defaults = {
     expansions: [],
     map: "launch-facility",
@@ -578,10 +571,9 @@
   }
 
   function manualUrl(book, page) {
-    const path = window.location.protocol === "file:"
-      ? localManuals[book]
-      : new URL(`manuals/${book}.pdf`, document.baseURI).href;
-    return `${path}#page=${page}`;
+    const appScript = document.querySelector('script[src*="app.js"]');
+    const baseUrl = appScript?.src || document.baseURI;
+    return `${new URL(`manuals/${book}.pdf`, baseUrl).href}#page=${page}`;
   }
 
   function referenceLink(book, page, label) {
@@ -2297,8 +2289,8 @@
 
   function renderFooter() {
     return `<footer class="site-footer"><p><strong>Field Manual</strong> · ${t(
-      "Personal companion guide. Rule summaries are based on the supplied Sniper Elite manuals; the linked source PDFs open from their original local folder.",
-      "Guia pessoal de consulta. Os resumos usam os manuais fornecidos de Sniper Elite; os links dos PDFs abrem os arquivos na pasta local original."
+      "Personal companion guide. Rule summaries are based on the supplied Sniper Elite manuals; the linked source PDFs are included in this repository.",
+      "Guia pessoal de consulta. Os resumos usam os manuais fornecidos de Sniper Elite; os PDFs originais estão incluídos neste repositório."
     )}</p></footer>`;
   }
 

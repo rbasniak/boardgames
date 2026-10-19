@@ -12,7 +12,7 @@ Esta skill orienta a criação ponta a ponta de **um novo jogo neste repositóri
 1. Descubra os manuais e as expansões fornecidos, idiomas disponíveis, modos de jogo, público-alvo, lados/papéis, mapas e variantes. Confirme ambiguidades de escopo e escolhas de comportamento com o usuário; não assuma que todos os jogos têm Sniper/Defensores, objetivos, Special Ops ou modo solo.
 2. Leia os manuais **antes** de redigir regras. Monte uma matriz de rastreabilidade por manual/página: componentes e quantidades; dependências e incompatibilidades; decisões anteriores à partida; ordem de setup; informação pública/oculta; ações e limites; condições de vitória; exceções por mapa/expansão; exemplos ilustrados; ícones e terminologia. Confira interações entre expansões, não apenas cada PDF isoladamente.
 3. Compare cada seção do guia com a matriz. Se um efeito constar apenas em uma carta não fornecida, diga que o texto está na carta; **não invente a regra**. Registre conflitos de fontes e resolva-os com o usuário quando não houver precedência documentada.
-4. Parafraseie as regras com referências precisas às páginas; não copie os manuais completos para o repositório nem reproduza longos trechos. Trate arquivos e caminhos privados como locais. Confirme direitos de uso dos recortes de arte antes de publicá-los.
+4. Parafraseie as regras com referências precisas às páginas. Não transcreva longos trechos dos manuais para o guia, mesmo quando os PDFs originais possam ser redistribuídos.
 
 ## 2. Configurar a partida **antes** do Setup
 
@@ -34,8 +34,10 @@ Esta skill orienta a criação ponta a ponta de **um novo jogo neste repositóri
 
 ## 4. Integrar arquivos e publicar com cuidado
 
-- Extraia apenas os recortes necessários de ícones/mapas/ilustrações, confira fidelidade e legibilidade no navegador e guarde-os em `assets/` por jogo; não use texto como substituto de ícone. Não coloque os PDFs integrais no repositório só para que links funcionem.
-- Referências `file:///` e rotas locais de `server.py` não funcionam em GitHub Pages. Verifique os links no ambiente local **e** no publicado; se o manual não puder ser disponibilizado legalmente online, explique a limitação em vez de exibir links quebrados como funcionais.
+- Extraia apenas os recortes necessários de ícones/mapas/ilustrações, confira fidelidade e legibilidade no navegador e guarde-os em `assets/` por jogo; não use texto como substituto de ícone.
+- **Padrão para os manuais-fonte:** inclua os PDFs originais, sem modificar, em `manuals/<id>.pdf` e use as mesmas rotas relativas para abrir o manual na página citada tanto localmente quanto no GitHub Pages. Dê a cada manual um ID estável e alinhe nomes, `manualUrl`, `server.py`, `README.md` e referências.
+- Antes de copiar/publicar cada PDF, confirme licença ou autorização explícita de redistribuição. Não presuma que ter recebido um arquivo ou conseguir abri-lo concede permissão para publicá-lo. O padrão operacional é manter os PDFs no repositório **quando autorizados**; se os direitos não permitirem ou forem desconhecidos, não os copie nem use links locais privados `file:///`: pergunte ao usuário ou mantenha o manual fora do repositório e use uma fonte oficial/legalmente acessível, explicando a limitação no site. Nunca apresente uma rota local de `server.py` como se fosse hospedagem GitHub Pages.
+- Verifique os links de página tanto no servidor local quanto no ambiente publicado. Não copie OCR/texto integral do PDF para substituir os links.
 - Atualize documentação diretamente relacionada e o cache-busting de CSS/JS quando necessário. Preserve o índice, o QR/link de compartilhamento existente e as demais páginas; não sobrescreva alterações não commitadas de outra tarefa.
 
 ## 5. Verificar antes de entregar
