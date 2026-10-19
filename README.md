@@ -9,7 +9,9 @@ npm start
 # http://localhost:8000
 ```
 
-No build step, runtime dependencies, API keys or remote assets. Serve over HTTP; ES modules do not reliably work via `file://`.
+You can also open `index.html` directly by double-clicking it, or open `sniper-elite/index.html` for the game. The committed `browser.js` is a self-contained classic script, so local `file://` pages do not load ES modules. No runtime dependencies, API keys or remote assets are needed.
+
+After editing `rules.js` or `app.js`, run `npm run build` and commit the regenerated `browser.js`. `npm test` also rebuilds it. Local-file storage behaviour varies by browser; serving over HTTP gives settings a consistent shared origin.
 
 ## Included
 
@@ -44,6 +46,8 @@ Tests cover configuration normalization, expansion/map dependencies, edge budget
 - `sniper-elite/index.html` — game entry, hash-based sections and deep links.
 - `sniper-elite/rules.js` — bilingual rules, sources, filtering and configuration model.
 - `sniper-elite/app.js` — views and interaction.
+- `sniper-elite/browser.js` — generated classic-script bundle supporting local files and HTTP.
+- `scripts/build-browser.mjs` — dependency-free bundle generation.
 - `sniper-elite/style.css` — shared visual style and responsive layout.
 - `sniper-elite/manuals/` — the four provided original PDFs.
 - `sniper-elite/assets/` — extracted WebP pages, covers, map previews, icons and examples.
