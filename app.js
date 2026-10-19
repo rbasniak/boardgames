@@ -2,6 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "field-manual.sniper-elite.v1";
+  const TABLE_SHARE_URL = "https://rbasniak.github.io/boardgames";
   const expansions = [
     {
       id: "eagle",
@@ -2184,6 +2185,20 @@
         <a class="button-primary" href="#/sniper-elite">${t("Open Sniper Elite", "Abrir Sniper Elite")} <span aria-hidden="true">→</span></a>
       </div></section>
       <main class="page-wrap library-section">
+        <section class="share-panel" aria-labelledby="share-panel-title">
+          <div class="share-panel-copy">
+            <p class="eyebrow">${t("AT THE TABLE", "NA MESA")}</p>
+            <h2 id="share-panel-title">${t("Share the field manual", "Compartilhe o manual")}</h2>
+            <p>${t("Scan this QR code with a phone or tablet to open the published game index.", "Escaneie este QR Code com um celular ou tablet para abrir o índice publicado.")}</p>
+            <a class="share-url" data-share-url href="${TABLE_SHARE_URL}">${TABLE_SHARE_URL}</a>
+            <button class="button-secondary share-copy-button" type="button" data-share-copy>${t("Copy link", "Copiar link")}</button>
+            <p class="share-status" data-share-status role="status" aria-live="polite"></p>
+          </div>
+          <figure class="share-qr-figure">
+            <img class="share-qr-image" src="assets/share-qr.svg?v=1" alt="${t("QR code linking to the Sniper Elite rulebook index", "QR Code com link para o índice de regras de Sniper Elite")}">
+            <figcaption>${t("Published game index", "Índice publicado")}</figcaption>
+          </figure>
+        </section>
         <div class="section-intro"><div><p class="eyebrow">${t("Game index", "Índice de jogos")}</p><h2>${t("Choose your battlefield", "Escolha seu campo de batalha")}</h2></div>
           <p>${t("This index is ready to grow. More games can be added as separate rulebooks without changing the Sniper Elite setup.", "Este índice está pronto para crescer. Outros jogos poderão entrar como livros separados, sem alterar a configuração de Sniper Elite.")}</p>
         </div>
@@ -2310,6 +2325,23 @@
       state.language = button.dataset.language;
       saveState();
       render();
+      return;
+    }
+    if (button.hasAttribute("data-share-copy")) {
+      const status = app.querySelector("[data-share-status]");
+      if (!navigator.clipboard?.writeText) {
+        if (status) status.textContent = t("Clipboard access is unavailable; select the link above to copy it.", "A área de transferência não está disponível; selecione o link acima para copiá-lo.");
+        return;
+      }
+      navigator.clipboard.writeText(TABLE_SHARE_URL).then(
+        () => {
+          if (status) status.textContent = t("Link copied.", "Link copiado.");
+        },
+        (error) => {
+          if (status) status.textContent = t("Could not copy the link; select it above to copy it manually.", "Não foi possível copiar o link; selecione-o acima para copiá-lo manualmente.");
+          console.error("Could not copy the table share link.", error);
+        }
+      );
       return;
     }
     if (button.dataset.expansion) {
