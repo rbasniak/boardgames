@@ -12,7 +12,7 @@ Esta skill orienta a criação ponta a ponta de **um novo jogo neste repositóri
 1. Descubra os manuais e as expansões fornecidos, idiomas disponíveis, modos de jogo, público-alvo, lados/papéis, mapas e variantes. Confirme ambiguidades de escopo e escolhas de comportamento com o usuário; não assuma que todos os jogos têm Sniper/Defensores, objetivos, Special Ops ou modo solo.
 2. Leia os manuais **antes** de redigir regras. Monte uma matriz de rastreabilidade por manual/página: componentes e quantidades; dependências e incompatibilidades; decisões anteriores à partida; ordem de setup; informação pública/oculta; ações e limites; condições de vitória; exceções por mapa/expansão; exemplos ilustrados; ícones e terminologia. Confira interações entre expansões, não apenas cada PDF isoladamente.
 3. Compare cada seção do guia com a matriz. Se um efeito constar apenas em uma carta não fornecida, diga que o texto está na carta; **não invente a regra**. Registre conflitos de fontes e resolva-os com o usuário quando não houver precedência documentada.
-4. Parafraseie as regras com referências precisas às páginas. Não transcreva longos trechos dos manuais para o guia, mesmo quando os PDFs originais possam ser redistribuídos.
+4. Parafraseie as regras com referências precisas às páginas. Transcreva longos trechos dos manuais para o guia quando fizer sentido.
 
 ## 2. Configurar a partida **antes** do Setup
 
