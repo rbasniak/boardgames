@@ -101,6 +101,180 @@
     }
   ];
 
+  const sniperChoices = [
+    {
+      id: "base",
+      name: ["Sniper base", "Base Sniper"],
+      description: ["Use a composição e as regras normais do sniper.", "Use the normal Sniper composition and rules."],
+      bag: [6, 2, 3]
+    },
+    {
+      id: "roza",
+      name: ["Roza", "Roza"],
+      description: ["4 miras, 3 ruídos e 2 recuos; compre no máximo cinco fichas por disparo.", "4 aim, 3 noise, and 2 recoil; draw no more than five tokens per shot."],
+      bag: [4, 3, 2]
+    },
+    {
+      id: "jun",
+      name: ["Jun", "Jun"],
+      description: ["6 miras, 2 ruídos e 2 recuos; um acerto também elimina unidades adjacentes do mesmo tipo que o alvo.", "6 aim, 2 noise, and 2 recoil; a hit also removes units matching-adjacent to the target."],
+      bag: [6, 2, 2]
+    },
+    {
+      id: "karl",
+      name: ["Karl", "Karl"],
+      description: ["7 miras, 2 ruídos e 1 recuo; pode disparar duas vezes em vez de mover.", "7 aim, 2 noise, and 1 recoil; may shoot twice instead of moving."],
+      bag: [7, 2, 1]
+    },
+    {
+      id: "major-eazy",
+      name: ["Major Eazy", "Major Eazy"],
+      description: ["3 miras, 3 ruídos e 3 recuos; ruído também conta como mira.", "3 aim, 3 noise, and 3 recoil; noise also counts as aim."],
+      bag: [3, 3, 3]
+    },
+    {
+      id: "ghost",
+      name: ["Ghost Sniper", "Ghost Sniper"],
+      description: [
+        "Sorteie um Sniper aliado em segredo; oculte identidade, saco e fichas não usadas. Revele a carta ao usar sua habilidade, revelar a posição, completar um objetivo ou ser encontrado por Spot/Ataque.",
+        "Secretly draw an allied Sniper; hide their identity, bag, and unused tokens. Reveal the card when using its ability, revealing the position, completing an objective, or being found with Spot/Attack."
+      ]
+    }
+  ];
+
+  const sniperEdgeOptions = [
+    {
+      id: "killshot",
+      name: "Killshot",
+      max: 1,
+      description: [
+        "Missão do Sniper: permite tentar eliminar um segundo defensor alinhado com o alvo.",
+        "Sniper mission: lets you attempt to eliminate a second defender in line with the target."
+      ]
+    },
+    {
+      id: "goodBoy",
+      name: "Good Boy",
+      max: 1,
+      description: [
+        "Missão do Sniper: adiciona um cão que pode se mover como uma falsa pista.",
+        "Sniper mission: adds a dog that can move as a decoy."
+      ]
+    },
+    {
+      id: "upgradedLoadout",
+      name: "Upgraded Loadout",
+      max: 3,
+      description: [
+        "Cada edge troca uma carta base por uma carta melhorada. A identidade da melhoria é escolhida em segredo durante a preparação.",
+        "Each edge replaces a base card with an upgraded card. Choose the specific upgrade secretly during setup."
+      ]
+    },
+    {
+      id: "extraLoadout",
+      name: "Extra Loadout",
+      max: 3,
+      description: [
+        "Cada edge acrescenta uma carta ao conjunto inicial de três do Sniper; não concede ação extra.",
+        "Each edge adds one card to the Sniper's normal starting three; it does not grant an extra action."
+      ]
+    }
+  ];
+
+  const defenderEdgeOptions = [
+    {
+      id: "flares",
+      name: "Flares",
+      max: 1,
+      description: [
+        "Missão dos Defensores: permite lançar um sinalizador por turno sem gastar uma ação.",
+        "Defender mission: lets the team fire one flare per turn without spending an action."
+      ]
+    },
+    {
+      id: "callHunter",
+      name: "Call the Hunter",
+      max: 1,
+      description: [
+        "Missão dos Defensores: adiciona um quarto esquadrão com um Hunter blindado.",
+        "Defender mission: adds a fourth squad with an armoured Hunter."
+      ]
+    },
+    {
+      id: "eliteSpecialist",
+      name: "Elite Specialist",
+      max: 3,
+      description: [
+        "Cada edge permite escolher um especialista elite no lugar da versão base correspondente.",
+        "Each edge lets you choose an elite specialist instead of its matching base version."
+      ]
+    }
+  ];
+
+  const advantageOptions = [
+    {
+      id: "acceleratedSchedule",
+      name: "Accelerated Schedule",
+      maps: ["launch-facility", "submarine-pens", "heavy-water", "eagles-nest", "super-carrier", "norman-village"],
+      description: ["O Sniper tem sete turnos para completar cada objetivo, em vez de dez.", "The Sniper has seven turns to complete each objective instead of ten."],
+      reference: 16
+    },
+    {
+      id: "rapidResponse",
+      name: "Rapid Response",
+      maps: ["submarine-pens"],
+      description: ["Após o primeiro objetivo, piore o saco conforme a carta e recupere um uso de cada especialista elegível.", "After the first objective, worsen the bag as printed and replenish one use of each eligible specialist."],
+      reference: 16
+    },
+    {
+      id: "tippedOff",
+      name: "Tipped Off",
+      maps: ["super-carrier"],
+      description: ["Depois de escolher especialistas, tranque duas portas quaisquer do mapa.", "After choosing specialists, lock any two doors on the map."],
+      reference: 17
+    },
+    {
+      id: "roadblocks",
+      name: "Roadblocks",
+      maps: ["launch-facility"],
+      description: ["Transforme quatro entradas e mais um espaço aberto não adjacente a outro terreno difícil em terreno difícil.", "Turn four entrances and one additional open space not adjacent to other difficult terrain into difficult terrain."],
+      reference: 17
+    },
+    {
+      id: "underCurfew",
+      name: "Under Curfew",
+      maps: ["norman-village"],
+      description: ["Acrescente 11 fichas de porta e Bolt Cutters à reserva; unidades em veículos não podem operar portas.", "Adds 11 door tokens and Bolt Cutters to the pool; units in vehicles cannot operate doors."],
+      reference: 17
+    },
+    {
+      id: "sentries",
+      name: "Sentries",
+      maps: ["eagles-nest"],
+      description: ["O Sniper deve revelar a entrada escolhida no segundo turno dos Defensores.", "The Sniper must reveal their chosen entrance on the Defenders' second turn."],
+      reference: 17
+    },
+    {
+      id: "mechanisation",
+      name: "Mechanisation",
+      maps: ["heavy-water"],
+      requires: ["eagle", "kraken"],
+      description: ["Adiciona os veículos de Norman Village a Heavy Water; exige Eagle's Nest e Operation Kraken.", "Adds the Norman Village vehicles to Heavy Water; requires Eagle's Nest and Operation Kraken."],
+      reference: 19
+    }
+  ];
+
+  function emptyEdgeSelections() {
+    return {
+      sniper: Object.fromEntries([...sniperEdgeOptions.map(({ id }) => [id, 0])]),
+      defenders: Object.fromEntries([...defenderEdgeOptions.map(({ id }) => [id, 0]), ...advantageOptions.map(({ id }) => [id, 0])])
+    };
+  }
+
+  function defaultMatchOptions() {
+    return { sniper: "base", specialOps: false, rank: 1, edges: emptyEdgeSelections() };
+  }
+
   const localManuals = {
     core: "file:///C:/Users/rodrigo.basniak/OneDrive%20-%20AVEVA%20Solutions%20Limited/Documents/%21rbasniak/Personal/Rulebooks/SE%20Core%20_Rulebook1_webquality3.pdf",
     eagle: "file:///C:/Users/rodrigo.basniak/OneDrive%20-%20AVEVA%20Solutions%20Limited/Documents/%21rbasniak/Personal/Rulebooks/SE%20Expansion%20_Rulebook_webquality2.pdf",
@@ -113,7 +287,8 @@
     map: "launch-facility",
     language: "pt-BR",
     team: "sniper",
-    setupChecks: []
+    setupChecks: [],
+    matchOptions: defaultMatchOptions()
   };
 
   let storageAvailable = true;
@@ -129,18 +304,67 @@
     return state.language === "pt-BR" ? values[0] : values[1];
   }
 
-  function setupConfigurationKey(mapId, selectedExpansions) {
-    return `${mapId}|${[...selectedExpansions].sort().join(",")}`;
+  function availableAdvantagesFor(mapId, selectedExpansions) {
+    return advantageOptions.filter((option) =>
+      option.maps.includes(mapId)
+      && (!option.requires || option.requires.every((id) => selectedExpansions.includes(id)))
+    ).map((option) => ({ ...option, max: 1 }));
+  }
+
+  function normalizeMatchOptions(saved, mapId, selectedExpansions) {
+    const normalized = defaultMatchOptions();
+    if (!saved || typeof saved !== "object") return normalized;
+
+    const hasEagle = selectedExpansions.includes("eagle");
+    const validSnipers = hasEagle ? sniperChoices.map(({ id }) => id) : ["base"];
+    if (validSnipers.includes(saved.sniper)) normalized.sniper = saved.sniper;
+    normalized.specialOps = Boolean(saved.specialOps) && selectedExpansions.includes("escalation");
+    normalized.rank = [1, 2, 3].includes(Number(saved.rank)) ? Number(saved.rank) : 1;
+
+    if (!normalized.specialOps || !saved.edges || typeof saved.edges !== "object") return normalized;
+
+    const allowedEdges = {
+      sniper: sniperEdgeOptions,
+      defenders: [
+        ...defenderEdgeOptions,
+        ...availableAdvantagesFor(mapId, selectedExpansions)
+      ]
+    };
+    for (const side of ["sniper", "defenders"]) {
+      let total = 0;
+      for (const option of allowedEdges[side]) {
+        const rawCount = Number(saved.edges[side]?.[option.id]) || 0;
+        const count = Math.max(0, Math.min(Math.floor(rawCount), option.max, normalized.rank - total));
+        normalized.edges[side][option.id] = count;
+        total += count;
+      }
+    }
+    return normalized;
+  }
+
+  function setupConfigurationKey(mapId, selectedExpansions, matchOptions) {
+    return JSON.stringify({
+      map: mapId,
+      expansions: [...selectedExpansions].sort(),
+      matchOptions: {
+        sniper: matchOptions.sniper,
+        specialOps: matchOptions.specialOps,
+        rank: matchOptions.rank,
+        edges: matchOptions.edges
+      }
+    });
   }
 
   function loadState() {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
       if (!saved) {
+        const matchOptions = defaultMatchOptions();
         return {
           ...defaults,
           expansions: [],
-          setupConfig: setupConfigurationKey(defaults.map, [])
+          matchOptions,
+          setupConfig: setupConfigurationKey(defaults.map, [], matchOptions)
         };
       }
 
@@ -158,27 +382,30 @@
       const map = isMapAvailable && (!isMapAvailable.expansion || selected.includes(isMapAvailable.expansion))
         ? chosenMap
         : defaults.map;
-      const setupConfig = setupConfigurationKey(map, selected);
+      const matchOptions = normalizeMatchOptions(parsed.matchOptions, map, selected);
+      const setupConfig = setupConfigurationKey(map, selected, matchOptions);
       const setupChecks = parsed.setupConfig === setupConfig && Array.isArray(parsed.setupChecks)
         ? [...new Set(parsed.setupChecks.filter((id) => typeof id === "string"))]
         : [];
 
-      return { expansions: selected, map, language, team, setupChecks, setupConfig };
+      return { expansions: selected, map, language, team, setupChecks, setupConfig, matchOptions };
     } catch (error) {
       storageAvailable = false;
       storageNotice = "load-error";
       console.warn("Could not load saved rulebook preferences.", error);
+      const matchOptions = defaultMatchOptions();
       return {
         ...defaults,
         expansions: [],
-        setupConfig: setupConfigurationKey(defaults.map, [])
+        matchOptions,
+        setupConfig: setupConfigurationKey(defaults.map, [], matchOptions)
       };
     }
   }
 
   function saveState() {
     try {
-      state.setupConfig = setupConfigurationKey(state.map, state.expansions);
+      state.setupConfig = setupConfigurationKey(state.map, state.expansions, state.matchOptions);
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       storageAvailable = true;
       storageNotice = "";
@@ -203,7 +430,7 @@
   }
 
   function resetSetupChecksWhenConfigurationChanges(previousKey) {
-    const nextKey = setupConfigurationKey(state.map, state.expansions);
+    const nextKey = setupConfigurationKey(state.map, state.expansions, state.matchOptions);
     if (nextKey !== previousKey) state.setupChecks = [];
     state.setupConfig = nextKey;
   }
@@ -236,8 +463,117 @@
     return state.expansions.includes(id);
   }
 
+  function isSpecialOps() {
+    return isSelected("escalation") && state.matchOptions.specialOps;
+  }
+
+  function edgeCount(side, id) {
+    return isSpecialOps() ? (state.matchOptions.edges[side]?.[id] || 0) : 0;
+  }
+
+  function sideEdgeTotal(side) {
+    return Object.values(state.matchOptions.edges[side] || {}).reduce((total, count) => total + count, 0);
+  }
+
+  function specialOpsReady() {
+    return !isSpecialOps()
+      || (sideEdgeTotal("sniper") === state.matchOptions.rank && sideEdgeTotal("defenders") === state.matchOptions.rank);
+  }
+
+  function selectedAdvantage(id) {
+    return edgeCount("defenders", id) > 0;
+  }
+
   function availableMaps() {
     return maps.filter((item) => !item.expansion || isSelected(item.expansion));
+  }
+
+  function edgeSelectionControl(side, option) {
+    const selected = state.matchOptions.edges[side][option.id] || 0;
+    const remaining = Math.max(0, state.matchOptions.rank - sideEdgeTotal(side));
+    const max = Math.min(option.max, selected + remaining);
+    const label = t(
+      `${option.name} selections`,
+      `${option.name} escolhas`
+    );
+    const options = Array.from({ length: max + 1 }, (_, count) =>
+      `<option value="${count}" ${count === selected ? "selected" : ""}>${count}</option>`
+    ).join("");
+    return `<article class="optional-edge-card">
+      <div class="optional-edge-copy"><h5>${option.name}</h5><p>${pair(option.description)}</p>
+        ${option.reference ? referenceLink("escalation", option.reference) : ""}
+      </div>
+      <label class="edge-count-control"><span>${t("Count", "Quantidade")}</span>
+        <select data-edge-side="${side}" data-edge-id="${option.id}" aria-label="${label}">${options}</select>
+      </label>
+    </article>`;
+  }
+
+  function optionalRulesSection() {
+    const sections = [];
+    if (isSelected("eagle")) {
+      const choices = sniperChoices.map((option) => `
+        <label class="sniper-choice-card${state.matchOptions.sniper === option.id ? " selected" : ""}">
+          <input type="radio" name="match-sniper" value="${option.id}" data-match-sniper ${state.matchOptions.sniper === option.id ? "checked" : ""}>
+          <span><strong>${pair(option.name)}</strong><small>${pair(option.description)}</small></span>
+        </label>`).join("");
+      sections.push(`<div class="optional-rule-group">
+        <h4>${t("Sniper character", "Personagem do Sniper")}</h4>
+        <p class="optional-rule-intro">${t("Choose the Sniper used in this match. Allied characters replace the base Sniper; Ghost Sniper secretly draws one allied character.", "Escolha o Sniper desta partida. Os personagens aliados substituem o Sniper base; Ghost Sniper compra um aliado em segredo.")}</p>
+        <div class="sniper-choice-grid">${choices}</div>
+        ${referenceLink("eagle", 3)} ${referenceLink("eagle", 8)}
+      </div>`);
+    }
+
+    if (isSelected("escalation")) {
+      const enabled = state.matchOptions.specialOps;
+      const rankOptions = [
+        [1, t("Private · 1 edge per side", "Soldado · 1 edge por lado")],
+        [2, t("Corporal · 2 edges per side", "Cabo · 2 edges por lado")],
+        [3, t("Sergeant · 3 edges per side", "Sargento · 3 edges por lado")]
+      ].map(([rank, label]) => `<option value="${rank}" ${state.matchOptions.rank === rank ? "selected" : ""}>${label}</option>`).join("");
+      const availableAdvantages = availableAdvantagesFor(currentMap().id, state.expansions);
+      const defenderOptions = [
+        ...defenderEdgeOptions.map((option) => ({
+          ...option,
+          reference: option.id === "eliteSpecialist" ? 14 : 10
+        })),
+        ...availableAdvantages.map((option) => ({ ...option, max: 1 }))
+      ];
+      const selectedCount = (side) => sideEdgeTotal(side);
+      const sniperFirst = ["launch-facility", "submarine-pens", "heavy-water"].includes(currentMap().id);
+      const budgetStatus = (side) => {
+        const count = selectedCount(side);
+        const remaining = state.matchOptions.rank - count;
+        const status = remaining === 0
+          ? t("Complete", "Completo")
+          : t(`${remaining} more edge${remaining === 1 ? "" : "s"} needed`, `faltam ${remaining} edge${remaining === 1 ? "" : "s"}`);
+        return `<p class="edge-budget${remaining === 0 ? " complete" : ""}" aria-live="polite">${t("Selected", "Selecionadas")}: <strong>${count}/${state.matchOptions.rank}</strong> · ${status}</p>`;
+      };
+      const sniperEdgesMarkup = `<section class="edge-side-panel"><h5>${t("Sniper edges", "Edges do Sniper")}</h5>${budgetStatus("sniper")}<div class="optional-edge-grid">${sniperEdgeOptions.map((option) => edgeSelectionControl("sniper", { ...option, reference: option.id === "killshot" || option.id === "goodBoy" ? 8 : option.id === "extraLoadout" ? 13 : 12 })).join("")}</div></section>`;
+      const defenderEdgesMarkup = `<section class="edge-side-panel"><h5>${t("Defender edges", "Edges dos Defensores")}</h5>${budgetStatus("defenders")}<div class="optional-edge-grid">${defenderOptions.map((option) => edgeSelectionControl("defenders", option)).join("")}</div></section>`;
+      sections.push(`<div class="optional-rule-group">
+        <div class="optional-group-heading"><div><h4>${t("Special Ops", "Special Ops")}</h4>
+          <p class="optional-rule-intro">${t("An optional Escalation mode with missions, advantages, upgraded loadouts, extra loadouts and elite specialists. Choose a rank, then allocate exactly that many edges to each side. Edge types may be repeated.", "Modo opcional de Escalation com missões, vantagens, equipamentos melhorados, equipamentos extras e especialistas elite. Escolha uma patente e distribua exatamente essa quantidade de edges para cada lado. É permitido repetir tipos de edge.")}</p>
+          ${referenceLink("escalation", 6)} ${referenceLink("escalation", 7)}
+        </div>
+        <label class="optional-mode-toggle"><input type="checkbox" data-special-ops ${enabled ? "checked" : ""}><span>${t("Play Special Ops", "Jogar com Special Ops")}</span></label></div>
+        ${enabled ? `<div class="special-ops-controls">
+          <label class="rank-control">${t("Rank", "Patente")}<select data-special-ops-rank>${rankOptions}</select></label>
+          <p class="rank-note">${t(
+            `Changing rank clears the current edge selections. ${sniperFirst ? "The Sniper chooses first" : "The Defenders choose first"} on this map.`,
+            `Mudar a patente limpa as escolhas atuais de edges. ${sniperFirst ? "O Sniper escolhe" : "Os Defensores escolhem"} primeiro neste mapa.`
+          )}</p>
+          ${sniperFirst ? `${sniperEdgesMarkup}${defenderEdgesMarkup}` : `${defenderEdgesMarkup}${sniperEdgesMarkup}`}
+          ${currentMap().id === "heavy-water" && !isSelected("kraken") ? `<p class="optional-mode-note">${t("Mechanisation is available on Heavy Water when both Operation Kraken and Eagle's Nest are included.", "Mechanisation fica disponível em Heavy Water quando Operation Kraken e Eagle's Nest estiverem incluídas.")}</p>` : ""}
+          ${specialOpsReady() ? "" : `<p class="configuration-warning" role="status">${t("Finish both edge allocations here before starting setup.", "Complete aqui a seleção de edges dos dois lados antes de começar a preparação.")}</p>`}
+        </div>` : `<p class="optional-mode-note">${t("Special Ops is off for this match. Turn it on to configure its rank and edges.", "Special Ops está desativado nesta partida. Ative para configurar a patente e as edges.")}</p>`}
+      </div>`);
+    }
+
+    return `<h3 class="subhead">${t("Optional rules & choices", "Regras opcionais e escolhas")}</h3>
+      <p class="optional-rules-intro">${t("Choose optional rules before setup. The guide below updates to show only the options selected for this match.", "Escolha as regras opcionais antes da preparação. O guia abaixo mostrará somente as opções selecionadas para esta partida.")}</p>
+      ${sections.length ? sections.join("") : `<p class="optional-mode-note">${t("Select Eagle's Nest or Escalation above to configure their optional rules and Sniper choices.", "Selecione Eagle's Nest ou Escalation acima para configurar suas regras opcionais e opções de Sniper.")}</p>`}`;
   }
 
   function manualUrl(book, page) {
@@ -315,10 +651,7 @@
     ];
 
     const mapId = currentMap().id;
-    const hasMechanisationVehicles = mapId === "heavy-water"
-      && isSelected("eagle")
-      && isSelected("kraken")
-      && isSelected("escalation");
+    const hasMechanisationVehicles = mapId === "heavy-water" && selectedAdvantage("mechanisation");
     if (mapId === "super-carrier") {
       items.push(
         ["ladder", t("Matching ladders", "Escadas correspondentes"), t("On the Super Carrier, paired ladders connect levels for movement, noise and spotting.", "No Super Carrier, pares de escadas conectam níveis para movimento, ruído e Spot.")],
@@ -326,16 +659,14 @@
         ["locked", t("Door token", "Ficha de porta"), t("The unlocked side behaves like a doorway; the locked side blocks movement and line of sight.", "O lado destrancado funciona como porta; o lado trancado bloqueia movimento e visão.")]
       );
     }
-    if (mapId === "norman-village" && isSelected("escalation")) {
-      items.push(["locked", t("Door token · Under Curfew", "Ficha de porta · Under Curfew"), t("If Under Curfew is selected, the unlocked side behaves like a doorway and the locked side blocks movement and line of sight.", "Se Under Curfew for escolhida, o lado destrancado funciona como porta e o lado trancado bloqueia movimento e visão.")]);
+    if (mapId === "norman-village" && selectedAdvantage("underCurfew")) {
+      items.push(["locked", t("Door token · Under Curfew", "Ficha de porta · Under Curfew"), t("The unlocked side behaves like a doorway; the locked side blocks movement and line of sight.", "O lado destrancado funciona como porta; o lado trancado bloqueia movimento e visão.")]);
     }
     if (mapId === "norman-village" || hasMechanisationVehicles) {
       items.push([
         "vehicle",
         t("Vehicle start / road access", "Início / acesso de veículo"),
-        hasMechanisationVehicles
-          ? t("On Heavy Water, use these markers only if the Mechanisation advantage is selected.", "Em Heavy Water, use estes marcadores somente se a vantagem Mechanisation for escolhida.")
-          : t("The black and grey wheel marks identify vehicle start and road-access spaces.", "Os símbolos de roda preto e cinza indicam início do veículo e acesso de estrada.")
+        t("The black and grey wheel marks identify vehicle start and road-access spaces.", "Os símbolos de roda preto e cinza indicam início do veículo e acesso de estrada.")
       ]);
     }
 
@@ -354,7 +685,7 @@
         ${referenceLink("core", 11, t("Map symbols · p. 11 ↗", "Símbolos do mapa · p. 11 (EN) ↗"))}
         ${referenceLink("core", 13, t("Shot-bag tokens · p. 13 ↗", "Fichas do saco · p. 13 (EN) ↗"))}
         ${mapId === "norman-village" ? referenceLink("kraken", 4, t("Vehicle markers · p. 4 ↗", "Veículos · p. 4 (EN) ↗")) : ""}
-        ${mapId === "norman-village" && isSelected("escalation") ? `${referenceLink("kraken", 6, t("Door token · p. 6 ↗", "Ficha de porta · p. 6 (EN) ↗"))} ${referenceLink("escalation", 17, t("Under Curfew · p. 17 ↗", "Under Curfew · p. 17 (EN) ↗"))}` : ""}
+        ${mapId === "norman-village" && selectedAdvantage("underCurfew") ? `${referenceLink("kraken", 6, t("Door token · p. 6 ↗", "Ficha de porta · p. 6 (EN) ↗"))} ${referenceLink("escalation", 17, t("Under Curfew · p. 17 ↗", "Under Curfew · p. 17 (EN) ↗"))}` : ""}
         ${hasMechanisationVehicles ? referenceLink("escalation", 19, t("Mechanisation symbols · p. 19 ↗", "Símbolos de Mechanisation · p. 19 (EN) ↗")) : ""}
         ${mapId === "super-carrier" ? referenceLink("kraken", 6, t("Ship symbols · p. 6 ↗", "Símbolos do navio · p. 6 (EN) ↗")) : ""}
       </div>`;
@@ -382,16 +713,16 @@
     const cards = sniper
       ? [
           [t("Win condition", "Condição de vitória"), t("Complete both secret objectives before taking a second wound or timing out.", "Complete os dois objetivos secretos antes de receber a segunda ferida ou esgotar o tempo.")],
-          [t("On your turn", "No seu turno"), isSelected("escalation")
-            ? t("Take at most one move and one extra action (Shoot, Loot, or Complete an Objective). Normally use one loadout card; if the upgraded Bayonet was selected, it allows one additional card after Bayonet. Choose any order; skipping never lets you repeat an option.", "Faça no máximo um movimento e uma ação extra (Atirar, Saquear ou Completar Objetivo). Normalmente use uma carta de equipamento; se a melhoria Bayonet foi escolhida, ela permite mais uma carta depois dela. Escolha qualquer ordem; pular não permite repetir uma opção.")
+          [t("On your turn", "No seu turno"), isSpecialOps()
+            ? t(`Take at most one move and one extra action (Shoot, Loot, or Complete an Objective). Normally use one loadout card.${edgeCount("sniper", "upgradedLoadout") > 0 ? " Follow the selected upgrade card's text if it changes this limit." : ""} Choose any order; skipping never lets you repeat an option.`, `Faça no máximo um movimento e uma ação extra (Atirar, Saquear ou Completar Objetivo). Normalmente use uma carta de equipamento.${edgeCount("sniper", "upgradedLoadout") > 0 ? " Siga o texto da carta melhorada escolhida se alterar esse limite." : ""} Escolha qualquer ordem; pular não permite repetir uma opção.`)
             : t("Take at most one move, one loadout card, and one extra action (Shoot, Loot, or Complete an Objective), in any order. You may skip an option, but skipping never lets you repeat another one.", "Faça no máximo um movimento, use uma carta de equipamento e execute uma ação extra (Atirar, Saquear ou Completar Objetivo), em qualquer ordem. Pode pular uma opção, mas isso não permite repetir outra.")],
           [t("Move quietly", "Movimento silencioso"), t("Move 0–1 spaces to stay hidden. Moving 2–3 alerts defenders adjacent to any space along your route, including start and end.", "Mova 0–1 espaços para permanecer oculto. Mover 2–3 alerta defensores adjacentes ao trajeto, incluindo início e fim.")],
           [t("Make a shot", "Faça um disparo"), t("Need one aim per space on the shortest line (including the target); even a target in your own space needs one aim. Announce how many tokens you will draw, then show every token.", "Precisa de uma mira por espaço na menor linha (incluindo o alvo); mesmo no seu próprio espaço, precisa de uma mira. Anuncie quantas fichas vai comprar e depois mostre todas.")],
           [t("Noise & misfire", "Ruído e falha"), t("Two net noise tokens reveal your space. Each suppression token drawn raises that reveal threshold by one. Five combined recoil + noise tokens misfire; suppression does not prevent a misfire.", "Duas fichas líquidas de ruído revelam sua posição. Cada supressão comprada aumenta esse limite em um. Cinco fichas de recuo + ruído causam falha; supressão não evita falha.")],
-          [t("Objectives & timer", "Objetivos e relógio"), t("Reveal an objective only while on its numbered space. It adds noise and resets all defender countdown cubes (including the Hunter's, if present) to 10 (or 7 with Accelerated Schedule) for the next objective.", "Revele um objetivo apenas no espaço numerado correspondente. Isso adiciona ruído e reinicia todos os cubos de contagem dos alemães (inclusive o do Hunter, se estiver em jogo) em 10 (ou 7 com Accelerated Schedule) para o próximo objetivo.")]
+          [t("Objectives & timer", "Objetivos e relógio"), t(`Reveal an objective only while on its numbered space. It adds noise and resets all defender countdown cubes${edgeCount("defenders", "callHunter") > 0 ? " (including the Hunter's)" : ""} to ${selectedAdvantage("acceleratedSchedule") ? "7" : "10"} for the next objective.`, `Revele um objetivo apenas no espaço numerado correspondente. Isso adiciona ruído e reinicia todos os cubos de contagem dos alemães${edgeCount("defenders", "callHunter") > 0 ? " (inclusive o do Hunter)" : ""} em ${selectedAdvantage("acceleratedSchedule") ? "7" : "10"} para o próximo objetivo.`)]
         ]
       : [
-          [t("Win condition", "Condição de vitória"), t("Wound the sniper twice, or have every defender countdown cube on the final space at the start of the defenders' turn; include the Hunter's white cube if he is in play.", "Fira o sniper duas vezes ou mantenha todos os cubos de contagem dos alemães no espaço final no início do turno deles; inclua o cubo branco do Hunter se estiver em jogo.")],
+          [t("Win condition", "Condição de vitória"), t(`Wound the Sniper twice, or have every defender countdown cube${edgeCount("defenders", "callHunter") > 0 ? " (including the Hunter's white cube)" : ""} on the final space at the start of the Defenders' turn.`, `Fira o Sniper duas vezes ou mantenha todos os cubos de contagem dos alemães${edgeCount("defenders", "callHunter") > 0 ? " (inclusive o cubo branco do Hunter)" : ""} no espaço final no início do turno dos Defensores.`)],
           [t("Three squads", "Três esquadrões"), t("Black, red and yellow squads each have one officer and two soldiers. Each squad gathers intel or takes two unit actions.", "Os esquadrões preto, vermelho e amarelo têm um oficial e dois soldados. Cada esquadrão reúne informação ou faz duas ações de unidade.")],
           [t("Attack", "Atacar"), t("Move a unit into a suspected space and attack that space. If the sniper is there, they take a wound.", "Mova uma unidade até um espaço suspeito e ataque esse espaço. Se o sniper estiver ali, recebe uma ferida.")],
           [t("Spot or sweep", "Spot ou Sweep"), t("Spot checks one adjacent space. Sweep checks the unit's space plus two matching-adjacent spaces; the sniper only confirms if present.", "Spot verifica um espaço adjacente. Sweep verifica o espaço da unidade e dois adjacentes do mesmo tipo; o sniper só confirma se está ali.")],
@@ -401,16 +732,47 @@
         ];
 
     const addonCards = [];
+    if (sniper && edgeCount("sniper", "extraLoadout") > 0) {
+      const extraCount = edgeCount("sniper", "extraLoadout");
+      addonCards.push([
+        t("Extra Loadout", "Extra Loadout"),
+        t(`Start with ${3 + extraCount} cards instead of three; this does not add a turn action.`, `Comece com ${3 + extraCount} cartas em vez de três; isso não acrescenta uma ação no turno.`)
+      ]);
+    }
+    if (sniper && edgeCount("sniper", "goodBoy") > 0) {
+      addonCards.push([
+        t("Good Boy", "Good Boy"),
+        t("The decoy dog can move one space on later turns and creates noise without revealing who moved.", "O cão chamariz pode mover um espaço em turnos posteriores e cria ruído sem revelar quem se moveu.")
+      ]);
+    }
+    if (sniper && edgeCount("sniper", "killshot") > 0) {
+      addonCards.push([
+        t("Killshot", "Killshot"),
+        t("Choose a non-armoured secondary defender crossed by the shot line; recoil determines whether one or both targets are removed.", "Escolha um segundo defensor sem blindagem atravessado pela linha do disparo; o recuo determina se um ou ambos os alvos são eliminados.")
+      ]);
+    }
+    if (!sniper && edgeCount("defenders", "flares") > 0) {
+      addonCards.push([
+        t("Flares", "Flares"),
+        t("Fire one flare per Defenders' turn without spending an action; it may force the Sniper to add recoil.", "Dispare um sinalizador por turno dos Defensores sem gastar ação; ele pode obrigar o Sniper a adicionar recuo.")
+      ]);
+    }
+    if (!sniper && edgeCount("defenders", "callHunter") > 0) {
+      addonCards.push([
+        t("Call the Hunter", "Call the Hunter"),
+        t("Adds a fourth armoured squad with one action per turn; a regular squad may call him instead of taking its actions or gathering intel.", "Adiciona um quarto esquadrão blindado com uma ação por turno; um esquadrão normal pode chamá-lo em vez de agir ou reunir informação.")
+      ]);
+    }
     if (isSelected("kraken") && currentMap().id === "norman-village") {
       addonCards.push([
         t("Vehicles", "Veículos"),
         t("A vehicle needs 3 aim tokens at minimum (armour 2). It can be destroyed; it never returns. Passengers count as occupying its space for noisy movement.", "Um veículo exige no mínimo 3 miras (blindagem 2). Pode ser destruído e não retorna. Passageiros contam no espaço do veículo para movimento ruidoso.")
       ]);
     }
-    if (isSelected("escalation") && isSelected("kraken") && currentMap().id === "heavy-water") {
+    if (selectedAdvantage("mechanisation")) {
       addonCards.push([
         t("Mechanisation", "Mechanisation"),
-        t("The Heavy Water map gains the Norman Village vehicles when this advantage is selected; armour 2 means at least three aim tokens to hit.", "O mapa Heavy Water recebe os veículos de Norman Village quando essa vantagem é escolhida; blindagem 2 exige no mínimo três miras para acertar.")
+        t("Heavy Water uses the Norman Village vehicles; armour 2 means at least three aim tokens to hit.", "Heavy Water usa os veículos de Norman Village; blindagem 2 exige no mínimo três miras para acertar.")
       ]);
     }
     if (isSelected("kraken") && currentMap().id === "super-carrier") {
@@ -419,16 +781,18 @@
         t("Doors can be locked by defenders or shot open by the sniper. Ladders connect all teams; air ducts connect only the sniper.", "Defensores podem trancar portas; o sniper pode atirar nelas para abri-las. Escadas conectam todos; dutos conectam apenas o sniper.")
       ]);
     }
-    if (isSelected("escalation")) {
+    if (isSpecialOps()) {
       addonCards.push([
         t("Special Ops", "Special Ops"),
-        t("Rank gives each side 1, 2 or 3 edges. Use each selected mission, advantage, specialist and upgraded loadout as printed.", "A patente dá a cada lado 1, 2 ou 3 escolhas. Use as missões, vantagens, especialistas e equipamentos melhorados escolhidos conforme a carta.")
+        t("The match uses the rank and exact edge selections configured in Build your match.", "A partida usa a patente e as edges exatas configuradas em Configure a partida.")
       ]);
     }
-    if (isSelected("eagle")) {
+    if (state.matchOptions.sniper !== "base") {
       addonCards.push([
         t("Allied sniper", "Sniper aliado"),
-        t("If playing an allied sniper, replace the base bag composition with the values on that sniper card; their special ability is mandatory unless stated otherwise.", "Se jogar com um sniper aliado, substitua a composição do saco pelos valores da carta; a habilidade especial é obrigatória, salvo indicação contrária.")
+        state.matchOptions.sniper === "ghost"
+          ? t("Ghost Sniper secretly draws an allied Sniper; keep the card and unused tokens hidden until a reveal condition.", "Ghost Sniper compra um Sniper aliado em segredo; mantenha a carta e as fichas não usadas ocultas até uma condição de revelação.")
+          : t(`Use ${pair((sniperChoices.find((option) => option.id === state.matchOptions.sniper) || sniperChoices[0]).name)}'s bag composition; their special ability is mandatory unless stated otherwise.`, `Use a composição do saco de ${pair((sniperChoices.find((option) => option.id === state.matchOptions.sniper) || sniperChoices[0]).name)}; a habilidade especial é obrigatória salvo indicação contrária.`)
       ]);
     }
     if (!sniper) {
@@ -473,8 +837,8 @@
       return [
         [t("Elevated and enclosed areas", "Áreas elevadas e fechadas"), t("Clifftops and the top of the dam are elevated and accessible only by marked paths. Each building is one enclosed space entered/exited through its marked doorway. Water blocks movement, not sight.", "Os penhascos e o topo da barragem são elevados e só podem ser acessados pelos caminhos marcados. Cada edifício é um espaço fechado, acessado pela porta indicada. Água bloqueia movimento, não visão.")],
         [t("Difficult terrain", "Terreno difícil"), t("Entering difficult terrain reduces maximum movement by one (sniper: 2 spaces; defenders: 1). A defender must start adjacent; the sniper must start within two spaces. Only one difficult space may be entered per turn, and the terrain does not make movement noisier.", "Entrar em terreno difícil reduz o movimento máximo em um (sniper: 2 espaços; alemães: 1). O defensor deve começar adjacente; o sniper deve começar a até dois espaços. Só se pode entrar em um terreno difícil por turno, e ele não torna o movimento mais ruidoso.")],
-        ...(isSelected("escalation") && isSelected("kraken")
-          ? [[t("Mechanisation (if selected)", "Mechanisation (se escolhida)"), t("This Special Ops advantage adds the Norman Village vehicles using the Heavy Water road/start diagram.", "Esta vantagem Special Ops adiciona os veículos de Norman Village conforme o diagrama de estradas e início de Heavy Water.")]]
+        ...(selectedAdvantage("mechanisation")
+          ? [[t("Mechanisation", "Mechanisation"), t("This Special Ops advantage adds the Norman Village vehicles using the Heavy Water road/start diagram.", "Esta vantagem Special Ops adiciona os veículos de Norman Village conforme o diagrama de estradas e início de Heavy Water.")]]
           : [])
       ];
     }
@@ -490,8 +854,8 @@
         [t("Multiple entrances", "Entradas múltiplas"), t("Three sectors have two entrance arrows. The sniper may use either entrance, but cannot enter through a sector containing either objective.", "Três setores têm duas setas de entrada. O sniper pode usar qualquer uma, mas não pode entrar por um setor que contenha um dos objetivos.")],
         [t("Vehicle patrols", "Patrulhas de veículos"), t("Two armoured vehicles start empty on the printed icons and move only along roads. Each can carry one defender. An empty vehicle is not alerted by sniper movement; an embarked defender counts as occupying the vehicle's space for noise.", "Dois veículos blindados começam vazios nos ícones impressos e só percorrem estradas. Cada um pode transportar um defensor. Um veículo vazio não é alertado pelo movimento do sniper; um defensor embarcado conta no espaço do veículo para ruído.")],
         [t("Embark & disembark", "Embarcar e desembarcar"), t("A defender who ends a move action in an empty vehicle's space must embark: place the unit miniature on that vehicle's face-up card. A unit cannot end movement in a vehicle space that already has a passenger. To disembark, use a move action, place the miniature in the vehicle's space, move up to two spaces as normal, and end in a different space. The sniper may enter an empty vehicle space, but not an occupied one.", "Um defensor que termina uma ação de movimento no espaço de um veículo vazio deve embarcar: coloque a miniatura naquela carta de veículo visível. Uma unidade não pode terminar o movimento no espaço de um veículo que já tenha passageiro. Para desembarcar, use uma ação de movimento, coloque a miniatura no espaço do veículo, mova até dois espaços normalmente e termine em outro espaço. O sniper pode entrar no espaço de um veículo vazio, mas não no de um ocupado.")],
-        ...(isSelected("escalation")
-          ? [[t("Under Curfew (optional)", "Under Curfew (opcional)"), t("If selected, vehicle units cannot lock or unlock doors. The setup checklist covers placing all 11 door tokens and adding Bolt Cutters to the loadout pool.", "Se escolhida, unidades em veículos não podem trancar nem destrancar portas. A checklist de preparação indica como posicionar as 11 fichas e adicionar Bolt Cutters à reserva.")]]
+        ...(selectedAdvantage("underCurfew")
+          ? [[t("Under Curfew", "Under Curfew"), t("Units in vehicles cannot lock or unlock doors. The setup checklist includes the 11 door tokens and Bolt Cutters.", "Unidades em veículos não podem trancar nem destrancar portas. A preparação inclui as 11 fichas de porta e Bolt Cutters.")]]
           : [])
       ];
     }
@@ -502,8 +866,8 @@
         [t("Doors and reinforced walls", "Portas e paredes reforçadas"), t("Locked doors block movement and line of sight. A successful sniper shot removes a door token permanently and adds no bag token. Reinforced walls block actions/effects, but not noise.", "Portas trancadas bloqueiam movimento e visão. Um tiro bem-sucedido do sniper remove a ficha permanentemente sem adicionar token ao saco. Paredes reforçadas bloqueiam ações/efeitos, mas não ruído.")],
         [t("Open and enclosed spaces", "Espaços abertos e fechados"), t("The bridge, officer area, and two engine rooms are distinct enclosed areas. All other ship areas count as open, even when separated by a door.", "A ponte, a área dos oficiais e as duas salas de máquinas são áreas fechadas distintas. As demais áreas do navio contam como abertas, mesmo quando separadas por uma porta.")],
         [t("Face-card objectives", "Objetivos de cartas de figura"), t("If both drawn objectives have the same face-card value, return one to the bottom and draw again. The suit identifies the matching board icon.", "Se os dois objetivos comprados tiverem o mesmo valor de figura, devolva um ao fundo e compre outro. O naipe identifica o ícone correspondente no tabuleiro.")],
-        ...(isSelected("escalation")
-          ? [[t("Tipped Off (optional)", "Tipped Off (opcional)"), t("If selected, after specialists are chosen, lock any two doors.", "Se escolhida, depois de selecionar especialistas, tranque duas portas quaisquer.")]]
+        ...(selectedAdvantage("tippedOff")
+          ? [[t("Tipped Off", "Tipped Off"), t("After specialists are chosen, lock any two doors.", "Depois de selecionar especialistas, tranque duas portas quaisquer.")]]
           : [])
       ];
     }
@@ -520,16 +884,11 @@
   function setupChecklistPhases() {
     const mapId = currentMap().id;
     const phases = [];
-
-    if (isSelected("escalation")) {
-      phases.push({
-        title: t("Before setup · choose a Special Ops rank", "Antes da preparação · escolha a patente Special Ops"),
-        refs: [["escalation", 6]],
-        items: [
-          setupTask("specialops-rank", "Choose Private (1 edge per side), Corporal (2), or Sergeant (3) before starting setup.", "Antes de começar, escolha Soldado (1 opção por lado), Cabo (2) ou Sargento (3).")
-        ]
-      });
-    }
+    const upgradedLoadoutCount = edgeCount("sniper", "upgradedLoadout");
+    const extraLoadoutCount = edgeCount("sniper", "extraLoadout");
+    const eliteSpecialistCount = edgeCount("defenders", "eliteSpecialist");
+    const sniperChoice = state.matchOptions.sniper;
+    const chosenSniper = sniperChoices.find((option) => option.id === sniperChoice) || sniperChoices[0];
 
     phases.push({
       title: t("Select the mission and prepare the table", "Escolha a missão e prepare a mesa"),
@@ -545,32 +904,50 @@
       ]
     });
 
-    if (isSelected("escalation")) {
-      const sniperFirst = ["launch-facility", "submarine-pens", "heavy-water"].includes(mapId);
+    if (isSpecialOps()) {
+      const missionSelected = edgeCount("sniper", "killshot") + edgeCount("sniper", "goodBoy")
+        + edgeCount("defenders", "flares") + edgeCount("defenders", "callHunter") > 0;
+      const advantagesSelected = availableAdvantagesFor(mapId, state.expansions)
+        .some((option) => selectedAdvantage(option.id));
+      const specialOpsTasks = [
+        setupTask(
+          "specialops-confirm-selection",
+          `Use the Rank ${state.matchOptions.rank} options configured in Build your match; each side must have exactly ${state.matchOptions.rank} edges.`,
+          `Use as opções de patente ${state.matchOptions.rank} configuradas em Configure a partida; cada lado deve ter exatamente ${state.matchOptions.rank} edges.`
+        )
+      ];
+      if (missionSelected || advantagesSelected) {
+        specialOpsTasks.push(setupTask(
+          "specialops-display-public-cards",
+          "Place the selected mission and advantage cards face up beside the board.",
+          "Deixe visíveis ao lado do tabuleiro as cartas de missão e vantagem escolhidas."
+        ));
+      }
+      if (upgradedLoadoutCount > 0) {
+        specialOpsTasks.push(setupTask(
+          "specialops-announce-upgraded-count",
+          `Announce ${upgradedLoadoutCount} Upgraded Loadout edge${upgradedLoadoutCount === 1 ? "" : "s"} without naming the cards.`,
+          `Anuncie ${upgradedLoadoutCount} edge${upgradedLoadoutCount === 1 ? "" : "s"} de Upgraded Loadout sem revelar as cartas.`
+        ));
+      }
+      if (extraLoadoutCount > 0) {
+        specialOpsTasks.push(setupTask(
+          "specialops-announce-extra-count",
+          `Announce ${extraLoadoutCount} Extra Loadout edge${extraLoadoutCount === 1 ? "" : "s"} without revealing the starting cards.`,
+          `Anuncie ${extraLoadoutCount} edge${extraLoadoutCount === 1 ? "" : "s"} de Extra Loadout sem revelar as cartas iniciais.`
+        ));
+      }
+      if (eliteSpecialistCount > 0) {
+        specialOpsTasks.push(setupTask(
+          "specialops-announce-elite-count",
+          `Announce ${eliteSpecialistCount} Elite Specialist edge${eliteSpecialistCount === 1 ? "" : "s"} without naming the specialists.`,
+          `Anuncie ${eliteSpecialistCount} edge${eliteSpecialistCount === 1 ? "" : "s"} de Elite Specialist sem revelar os especialistas.`
+        ));
+      }
       phases.push({
-        title: t("Draft Special Ops edges", "Escolha as opções Special Ops"),
+        title: t("Apply the configured Special Ops options", "Aplique as opções Special Ops configuradas"),
         refs: [["escalation", 7]],
-        items: [
-          setupTask(
-            "specialops-first-picker",
-            sniperFirst
-              ? "The sniper chooses first on Launch Facility, Submarine Pens, and Heavy Water."
-              : "The defenders choose first on Eagle's Nest, Super Carrier, and Norman Village.",
-            sniperFirst
-              ? "O sniper escolhe primeiro em Launch Facility, Submarine Pens e Heavy Water."
-              : "Os alemães escolhem primeiro em Eagle's Nest, Super Carrier e Norman Village."
-          ),
-          setupTask("specialops-sniper-edge-choice", "The sniper chooses exactly the number of edges granted by their rank from: Sniper missions (Killshot or Good Boy), Upgraded Loadout, and Extra Loadout. Edge types may be repeated; each Extra Loadout edge adds one card to the sniper's starting hand.", "O sniper escolhe exatamente o número de edges concedido pela patente entre: missões do Sniper (Killshot ou Good Boy), Upgraded Loadout e Extra Loadout. Tipos de edge podem ser repetidos; cada Extra Loadout acrescenta uma carta à mão inicial."),
-          setupTask("specialops-defender-edge-choice", "The defenders choose exactly the number of edges granted by their rank from: Defender missions (Flares or Call the Hunter), Elite Specialist, and Advantage. Edge types may be repeated; each Advantage is limited to its printed map except Accelerated Schedule.", "Os alemães escolhem exatamente o número de edges concedido pela patente entre: missões dos Defensores (Flares ou Call the Hunter), Elite Specialist e Advantage. Tipos de edge podem ser repetidos; cada Advantage se limita ao mapa indicado, exceto Accelerated Schedule."),
-          setupTask("specialops-announce-missions", "If any mission is selected, announce each one as soon as it is chosen.", "Se escolher missões, anuncie cada uma assim que for escolhida.", true),
-          setupTask("specialops-announce-advantages", "If any advantage is selected, announce each one as soon as it is chosen.", "Se escolher vantagens, anuncie cada uma assim que for escolhida.", true),
-          setupTask("specialops-display-cards", "Place each selected mission and advantage card face up beside the board.", "Deixe visível ao lado do tabuleiro cada carta de missão e vantagem escolhida.", true),
-          setupTask("specialops-announce-upgraded-count", "If any Upgraded Loadout edge is chosen, announce its count without naming the cards.", "Se escolher Upgraded Loadout, anuncie a quantidade sem revelar as cartas.", true),
-          setupTask("specialops-announce-extra-count", "If any Extra Loadout edge is chosen, announce its count without revealing the starting cards.", "Se escolher Extra Loadout, anuncie a quantidade sem revelar as cartas iniciais.", true),
-          setupTask("specialops-announce-elite-count", "If any Elite Specialist edge is chosen, announce its count without naming the specialists.", "Se escolher Elite Specialist, anuncie a quantidade sem revelar os especialistas.", true),
-          setupTask("specialops-choice-timing", "If any upgraded or extra loadouts were chosen, the sniper selects those cards after both edge lists and before the defenders select specialists.", "Se escolher equipamentos melhorados ou extras, o sniper seleciona essas cartas depois das duas listas de opções e antes de os alemães escolherem especialistas.", true),
-          setupTask("specialops-elite-timing", "If Elite Specialist was chosen, select each elite card during the defenders' normal specialist selection, instead of its matching basic card.", "Se escolher Elite Specialist, selecione cada carta elite durante a seleção normal de especialistas dos alemães, no lugar da carta base correspondente.", true)
-        ]
+        items: specialOpsTasks
       });
     }
 
@@ -580,11 +957,25 @@
       items: [
         setupTask("give-map-hidden-board", "Give the sniper the hidden board for the selected map.", "Entregue ao sniper o tabuleiro oculto do mapa escolhido."),
         setupTask("give-map-objectives", "Give the sniper the nine objective cards for the selected map.", "Entregue ao sniper as nove cartas de objetivo do mapa escolhido."),
-        setupTask("give-sniper-miniature", "Set the base Sniper miniature aside until the Sniper character is chosen.", "Separe a miniatura base do Sniper até escolher o personagem."),
+        setupTask("give-sniper-miniature", state.matchOptions.sniper === "base"
+          ? "Give the base Sniper miniature to the player."
+          : state.matchOptions.sniper === "ghost"
+            ? "Keep all Sniper miniatures aside until the Ghost Sniper card is revealed."
+            : `Set the base Sniper miniature aside; use the ${pair(chosenSniper.name)} allied Sniper miniature instead.`,
+        state.matchOptions.sniper === "base"
+          ? "Entregue a miniatura do Sniper base ao jogador."
+          : state.matchOptions.sniper === "ghost"
+            ? "Deixe todas as miniaturas de Sniper separadas até revelar a carta de Ghost Sniper."
+            : `Separe a miniatura do Sniper base; use a miniatura do Sniper aliado ${pair(chosenSniper.name)} no lugar.`),
         setupTask("give-sniper-marker", "Give the dry-erase marker to the sniper.", "Entregue o marcador apagável ao sniper."),
         setupTask("give-sniper-bag", "Give the shot bag to the sniper.", "Entregue o saco de disparo ao sniper."),
         setupTask("give-sniper-aid", "Give the Sniper player aid to the sniper.", "Entregue a ajuda de jogador do Sniper ao sniper."),
-        setupTask("give-shot-token-supply", "Give the sniper all 30 core shot tokens: 11 aim, 7 recoil, 9 noise, and 3 suppression. Keep the unused supply hidden if playing Ghost Sniper.", "Entregue ao sniper as 30 fichas de disparo base: 11 de mira, 7 de recuo, 9 de ruído e 3 de supressão. Se usar Ghost Sniper, mantenha escondidas as fichas não usadas."),
+        setupTask("give-shot-token-supply", state.matchOptions.sniper === "ghost"
+          ? "Give the Sniper all 30 core shot tokens; keep the unused supply hidden for the Ghost Sniper."
+          : "Give the Sniper all 30 core shot tokens: 11 aim, 7 recoil, 9 noise, and 3 suppression.",
+        state.matchOptions.sniper === "ghost"
+          ? "Entregue ao Sniper as 30 fichas de disparo base; mantenha escondidas as fichas não usadas para Ghost Sniper."
+          : "Entregue ao Sniper as 30 fichas de disparo base: 11 miras, 7 recuos, 9 ruídos e 3 supressões."),
         setupTask("give-loadout-pool", "Give the sniper the 10 core loadout cards. Add expansion cards only as directed in the loadout-preparation steps below.", "Entregue ao sniper as 10 cartas de equipamento do jogo base. Acrescente cartas de expansão somente conforme as etapas de preparação dos equipamentos abaixo.")
       ]
     });
@@ -618,27 +1009,31 @@
       mapPrep.push(setupTask("map-norman-vehicles", "Place one vehicle miniature on each of the two Norman Village vehicle-start icons.", "Coloque uma miniatura de veículo em cada um dos dois ícones de início de veículo de Norman Village."));
       mapPrep.push(setupTask("map-norman-vehicle-cards", "Place both vehicle cards face up where all defenders can see them.", "Deixe as duas cartas de veículo visíveis para todos os alemães."));
     }
-    if (mapId === "heavy-water" && isSelected("escalation") && isSelected("kraken")) {
-      mapPrep.push(setupTask("map-mechanisation-vehicles", "If Mechanisation was selected, place the two vehicles on the Heavy Water start icons shown in Escalation p. 19.", "Se Mechanisation foi escolhida, coloque os dois veículos nos ícones de início de Heavy Water mostrados na p. 19 de Escalation.", true));
-      mapPrep.push(setupTask("map-mechanisation-cards", "If Mechanisation was selected, place both vehicle cards face up where all defenders can see them.", "Se Mechanisation foi escolhida, deixe visíveis as duas cartas de veículo para todos os alemães.", true));
+    if (mapId === "heavy-water" && selectedAdvantage("mechanisation")) {
+      mapPrep.push(setupTask("map-mechanisation-vehicles", "Place the two vehicles on the Heavy Water start icons shown in Escalation p. 19.", "Coloque os dois veículos nos ícones de início de Heavy Water mostrados na p. 19 de Escalation."));
+      mapPrep.push(setupTask("map-mechanisation-cards", "Place both vehicle cards face up where all defenders can see them.", "Deixe as duas cartas de veículo visíveis para todos os alemães."));
     }
-    if (mapId === "launch-facility" && isSelected("escalation")) {
-      mapPrep.push(setupTask("map-roadblocks-entrances", "If Roadblocks was selected, place difficult-terrain tokens on the four entrances.", "Se Roadblocks foi escolhida, coloque fichas de terreno difícil nas quatro entradas.", true));
-      mapPrep.push(setupTask("map-roadblocks-fifth", "If Roadblocks was selected, place its fifth token on an open space not adjacent to any other difficult terrain, including printed spaces.", "Se Roadblocks foi escolhida, coloque a quinta ficha em um espaço aberto que não seja adjacente a outro terreno difícil, inclusive impresso.", true));
+    if (mapId === "launch-facility" && selectedAdvantage("roadblocks")) {
+      mapPrep.push(setupTask("map-roadblocks-entrances", "Place difficult-terrain tokens on the four entrances.", "Coloque fichas de terreno difícil nas quatro entradas."));
+      mapPrep.push(setupTask("map-roadblocks-fifth", "Place the fifth token on an open space not adjacent to any other difficult terrain, including printed spaces.", "Coloque a quinta ficha em um espaço aberto que não seja adjacente a outro terreno difícil, inclusive impresso."));
     }
-    if (isSelected("escalation")) {
-      mapPrep.push(setupTask("mission-good-boy", "If Good Boy was selected, place the dog miniature near the board.", "Se Good Boy foi escolhido, coloque a miniatura do cão perto do tabuleiro.", true));
-      mapPrep.push(setupTask("mission-hunter-miniature", "If Call the Hunter was selected, place the Hunter miniature at the location shown for this map in Escalation p. 18.", "Se Call the Hunter foi escolhido, coloque a miniatura do Hunter no local indicado para este mapa na p. 18 de Escalation.", true));
-      mapPrep.push(setupTask("mission-hunter-zone", "If Call the Hunter was selected, place the deployment-zone token on the marked space shown for this map in Escalation p. 18.", "Se Call the Hunter foi escolhido, coloque o marcador de zona de implantação no espaço indicado para este mapa na p. 18 de Escalation.", true));
-      mapPrep.push(setupTask("advantage-accelerated-schedule", "If Accelerated Schedule was selected, start the countdown cubes at 7 and reset them to 7 after each objective instead of 10.", "Se Accelerated Schedule foi escolhida, coloque os cubos de contagem no 7 e reinicie para 7 após cada objetivo, em vez de 10.", true));
+    if (edgeCount("sniper", "goodBoy") > 0) {
+      mapPrep.push(setupTask("mission-good-boy", "Place the Good Boy miniature near the board.", "Coloque a miniatura Good Boy perto do tabuleiro."));
+    }
+    if (edgeCount("defenders", "callHunter") > 0) {
+      mapPrep.push(setupTask("mission-hunter-miniature", "Place the Hunter miniature at the location shown for this map in Escalation p. 18.", "Coloque a miniatura do Hunter no local indicado para este mapa na p. 18 de Escalation."));
+      mapPrep.push(setupTask("mission-hunter-zone", "Place the deployment-zone token on the marked space shown for this map in Escalation p. 18.", "Coloque o marcador de zona de implantação no espaço indicado para este mapa na p. 18 de Escalation."));
+    }
+    if (selectedAdvantage("acceleratedSchedule")) {
+      mapPrep.push(setupTask("advantage-accelerated-schedule", "Start the countdown cubes at 7 and reset them to 7 after each objective.", "Coloque os cubos de contagem no 7 e reinicie para 7 após cada objetivo."));
     }
     if (mapPrep.length) {
       phases.push({
-        title: t("Prepare this map and selected missions", "Prepare este mapa e as missões escolhidas"),
+        title: t("Prepare the map and configured options", "Prepare o mapa e as opções configuradas"),
         refs: [
           ...(mapId === "super-carrier" ? [["kraken", 6]] : mapId === "norman-village" ? [["kraken", 4]] : []),
-          ...(isSelected("escalation")
-            ? [["escalation", mapId === "heavy-water" ? 19 : mapId === "submarine-pens" ? 16 : 17], ["escalation", 18]]
+          ...(isSpecialOps()
+            ? [["escalation", mapId === "heavy-water" ? 19 : mapId === "submarine-pens" ? 16 : 17], ...(edgeCount("defenders", "callHunter") > 0 ? [["escalation", 18]] : [])]
             : [])
         ],
         items: mapPrep
@@ -648,32 +1043,39 @@
     const sniperTasks = [
       setupTask(
         "sniper-character-choice",
-        isSelected("eagle")
-          ? "Choose the base Sniper, a revealed allied sniper, or the Ghost Sniper variant."
-          : "Use the base Sniper for this game.",
-        isSelected("eagle")
-          ? "Escolha o Sniper base, um sniper aliado revelado ou a variante Ghost Sniper."
-          : "Use o Sniper base nesta partida."
-      ),
-      setupTask("sniper-base-miniature", "If using the base Sniper, give the base miniature to the player.", "Se usar o Sniper base, entregue a miniatura base ao jogador.", true)
+        sniperChoice === "base"
+          ? "Use the base Sniper and its miniature."
+          : sniperChoice === "ghost"
+            ? "Use the Ghost Sniper variant; secretly draw an allied Sniper card during setup."
+            : `Use ${pair(chosenSniper.name)} and its matching allied Sniper miniature; the card replaces the base Sniper.`,
+        sniperChoice === "base"
+          ? "Use o Sniper base e sua miniatura."
+          : sniperChoice === "ghost"
+            ? "Use a variante Ghost Sniper; compre em segredo uma carta de Sniper aliado durante a preparação."
+            : `Use ${pair(chosenSniper.name)} e sua miniatura correspondente; a carta substitui o Sniper base.`
+      )
     ];
+    if (sniperChoice !== "base" && sniperChoice !== "ghost") {
+      sniperTasks.push(setupTask(
+        "sniper-allied-reveal",
+        `Place the ${pair(chosenSniper.name)} card face up beside the matching miniature.`,
+        `Deixe a carta de ${pair(chosenSniper.name)} visível ao lado da miniatura correspondente.`
+      ));
+    }
     phases.push({
-      title: t("Choose the sniper", "Escolha o sniper"),
+      title: t("Prepare the selected Sniper", "Prepare o Sniper escolhido"),
       refs: [["core", 4]],
       items: sniperTasks.splice(0)
     });
-    if (isSelected("eagle")) {
+    if (sniperChoice === "ghost") {
       const alliedSniperTasks = [
-        setupTask("sniper-allied-choice", "If using a revealed allied sniper (not Ghost Sniper), choose one of the four cards.", "Se usar um sniper aliado revelado (não Ghost Sniper), escolha uma das quatro cartas.", true),
-        setupTask("sniper-allied-miniature", "Take the miniature that matches the chosen allied sniper.", "Pegue a miniatura correspondente ao sniper aliado escolhido.", true),
-        setupTask("sniper-allied-reveal", "Place the chosen allied sniper card face up; it replaces the base sniper.", "Deixe visível a carta do sniper aliado escolhido; ela substitui o sniper base.", true),
-        setupTask("sniper-ghost-shuffle", "For Ghost Sniper, shuffle the four allied sniper cards.", "Para Ghost Sniper, embaralhe as quatro cartas de sniper aliado.", true),
-        setupTask("sniper-ghost-draw", "Draw one allied sniper card secretly.", "Compre uma carta de sniper aliado em segredo.", true),
-        setupTask("sniper-ghost-hide-card", "Keep the drawn allied sniper card hidden until one of the reveal conditions described in the Allied Sniper rules.", "Mantenha oculta a carta comprada até uma das condições de revelação descritas nas regras de Sniper aliado.", true),
-        setupTask("sniper-ghost-miniature", "Leave the matching allied sniper miniature in the box until the card is revealed.", "Deixe na caixa a miniatura correspondente até revelar a carta.", true)
+        setupTask("sniper-ghost-shuffle", "Shuffle all four allied Sniper cards.", "Embaralhe as quatro cartas de Sniper aliado."),
+        setupTask("sniper-ghost-draw", "Draw one allied Sniper card secretly.", "Compre em segredo uma carta de Sniper aliado."),
+        setupTask("sniper-ghost-hide-card", "Keep the card hidden until its ability is used, the Sniper's position is revealed, an objective is completed, or Defenders find the Sniper with Spot or Attack.", "Mantenha a carta oculta até usar sua habilidade, revelar a posição do Sniper, completar um objetivo ou os Defensores encontrarem o Sniper com Spot ou Ataque."),
+        setupTask("sniper-ghost-miniature", "Keep the matching allied miniature in the box until the card is revealed.", "Mantenha a miniatura correspondente na caixa até revelar a carta.")
       ];
       phases.push({
-        title: t("Prepare allied sniper cards", "Prepare as cartas de sniper aliado"),
+        title: t("Prepare Ghost Sniper", "Prepare Ghost Sniper"),
         refs: [["eagle", 3], ["eagle", 8]],
         items: alliedSniperTasks
       });
@@ -698,12 +1100,45 @@
       items: sniperTasks.splice(0)
     });
 
+    const bagCounts = chosenSniper.bag;
     sniperTasks.push(
-      setupTask("sniper-bag-fill", "Put the starting aim, noise, and recoil tokens in the shot bag: base sniper uses 6 aim, 2 noise, and 3 recoil; an ally uses the counts printed on its card. Load it out of sight for Ghost Sniper.", "Coloque no saco as fichas iniciais de mira, ruído e recuo: o sniper base usa 6 miras, 2 ruídos e 3 recuos; um aliado usa as quantidades impressas na própria carta. Em Ghost Sniper, carregue o saco fora de vista."),
+      setupTask(
+        "sniper-bag-fill",
+        sniperChoice === "ghost"
+          ? "Use the aim, noise, and recoil counts printed on the hidden allied Sniper card; load the bag out of sight."
+          : `Put ${bagCounts[0]} aim, ${bagCounts[1]} noise, and ${bagCounts[2]} recoil tokens in the shot bag.`,
+        sniperChoice === "ghost"
+          ? "Use as quantidades de mira, ruído e recuo impressas na carta de Sniper aliado oculta; carregue o saco fora de vista."
+          : `Coloque ${bagCounts[0]} fichas de mira, ${bagCounts[1]} de ruído e ${bagCounts[2]} de recuo no saco de disparo.`
+      ),
       setupTask("sniper-bag-mix", "Mix the shot bag after loading it.", "Misture o saco de disparo depois de colocar as fichas."),
-      setupTask("sniper-bag-reserve-aim", "Set aside unused aim tokens as reserve; the base sniper leaves 5 aim tokens. With an ally, use the counts on its card. Keep the reserve hidden in Ghost Sniper.", "Deixe as miras não usadas como reserva; o sniper base deixa 5 miras. Com um aliado, siga a quantidade da carta. Oculte a reserva em Ghost Sniper."),
-      setupTask("sniper-bag-reserve-noise", "Set aside unused noise tokens as reserve; the base sniper leaves 7 noise tokens. With an ally, use the counts on its card. Keep the reserve hidden in Ghost Sniper.", "Deixe os ruídos não usados como reserva; o sniper base deixa 7 ruídos. Com um aliado, siga a quantidade da carta. Oculte a reserva em Ghost Sniper."),
-      setupTask("sniper-bag-return-recoil", "Return unused recoil tokens to the box; the base sniper returns 4. With an ally, return every recoil token not required by its card.", "Devolva os recuos não usados à caixa; o sniper base devolve 4. Com um aliado, devolva todos os recuos que a carta não exigir.")
+      setupTask(
+        "sniper-bag-reserve-aim",
+        sniperChoice === "ghost"
+          ? "Set aside the unused aim tokens as reserve and keep them hidden."
+          : `Set aside ${11 - bagCounts[0]} unused aim tokens as reserve.`,
+        sniperChoice === "ghost"
+          ? "Separe as miras não usadas como reserva e mantenha-as escondidas."
+          : `Separe ${11 - bagCounts[0]} miras não usadas como reserva.`
+      ),
+      setupTask(
+        "sniper-bag-reserve-noise",
+        sniperChoice === "ghost"
+          ? "Set aside the unused noise tokens as reserve and keep them hidden."
+          : `Set aside ${9 - bagCounts[1]} unused noise tokens as reserve.`,
+        sniperChoice === "ghost"
+          ? "Separe os ruídos não usados como reserva e mantenha-os escondidos."
+          : `Separe ${9 - bagCounts[1]} ruídos não usados como reserva.`
+      ),
+      setupTask(
+        "sniper-bag-return-recoil",
+        sniperChoice === "ghost"
+          ? "Return every recoil token not required by the hidden allied Sniper card to the box."
+          : `Return ${7 - bagCounts[2]} unused recoil tokens to the box.`,
+        sniperChoice === "ghost"
+          ? "Devolva à caixa todos os recuos não exigidos pela carta de Sniper aliado oculta."
+          : `Devolva ${7 - bagCounts[2]} recuos não usados à caixa.`
+      )
     );
     phases.push({
       title: t("Prepare the shot bag", "Prepare o saco de disparo"),
@@ -721,29 +1156,35 @@
     if (isSelected("kraken") && mapId === "super-carrier") {
       sniperTasks.push(setupTask("sniper-loadout-kraken-pool", "Add Explosive Entrance and Bolt Cutters to the loadout pool; these two cards are for the Super Carrier.", "Acrescente Explosive Entrance e Bolt Cutters à reserva; essas duas cartas são para o Super Carrier."));
     }
-    if (isSelected("escalation")) {
-      sniperTasks.push(setupTask("sniper-loadout-under-curfew", "If Under Curfew was selected for Norman Village, add Bolt Cutters to the pool before choosing starting loadouts.", "Se Under Curfew foi escolhida para Norman Village, adicione Bolt Cutters à reserva antes de escolher os equipamentos iniciais.", true));
-      sniperTasks.push(setupTask("sniper-select-upgrade-cards", "For each Upgraded Loadout edge, choose its specific upgraded card. Bayonet is only available if Eagle's Nest is in the game.", "Para cada opção Upgraded Loadout, escolha a carta melhorada específica. Bayonet só está disponível se Eagle's Nest estiver em jogo.", true));
-      sniperTasks.push(setupTask("sniper-remove-basic-upgrade", "For each chosen upgrade, remove one matching non-upgraded card from the game; if the base card has two copies, remove only one.", "Para cada melhoria escolhida, retire do jogo uma carta base correspondente; se houver duas cópias, retire apenas uma.", true));
-      sniperTasks.push(setupTask("sniper-add-upgraded-cards", "Add each chosen upgraded loadout card to the loadout pool.", "Acrescente cada equipamento melhorado escolhido à reserva.", true));
-      sniperTasks.push(setupTask("sniper-hide-upgraded-identities", "Keep the identities of the selected upgraded cards hidden; only the number of upgrades chosen is announced.", "Mantenha em segredo a identidade das cartas melhoradas; somente a quantidade escolhida é anunciada.", true));
+    if (selectedAdvantage("underCurfew")) {
+      sniperTasks.push(setupTask("sniper-loadout-under-curfew", "Add Bolt Cutters to the pool before choosing starting loadouts.", "Adicione Bolt Cutters à reserva antes de escolher os equipamentos iniciais."));
+    }
+    if (upgradedLoadoutCount > 0) {
+      sniperTasks.push(setupTask("sniper-select-upgrade-cards", `Secretly choose ${upgradedLoadoutCount} upgraded loadout card${upgradedLoadoutCount === 1 ? "" : "s"}. Bayonet is available only with Eagle's Nest.`, `Escolha em segredo ${upgradedLoadoutCount} carta${upgradedLoadoutCount === 1 ? "" : "s"} de equipamento melhorado. Bayonet só está disponível com Eagle's Nest.`));
+      sniperTasks.push(setupTask("sniper-remove-basic-upgrade", "For each chosen upgrade, remove one matching non-upgraded card from the game; if the base card has two copies, remove only one.", "Para cada melhoria escolhida, retire do jogo uma carta base correspondente; se houver duas cópias, retire apenas uma."));
+      sniperTasks.push(setupTask("sniper-add-upgraded-cards", "Add the selected upgraded loadout cards to the loadout pool.", "Acrescente as cartas de equipamento melhorado escolhidas à reserva."));
+      sniperTasks.push(setupTask("sniper-hide-upgraded-identities", "Keep the identities of the upgraded cards secret; announce only their count.", "Mantenha em segredo a identidade das cartas melhoradas; anuncie somente a quantidade."));
     }
     phases.push({
       title: t("Prepare loadout cards", "Prepare as cartas de equipamento"),
-      refs: [["core", 4], ["core", 7], ["core", 15], ...(isSelected("eagle") ? [["eagle", 8]] : []), ...(isSelected("kraken") ? [["kraken", 3]] : []), ...(isSelected("escalation") ? [["escalation", 12], ["escalation", 13]] : [])],
+      refs: [["core", 4], ["core", 7], ["core", 15], ...(isSelected("eagle") ? [["eagle", 8]] : []), ...(isSelected("kraken") ? [["kraken", 3]] : []), ...(upgradedLoadoutCount > 0 ? [["escalation", 12], ["escalation", 13]] : [])],
       items: sniperTasks.splice(0)
     });
+    const startingLoadoutCount = 3 + extraLoadoutCount;
     sniperTasks.push(
-      setupTask("sniper-choose-starting-loadouts", "Choose exactly three starting loadout cards.", "Escolha exatamente três cartas de equipamento iniciais."),
-      setupTask("sniper-loadout-extra-edges", "If Extra Loadout edges were chosen, increase the starting-card limit by one per edge: three plus the selected extras.", "Se escolheu Extra Loadout, aumente o limite de cartas iniciais em uma por opção: três mais as extras escolhidas.", true),
-      setupTask("sniper-choose-extra-loadouts", "Choose the additional starting card for each Extra Loadout edge.", "Escolha a carta inicial adicional de cada opção Extra Loadout.", true),
+      setupTask("sniper-choose-starting-loadouts", `Choose exactly ${startingLoadoutCount} starting loadout cards.`, `Escolha exatamente ${startingLoadoutCount} cartas de equipamento iniciais.`),
       setupTask("sniper-loadout-duplicates", "You may select both copies when a loadout has two; never choose more copies than the pool contains.", "Você pode escolher as duas cópias quando houver; nunca escolha mais cópias do que existem na reserva."),
-      setupTask("sniper-hide-loadouts", "Keep the identities of all selected starting loadouts, including extra cards, hidden from the defenders.", "Mantenha em segredo dos alemães a identidade de todos os equipamentos iniciais escolhidos, inclusive os extras."),
+      setupTask("sniper-hide-loadouts", extraLoadoutCount > 0
+        ? "Keep the identities of all selected starting loadouts, including extra cards, hidden from the defenders."
+        : "Keep the identities of all selected starting loadouts hidden from the defenders.",
+      extraLoadoutCount > 0
+        ? "Mantenha em segredo dos alemães a identidade de todos os equipamentos iniciais escolhidos, inclusive os extras."
+        : "Mantenha em segredo dos alemães a identidade de todos os equipamentos iniciais escolhidos."),
       setupTask("sniper-form-loot-deck", "Shuffle every unused loadout card face down to make the loot deck.", "Embaralhe todas as cartas de equipamento não escolhidas, viradas para baixo, para formar a pilha de saque.")
     );
     phases.push({
       title: t("Choose starting loadouts", "Escolha os equipamentos iniciais"),
-      refs: [["core", 4], ["core", 7], ["core", 15], ...(isSelected("escalation") ? [["escalation", 13]] : [])],
+      refs: [["core", 4], ["core", 7], ["core", 15], ...(extraLoadoutCount > 0 || upgradedLoadoutCount > 0 ? [["escalation", 13]] : [])],
       items: sniperTasks.splice(0)
     });
 
@@ -751,49 +1192,64 @@
       setupTask("defender-sort-squads", "Sort the 3 officers and 6 soldiers into the black, red, and yellow squads by their base colors.", "Separe os 3 oficiais e 6 soldados nos esquadrões preto, vermelho e amarelo pelas cores das bases."),
       setupTask("defender-place-officers", "Place each officer on the Iron Cross starting space matching its squad color.", "Coloque cada oficial no espaço inicial da Cruz de Ferro da cor do seu esquadrão."),
       setupTask("defender-place-soldiers", "Place each soldier on a starting circle matching its squad color that does not have an Iron Cross.", "Coloque cada soldado em um círculo inicial da cor do seu esquadrão que não tenha Cruz de Ferro."),
-      setupTask("defender-choose-specialists", "Choose three specialist cards, one per squad. If you selected an Elite Specialist edge, choose that elite card instead of its matching basic card.", "Escolha três cartas de especialista, uma por esquadrão. Se escolheu Elite Specialist, escolha a carta elite no lugar da carta base correspondente."),
-      ...(isSelected("escalation")
-        ? [setupTask("defender-remove-basic-elite", "If an elite specialist was chosen, remove its non-elite card from the game.", "Se um especialista elite foi escolhido, retire do jogo sua carta não elite.", true)]
+      setupTask("defender-choose-specialists",
+        eliteSpecialistCount > 0
+          ? `Choose three specialist cards, including exactly ${eliteSpecialistCount} elite card${eliteSpecialistCount === 1 ? "" : "s"} instead of their matching basic versions.`
+          : "Choose three base specialist cards, one per squad.",
+        eliteSpecialistCount > 0
+          ? `Escolha três cartas de especialista, incluindo exatamente ${eliteSpecialistCount} carta${eliteSpecialistCount === 1 ? "" : "s"} elite no lugar das versões base correspondentes.`
+          : "Escolha três cartas de especialista base, uma por esquadrão."),
+      ...(eliteSpecialistCount > 0
+        ? [setupTask("defender-remove-basic-elite", "Remove each chosen elite specialist's matching non-elite card from the game.", "Retire do jogo a carta não elite correspondente a cada especialista elite escolhido.")]
         : []),
       setupTask("defender-assign-specialists", "Assign one selected specialist card to each squad.", "Atribua uma carta de especialista escolhida a cada esquadrão."),
       setupTask("defender-reveal-specialists", "Place all three assigned specialist cards face up where the sniper can see them.", "Deixe as três cartas de especialista atribuídas visíveis ao sniper."),
       setupTask("defender-specialist-suppression", "Put one suppression token on each of the three chosen specialist cards.", "Coloque uma ficha de supressão em cada uma das três cartas de especialista escolhidas."),
       setupTask("defender-specialist-cubes", "Put two action cubes matching each specialist's squad color on that specialist card.", "Coloque dois cubos de ação da cor de cada esquadrão na carta de especialista correspondente."),
-      setupTask("defender-dog-tokens", "Take the two dog tokens only if Kennel Master (including Elite Koyote) is in play; otherwise return them to the box.", "Pegue as duas fichas de cão somente se Kennel Master (incluindo Koyote elite) estiver em jogo; caso contrário, devolva-as à caixa.")
+      setupTask("defender-dog-tokens", "Use the two dog tokens with Kennel Master or elite Koyote. If neither is assigned, return both tokens to the box.", "Use as duas fichas de cão com Kennel Master ou Koyote elite. Se nenhum dos dois for atribuído, devolva as fichas à caixa.")
     ];
     phases.push({
       title: t("Set up the defenders", "Prepare os alemães"),
-      refs: [["core", 4], ["core", 8], ["core", 9], ...(isSelected("escalation") ? [["escalation", 14], ["escalation", 15]] : [])],
+      refs: [["core", 4], ["core", 8], ["core", 9], ...(eliteSpecialistCount > 0 ? [["escalation", 14], ["escalation", 15]] : [])],
       items: defenderTasks
     });
 
     const afterSpecialists = [];
-    if (isSelected("escalation")) {
-      afterSpecialists.push(setupTask("mission-flares", "If Flares was selected, place one flare token on each specialist card after assigning specialists.", "Se Flares foi escolhida, coloque um sinalizador em cada carta de especialista depois de atribuí-los.", true));
-      afterSpecialists.push(setupTask("advantage-tipped-off", "If Tipped Off was selected for the Super Carrier, lock any two doors after choosing specialists.", "Se Tipped Off foi escolhida para o Super Carrier, tranque duas portas quaisquer depois de escolher os especialistas.", true));
-      if (mapId === "norman-village") {
-        afterSpecialists.push(setupTask("advantage-under-curfew-doors", "If Under Curfew was selected, place all 11 door tokens open-side up on doorways of your choice.", "Se Under Curfew foi escolhida, coloque as 11 fichas de porta com o lado aberto em portas à sua escolha.", true));
-      }
+    if (edgeCount("defenders", "flares") > 0) {
+      afterSpecialists.push(setupTask("mission-flares", "Place one flare token on each specialist card after assigning specialists.", "Coloque um sinalizador em cada carta de especialista depois de atribuí-los."));
+    }
+    if (selectedAdvantage("tippedOff")) {
+      afterSpecialists.push(setupTask("advantage-tipped-off", "Lock any two doors after choosing specialists.", "Tranque duas portas quaisquer depois de escolher os especialistas."));
+    }
+    if (selectedAdvantage("underCurfew")) {
+      afterSpecialists.push(setupTask("advantage-under-curfew-doors", "Place all 11 door tokens open-side up on doorways of your choice.", "Coloque as 11 fichas de porta com o lado aberto nas portas de sua escolha."));
     }
     if (afterSpecialists.length) {
       phases.push({
-        title: t("Finish setup for selected defender missions", "Termine a preparação das missões dos alemães"),
+        title: t("Finish setup for configured defender options", "Termine a preparação das opções dos alemães"),
         refs: [["escalation", 10], ["escalation", 16], ["escalation", 17]],
         items: afterSpecialists
       });
     }
 
+    const countdownStart = selectedAdvantage("acceleratedSchedule") ? 7 : 10;
     const finalTasks = [
-      setupTask("countdown-place-cubes", "Put the six remaining squad action cubes on space 10 of the countdown track; if Accelerated Schedule was selected, use space 7 instead.", "Coloque os seis cubos de ação restantes dos esquadrões no espaço 10 da trilha; se Accelerated Schedule foi escolhida, use o espaço 7."),
+      setupTask("countdown-place-cubes", `Put the six remaining squad action cubes on space ${countdownStart} of the countdown track.`, `Coloque os seis cubos de ação restantes no espaço ${countdownStart} da trilha de contagem.`),
       setupTask("countdown-wound-marker", "Place the wound marker on its full side in the circular space on the countdown board.", "Coloque o marcador de ferida com o lado íntegro para cima no círculo do tabuleiro de contagem."),
-      setupTask("countdown-hunter-cube", "If Call the Hunter is in play, put its white action cube on space 10 too, or space 7 if Accelerated Schedule was selected.", "Se Call the Hunter estiver em jogo, coloque também o cubo branco no espaço 10, ou no espaço 7 se Accelerated Schedule foi escolhida.", true),
       setupTask("start-legal-entrance", mapId === "super-carrier" ? "Enter through the Super Carrier's single printed entrance." : "Choose a printed entrance in a sector that contains neither objective.", mapId === "super-carrier" ? "Entre pela única entrada indicada no Super Carrier." : "Escolha uma entrada indicada em um setor que não contenha nenhum dos objetivos."),
       setupTask("start-record-position", "Secretly mark the chosen starting space on the hidden board.", "Marque em segredo a posição inicial escolhida no tabuleiro oculto."),
       setupTask("start-sniper-turn", "The sniper takes the first turn. Their first action must be movement onto the board through the chosen entrance.", "O sniper começa. Sua primeira ação deve ser mover-se para o tabuleiro pela entrada escolhida.")
     ];
+    if (edgeCount("defenders", "callHunter") > 0) {
+      finalTasks.splice(1, 0, setupTask(
+        "countdown-hunter-cube",
+        `Put the Hunter's white action cube on space ${countdownStart}.`,
+        `Coloque o cubo branco de ação do Hunter no espaço ${countdownStart}.`
+      ));
+    }
     phases.push({
       title: t("Set the timer and start play", "Ajuste a contagem e comece"),
-      refs: [["core", 4], ["core", 5], ...(isSelected("escalation") ? [["escalation", 11]] : [])],
+      refs: [["core", 4], ["core", 5], ...(isSpecialOps() ? [["escalation", 11]] : [])],
       items: finalTasks
     });
     return phases;
@@ -834,38 +1290,80 @@
       }
     ];
     if (isSelected("eagle")) {
+      const mapId = currentMap().id;
+      const alliedKit = state.matchOptions.sniper === "ghost"
+        ? t("4 allied Sniper cards for the secret draw and 4 matching miniatures, revealed during play.", "4 cartas de Sniper aliado para a compra secreta e 4 miniaturas correspondentes, reveladas durante a partida.")
+        : state.matchOptions.sniper !== "base"
+          ? t("1 selected allied Sniper card and its matching miniature; the base Sniper is not used.", "1 carta de Sniper aliado escolhida e sua miniatura correspondente; o Sniper base não é usado.")
+          : "";
+      const eagleLoadouts = [
+        t("2 Knife cards.", "2 cartas Knife."),
+        ...(["launch-facility", "submarine-pens", "heavy-water"].includes(mapId) ? [t("2 Diving Gear cards.", "2 cartas Diving Gear.")] : []),
+        ...(["submarine-pens", "heavy-water"].includes(mapId) ? [t("2 Climbing Gear cards.", "2 cartas Climbing Gear.")] : [])
+      ];
+      const eagleItems = [
+        t("1 double-sided map, 2 hidden boards, and 18 objective cards covering Heavy Water and Eagle's Nest; use the matching side and its 9-card set.", "1 tabuleiro dupla face, 2 tabuleiros ocultos e 18 objetivos para Heavy Water e Eagle's Nest; use o lado correspondente e seu conjunto de 9 cartas."),
+        ...(alliedKit ? [alliedKit] : []),
+        t(`Loadout cards used on this map: ${eagleLoadouts.join(" ")}`, `Cartas de equipamento usadas neste mapa: ${eagleLoadouts.join(" ")}`)
+      ];
       cards.push({
         label: "EAGLE'S NEST",
-        title: t("Allied operations kit", "Material das operações aliadas"),
-        items: [
-          t("1 double-sided map, 2 hidden boards, and 18 objective cards covering Heavy Water and Eagle's Nest; use the matching side and its 9-card set.", "1 tabuleiro dupla face, 2 tabuleiros ocultos e 18 objetivos para Heavy Water e Eagle's Nest; use o lado correspondente e seu conjunto de 9 cartas."),
-          t("4 allied sniper cards and miniatures; an allied sniper replaces the base miniature.", "4 cartas e miniaturas de snipers aliados; o aliado substitui a miniatura base."),
-          t("6 new loadout cards: two copies each of Knife, Diving Gear, and Climbing Gear. The 12 solo cards are not used in multiplayer.", "6 cartas de equipamento novas: duas cópias de Knife, Diving Gear e Climbing Gear. As 12 cartas solo não são usadas no multijogador.")
-        ],
+        title: t("Eagle's Nest components", "Componentes de Eagle's Nest"),
+        items: eagleItems,
         ref: ["eagle", 2]
       });
     }
     if (isSelected("kraken")) {
+      const krakenItems = [
+        t("1 double-sided map, 2 hidden boards, and 18 objective cards for Norman Village and Super Carrier; use the selected map's side and 9-card set.", "1 tabuleiro dupla face, 2 tabuleiros ocultos e 18 objetivos para Norman Village e Super Carrier; use o lado escolhido e seu conjunto de 9 cartas.")
+      ];
+      if (currentMap().id === "super-carrier") {
+        krakenItems.push(t("11 door tokens for Super Carrier.", "11 fichas de porta do Super Carrier."));
+        krakenItems.push(t("Add Explosive Entrance and Bolt Cutters to the loadout pool.", "Acrescente Explosive Entrance e Bolt Cutters à reserva de equipamentos."));
+      }
+      if (currentMap().id === "norman-village") {
+        krakenItems.push(t("2 vehicle miniatures and 2 vehicle cards for Norman Village.", "2 miniaturas e 2 cartas de veículo para Norman Village."));
+      }
+      krakenItems.push(t("The 21 solo cards are not used in multiplayer.", "As 21 cartas solo não são usadas no multijogador."));
       cards.push({
         label: "OPERATION KRAKEN",
         title: t("Carrier and vehicle kit", "Material do porta-aviões e veículos"),
-        items: [
-          t("1 double-sided map, 2 hidden boards, and 18 objective cards for Norman Village and Super Carrier; use the selected map's side and 9-card set.", "1 tabuleiro dupla face, 2 tabuleiros ocultos e 18 objetivos para Norman Village e Super Carrier; use o lado escolhido e seu conjunto de 9 cartas."),
-          t("11 door tokens for Super Carrier; 2 vehicle miniatures and 2 vehicle cards for Norman Village.", "11 fichas de porta para Super Carrier; 2 miniaturas e 2 cartas de veículo para Norman Village."),
-          t("2 new loadout cards for Super Carrier. The 21 solo cards are not used in multiplayer.", "2 equipamentos novos para Super Carrier. As 21 cartas solo não são usadas no multijogador.")
-        ],
+        items: krakenItems,
         ref: ["kraken", 3]
       });
     }
-    if (isSelected("escalation")) {
+    if (isSpecialOps()) {
+      const specialComponents = [];
+      if (edgeCount("sniper", "goodBoy") > 0) specialComponents.push(t("1 Good Boy miniature.", "1 miniatura Good Boy."));
+      if (edgeCount("defenders", "callHunter") > 0) specialComponents.push(t("1 Hunter miniature with white base, 1 deployment-zone marker, and 1 white action cube.", "1 miniatura Hunter com base branca, 1 marcador de zona de implantação e 1 cubo branco de ação."));
+      if (selectedAdvantage("roadblocks")) specialComponents.push(t("5 difficult-terrain tokens.", "5 fichas de terreno difícil."));
+      if (edgeCount("defenders", "flares") > 0) specialComponents.push(t("3 flare tokens.", "3 sinalizadores."));
+      if (selectedAdvantage("underCurfew")) specialComponents.push(t("11 door tokens and 1 Bolt Cutters loadout card.", "11 fichas de porta e 1 carta de equipamento Bolt Cutters."));
+      if (selectedAdvantage("mechanisation")) specialComponents.push(t("2 vehicle miniatures and 2 vehicle cards for Heavy Water.", "2 miniaturas e 2 cartas de veículo para Heavy Water."));
+      if (edgeCount("sniper", "upgradedLoadout") > 0) specialComponents.push(t(`${edgeCount("sniper", "upgradedLoadout")} privately selected upgraded loadout card${edgeCount("sniper", "upgradedLoadout") === 1 ? "" : "s"}.`, `${edgeCount("sniper", "upgradedLoadout")} carta${edgeCount("sniper", "upgradedLoadout") === 1 ? "" : "s"} de equipamento melhorado escolhida${edgeCount("sniper", "upgradedLoadout") === 1 ? "" : "s"} em segredo.`));
+      if (edgeCount("defenders", "eliteSpecialist") > 0) specialComponents.push(t(`${edgeCount("defenders", "eliteSpecialist")} elite specialist card${edgeCount("defenders", "eliteSpecialist") === 1 ? "" : "s"}; each replaces its matching base card.`, `${edgeCount("defenders", "eliteSpecialist")} carta${edgeCount("defenders", "eliteSpecialist") === 1 ? "" : "s"} de especialista elite; cada uma substitui sua carta base correspondente.`));
+      const selectedAdvantages = availableAdvantagesFor(currentMap().id, state.expansions)
+        .filter((option) => selectedAdvantage(option.id))
+        .map((option) => option.name);
+      if (selectedAdvantages.length) {
+        specialComponents.push(t(`Selected advantage cards: ${selectedAdvantages.join(", ")}.`, `Cartas de vantagem escolhidas: ${selectedAdvantages.join(", ")}.`));
+      }
+      const selectedMissions = [
+        ...(edgeCount("sniper", "killshot") > 0 ? ["Killshot"] : []),
+        ...(edgeCount("sniper", "goodBoy") > 0 ? ["Good Boy"] : []),
+        ...(edgeCount("defenders", "flares") > 0 ? ["Flares"] : []),
+        ...(edgeCount("defenders", "callHunter") > 0 ? ["Call the Hunter"] : [])
+      ];
+      if (selectedMissions.length) {
+        specialComponents.push(t(`Selected mission cards: ${selectedMissions.join(", ")}.`, `Cartas de missão escolhidas: ${selectedMissions.join(", ")}.`));
+      }
+      if (specialComponents.length === 0) {
+        specialComponents.push(t("No additional tokens or miniatures are required for these selected edges.", "Estas edges escolhidas não exigem fichas ou miniaturas adicionais."));
+      }
       cards.push({
         label: "ESCALATION · SPECIAL OPS",
-        title: t("Optional mission components", "Componentes opcionais de missão"),
-        items: [
-          t("1 Good Boy miniature; 1 Hunter miniature with white base; 1 deployment-zone marker; 1 white action cube.", "1 miniatura Good Boy; 1 miniatura Hunter com base branca; 1 marcador de zona de implantação; 1 cubo branco de ação."),
-          t("5 difficult-terrain tokens and 3 flare tokens.", "5 fichas de terreno difícil e 3 sinalizadores."),
-          t("7 advantages; 7 upgraded loadouts (Advanced Sound Masking, Major Distraction, Modified Tommy Gun, Armour-piercing Rounds, Trip Mines, Bayonet, Panzerfaust); 6 elite specialists; and 2 missions for each side.", "7 vantagens; 7 equipamentos melhorados (Advanced Sound Masking, Major Distraction, Modified Tommy Gun, Armour-piercing Rounds, Trip Mines, Bayonet, Panzerfaust); 6 especialistas elite; e 2 missões para cada lado.")
-        ],
+        title: t("Configured Special Ops components", "Componentes Special Ops configurados"),
+        items: specialComponents,
         ref: ["escalation", 4],
         refExtra: ["escalation", 5]
       });
@@ -900,13 +1398,14 @@
         <ul class="setup-check-list">${phase.items.map((item) => `
           <li class="setup-check-row${item.optional ? " optional" : ""}">
             <input id="setup-check-${item.id}" type="checkbox" data-setup-check="${item.id}" ${state.setupChecks.includes(item.id) ? "checked" : ""}>
-            <label for="setup-check-${item.id}">${item.text}${item.optional ? `<span class="setup-optional-label">${t("If selected", "Se escolhida")}</span>` : ""}</label>
+            <label for="setup-check-${item.id}">${item.text}${item.optional ? `<span class="setup-optional-label">${t("Conditional", "Condicional")}</span>` : ""}</label>
           </li>`).join("")}</ul>
       </article>`).join("");
     const mapNotes = mapSetupNotes();
 
     return `
       ${sectionHeading("setup", t("Setup", "Preparação"), "03", "core", 4)}
+      ${specialOpsReady() ? "" : `<p class="configuration-warning" role="status">${t("Special Ops is not fully configured. Complete both edge allocations in Build your match before beginning setup.", "Special Ops ainda não está totalmente configurado. Complete as escolhas de edges dos dois lados em Configure a partida antes de iniciar a preparação.")}</p>`}
       <div class="setup-checklist-panel">
         <div class="setup-checklist-toolbar">
           <div>
@@ -920,7 +1419,7 @@
             <button class="button-secondary" type="button" data-setup-reset>${t("Uncheck all", "Desmarcar tudo")}</button>
           </div>
         </div>
-        <p class="setup-storage-note">${t("Changing the selected map or expansion clears this checklist. “Uncheck all” clears only these boxes, not your map, expansions, language, or team. Optional card-specific tasks do not count toward required progress.", "Trocar o mapa ou as expansões limpa esta checklist. “Desmarcar tudo” limpa apenas estas caixas, sem alterar mapa, expansões, idioma ou lado. Etapas opcionais de cartas específicas não entram no progresso obrigatório.")}</p>
+        <p class="setup-storage-note">${t("Changing the map, expansions, Sniper choice, or optional rules clears this checklist. “Uncheck all” clears only these boxes, not your match configuration, language, or team. Conditional draw steps do not count toward required progress.", "Trocar o mapa, as expansões, o Sniper ou as regras opcionais limpa esta checklist. “Desmarcar tudo” limpa apenas estas caixas, sem alterar a configuração da partida, o idioma ou o lado. Etapas condicionadas a compras não entram no progresso obrigatório.")}</p>
       </div>
       <div class="setup-phases">${phaseMarkup}</div>
       <h3 class="subhead">${t("Components for this configuration", "Componentes desta configuração")}</h3>
@@ -931,11 +1430,11 @@
   }
 
   function victorySection() {
-    const timer = isSelected("escalation")
-      ? `<li>${t("If the Accelerated Schedule advantage is selected, the sniper has only seven turns to complete each objective.", "Se Accelerated Schedule estiver selecionada, o sniper tem apenas sete turnos para completar cada objetivo.")}</li>`
+    const timer = selectedAdvantage("acceleratedSchedule")
+      ? `<li>${t("Accelerated Schedule gives the Sniper only seven turns to complete each objective.", "Accelerated Schedule dá ao Sniper apenas sete turnos para completar cada objetivo.")}</li>`
       : "";
-    const hunter = isSelected("escalation")
-      ? `<li>${t("Calling the Hunter changes a squad's turn, not the core win condition; the Hunter can also attack and wound the sniper.", "Chamar o Hunter altera o turno de um esquadrão, não a condição de vitória base; o Hunter também pode atacar e ferir o sniper.")}</li>`
+    const hunter = edgeCount("defenders", "callHunter") > 0
+      ? `<li>${t("The Hunter changes a squad's turn, not the core win condition; he can also attack and wound the Sniper.", "O Hunter altera o turno de um esquadrão, não a condição de vitória base; ele também pode atacar e ferir o Sniper.")}</li>`
       : "";
     return `
       ${sectionHeading("victory", t("Victory", "Vitória"), "04", "core", 9)}
@@ -943,7 +1442,7 @@
         <article class="victory-card sniper"><h3>${t("Sniper · win", "Sniper · vence")}</h3><ul>
           <li>${t("Immediately complete the second objective by revealing its card while on the matching numbered space.", "Complete imediatamente o segundo objetivo revelando a carta no espaço numerado correspondente.")}</li>
           <li>${t("Lose immediately after receiving a second wound.", "Perde imediatamente ao receber a segunda ferida.")}</li>
-          <li>${t("Lose if, at the end of your turn, every defender countdown cube is on the final space; include the Hunter's white cube if he is in play. They win if all are still there at the start of their next turn.", "Perde se, ao fim do seu turno, todos os cubos de contagem dos alemães estiverem no espaço final; inclua o cubo branco do Hunter se estiver em jogo. Eles vencem se todos ainda estiverem ali no início do próximo turno deles.")}</li>
+          <li>${t(`Lose if, at the end of your turn, every defender countdown cube${edgeCount("defenders", "callHunter") > 0 ? " (including the Hunter's white cube)" : ""} is on the final space. They win if all are still there at the start of their next turn.`, `Perde se, ao fim do seu turno, todos os cubos de contagem dos alemães${edgeCount("defenders", "callHunter") > 0 ? " (inclusive o cubo branco do Hunter)" : ""} estiverem no espaço final. Eles vencem se todos ainda estiverem ali no início do próximo turno deles.`)}</li>
           ${timer}
         </ul></article>
         <article class="victory-card defenders"><h3>${t("Defenders · win", "Alemães · vencem")}</h3><ul>
@@ -952,7 +1451,7 @@
           ${hunter}
         </ul></article>
       </div>
-      ${isSelected("escalation") ? `<div class="source-note">${referenceLink("escalation", 16)} ${referenceLink("escalation", 11)}</div>` : ""}`;
+      ${isSpecialOps() ? `<div class="source-note">${referenceLink("escalation", 16)} ${referenceLink("escalation", 11)}</div>` : ""}`;
   }
 
   const baseLoadouts = [
@@ -988,24 +1487,33 @@
   }
 
   function alliedSnipers() {
-    if (!isSelected("eagle")) return "";
+    if (state.matchOptions.sniper === "base") return "";
+    if (state.matchOptions.sniper === "ghost") {
+      return `<div class="turn-block"><h3>Ghost Sniper</h3><p>${t(
+        "Secretly draw one allied Sniper card and load the bag out of sight. Keep the unused token supply hidden. Reveal the card when its ability is used, the Sniper's position is revealed for any reason, an objective is completed, or Defenders find the Sniper with Spot or Attack. Place the matching miniature on the board if the position was revealed; otherwise place it beside the revealed card.",
+        "Compre em segredo uma carta de Sniper aliado e carregue o saco fora de vista. Mantenha escondidas as fichas não usadas. Revele a carta quando usar sua habilidade, quando a posição do Sniper for revelada por qualquer motivo, ao completar um objetivo ou quando os Defensores o encontrarem com Spot ou Ataque. Coloque a miniatura correspondente no tabuleiro se a posição foi revelada; caso contrário, deixe-a ao lado da carta revelada."
+      )}</p>${referenceLink("eagle", 8)}</div>`;
+    }
     const allies = [
       ["Roza", "Roza", "4 mira · 3 ruído · 2 recuo. No máximo cinco fichas por disparo; portanto, alcance de até cinco espaços."],
       ["Jun", "Jun", "6 mira · 2 ruído · 2 recuo. Um disparo bem-sucedido também elimina unidades adjacentes do mesmo tipo que o espaço do alvo, sem exigir linha de visão até elas; cada unidade extra adiciona ruído em vez de mira/supressão."],
       ["Karl", "Karl", "7 mira · 2 ruído · 1 recuo. Pode atirar duas vezes em vez de mover; se o alvo estiver a até dois espaços, adiciona ruído após cada disparo."],
       ["Major Eazy", "Major Eazy", "3 mira · 3 ruído · 3 recuo. Ruído também conta como mira; cinco ou mais ruídos + recuos ainda causam falha."]
     ];
+    const selectedName = {
+      roza: "Roza",
+      jun: "Jun",
+      karl: "Karl",
+      "major-eazy": "Major Eazy"
+    }[state.matchOptions.sniper];
+    const ally = allies.find(([name]) => name === selectedName);
     return `
-      <div class="turn-block"><h3>${t("Allied sniper cards", "Cartas de snipers aliados")}</h3>
-        <div class="action-grid">${allies.map(([en, pt, desc]) => `<article class="action-card"><strong>${state.language === "pt-BR" ? pt : en}</strong><p>${state.language === "pt-BR" ? desc : translateAlly(en)}</p></article>`).join("")}</div>
-        <div class="callout">${t(
+      <div class="turn-block"><h3>${t("Selected allied Sniper", "Sniper aliado escolhido")}</h3>
+        <div class="action-grid"><article class="action-card"><strong>${ally[0]}</strong><p>${state.language === "pt-BR" ? ally[2] : translateAlly(ally[0])}</p></article></div>
+        ${state.matchOptions.sniper === "karl" ? `<div class="callout">${t(
           "<strong>Karl with Tommy Gun or Trench Gun:</strong> using either card replaces one of his shots that turn; he is still limited to one loadout card per turn.",
           "<strong>Karl com Tommy Gun ou Trench Gun:</strong> usar uma dessas cartas substitui um dos disparos dele naquele turno; ele continua limitado a uma carta de equipamento por turno."
-        )}</div>
-        <div class="callout">${t(
-          "<strong>Optional variant · Ghost Sniper:</strong> secretly draw one allied card and load the bag out of sight; keep the unused token supply hidden. Reveal the card when the special ability is used, the sniper's position is revealed for any reason, an objective is completed, or defenders find the sniper with Spot/Attack. Take the matching miniature from the box; place it on the board if the position was revealed, otherwise beside the revealed card.",
-          "<strong>Variante opcional · Ghost Sniper:</strong> compre uma carta de aliado em segredo e carregue o saco fora de vista; mantenha escondidas as fichas não usadas. Revele a carta quando usar a habilidade especial, quando a posição do sniper for revelada por qualquer motivo, ao completar um objetivo ou quando os alemães o encontrarem com Spot/Ataque. Pegue a miniatura correspondente; coloque-a no tabuleiro se a posição foi revelada, caso contrário ao lado da carta."
-        )}</div>${referenceLink("eagle", 8)}
+        )}</div>` : ""}${referenceLink("eagle", 3)}
       </div>`;
   }
 
@@ -1020,28 +1528,31 @@
   }
 
   function escalationTurns(forTeam) {
-    if (!isSelected("escalation")) return "";
+    if (!isSpecialOps()) return "";
     const missions = [
       ["Sniper · Killshot", "sniper", "Choose a non-armoured defender crossed by line of sight as the secondary target. With a successful shot and 0–1 recoil, remove both targets; with 2+ recoil, you may remove only the secondary target instead. Apply normal shot-bag changes for each target removed."],
       ["Sniper · Good Boy", "sniper", "Once per game, immediately before or after moving, mark a matching-adjacent space with G on the hidden board. On each later turn, the dog may move one space; whenever it does, defenders hear noise as if the sniper had made a noisy move, but are not told who moved. If Spot/Sweep finds the dog, reveal and place its miniature; add no bag token. It cannot be attacked and cannot move on the turn after it is revealed."],
       ["Defenders · Flares", "defenders", "Once per defenders' turn, the team may fire one flare without spending an action (including on a squad turn that gathers intel). Choose an officer whose specialist card still has a flare token; place it in an open space within two spaces and line of sight of that officer. At the start of the sniper's turn, if they are in an open space within two spaces of a flare, they announce this and add one recoil, but do not identify the space. Remove that flare from the game whether or not it affected the sniper."],
       ["Defenders · Call the Hunter", "defenders", "Adds a fourth squad consisting of one armoured Hunter, controlled jointly by the defenders. Each defenders' turn, he may take one action: Move 2 (up to two spaces); Move 1 & Spot (optionally move one, then Spot an adjacent space); Move 1 & Attack (optionally move one, then attack his current space); Deploy (if off the board, return him to the deployment-zone token); or Dismiss (remove him from anywhere). He cannot gather intel. Another squad may call him instead of taking actions or intel by advancing both of its cubes one space; the Hunter can immediately take an action he has not used that turn. Armour 2 requires at least three aim to hit him."]
     ];
-    const cards = missions.filter(([, side]) => side === forTeam);
+    const missionEdges = {
+      "Sniper · Killshot": "killshot",
+      "Sniper · Good Boy": "goodBoy",
+      "Defenders · Flares": "flares",
+      "Defenders · Call the Hunter": "callHunter"
+    };
+    const cards = missions.filter(([name, side]) => side === forTeam && edgeCount(side, missionEdges[name]) > 0);
+    if (!cards.length) return "";
     return `
-      <div class="turn-block"><h3>${t("Escalation mission cards (if selected)", "Cartas de missão Escalation (se escolhidas)")}</h3>
-        <div class="mission-list">${cards.map(([name, side, body]) => `<article class="mission-card"><div><span class="mission-side">${t("Mission card · if selected", "Carta de missão · se escolhida")}</span><h3>${state.language === "pt-BR" ? name.replace("Defenders", "Alemães") : name}</h3></div><p>${state.language === "pt-BR" ? translateMissionPt(name) : body}</p></article>`).join("")}</div>
-        ${forTeam === "defenders" ? `<div class="callout">${t(
-          "If Call the Hunter is selected, move its white countdown cube one space when the Hunter takes or passes his one action, just like the other action cubes. Reset it with the others when an objective is completed.",
-          "Se Call the Hunter foi escolhida, avance o cubo branco de contagem uma casa quando o Hunter agir ou passar, como os demais cubos. Reinicie-o junto com os outros ao completar um objetivo."
+      <div class="turn-block"><h3>${t("Selected Special Ops missions", "Missões Special Ops escolhidas")}</h3>
+        <div class="mission-list">${cards.map(([name, side, body]) => `<article class="mission-card"><div><span class="mission-side">${t("Mission card", "Carta de missão")}</span><h3>${state.language === "pt-BR" ? name.replace("Defenders", "Alemães") : name}</h3></div><p>${state.language === "pt-BR" ? translateMissionPt(name) : body}</p></article>`).join("")}</div>
+        ${forTeam === "defenders" && edgeCount("defenders", "callHunter") > 0 ? `<div class="callout">${t(
+          "Advance the Hunter's white countdown cube whenever he takes or passes his one action, just like the other action cubes. Reset it with the others when an objective is completed.",
+          "Avance o cubo branco de contagem do Hunter quando ele agir ou passar, como os demais cubos. Reinicie-o junto com os outros ao completar um objetivo."
         )}</div>` : ""}
         ${forTeam === "sniper"
           ? `${referenceLink("escalation", 8)} ${referenceLink("escalation", 9)}`
           : `${referenceLink("escalation", 10)} ${referenceLink("escalation", 11)}`}
-        <div class="callout">${t(
-          "<strong>Other Special Ops choices:</strong> upgraded loadouts replace their base card; Extra Loadout grants one more starting card each; elite specialists replace their non-elite version; advantages are map-limited.",
-          "<strong>Outras escolhas Special Ops:</strong> equipamentos melhorados substituem a carta base; Extra Loadout concede mais uma carta inicial; especialistas elite substituem a versão normal; vantagens dependem do mapa."
-        )}</div>
       </div>`;
   }
 
@@ -1075,12 +1586,13 @@
       ];
       html += `<div class="turn-block"><h3>${t("Operation Kraken loadouts", "Equipamentos de Operation Kraken")}</h3><div class="action-grid">${list.map(([name, en, pt]) => `<article class="action-card"><strong>${name}</strong><p>${state.language === "pt-BR" ? pt : en}</p></article>`).join("")}</div>${referenceLink("kraken", 3)}</div>`;
     }
-    if (isSelected("kraken") && isSelected("escalation") && currentMap().id === "norman-village") {
-      html += `<div class="turn-block"><h3>${t("Under Curfew · extra loadout if selected", "Under Curfew · equipamento extra se escolhida")}</h3><div class="action-grid">
+    if (selectedAdvantage("underCurfew")) {
+      html += `<div class="turn-block"><h3>${t("Under Curfew · added loadout", "Under Curfew · equipamento adicionado")}</h3><div class="action-grid">
         <article class="action-card"><strong>Bolt Cutters</strong><p>${t("Under Curfew adds this card to the loadout deck before the sniper chooses starting cards. It lets the sniper secretly mark a locked door and cross it while locked; if a defender unlocks that door, reveal the card and cross through.", "Under Curfew adiciona esta carta à pilha antes de o sniper escolher os equipamentos iniciais. Ela permite marcar em segredo uma porta trancada e atravessá-la; se um defensor destrancar essa porta, revele a carta e atravesse.")}</p></article>
       </div>${referenceLink("escalation", 17)}</div>`;
     }
-    if (isSelected("escalation")) {
+    const upgradedLoadoutCount = edgeCount("sniper", "upgradedLoadout");
+    if (upgradedLoadoutCount > 0) {
       const list = [
         ["Advanced Sound Masking", "Move up to four and alert normally, or move up to three without alerting.", "Mova até quatro espaços e alerte normalmente, ou até três sem alertar."],
         ["Major Distraction", "Move up to two spaces total, split between two different enemy units if desired; no line of sight is required.", "Mova até dois espaços no total, divididos entre duas unidades inimigas diferentes se desejar; não exige linha de visão."],
@@ -1092,7 +1604,7 @@
           : []),
         ["Panzerfaust", "Replaces Trench Gun: reveal your position and, without drawing from the bag, kill all units in one adjacent space and its matching-adjacent spaces. Add no tokens to the bag.", "Substitui Trench Gun: revele sua posição e, sem comprar fichas, elimine todas as unidades em um espaço adjacente e nos espaços adjacentes do mesmo tipo. Não adicione fichas ao saco."]
       ];
-      html += `<div class="turn-block"><h3>${t("Escalation loadout upgrades", "Melhorias de equipamento Escalation")}</h3><div class="callout">${t("Each listed effect applies only if that specific upgraded card was selected during setup.", "Cada efeito abaixo só vale se aquela carta melhorada específica foi escolhida na preparação.")}${!isSelected("eagle") ? t(" Bayonet is unavailable without Eagle's Nest because it replaces Knife.", " Bayonet não está disponível sem Eagle's Nest, pois substitui Knife.") : ""}</div><div class="action-grid">${list.map(([name, en, pt]) => `<article class="action-card"><strong>${name}</strong><p>${state.language === "pt-BR" ? pt : en}</p></article>`).join("")}</div>${referenceLink("escalation", 12)} ${referenceLink("escalation", 13)}</div>`;
+      html += `<div class="turn-block"><h3>${t("Upgraded loadout choices", "Opções de equipamento melhorado")}</h3><div class="callout">${t(`The Sniper has ${upgradedLoadoutCount} Upgraded Loadout edge${upgradedLoadoutCount === 1 ? "" : "s"}. Choose that many cards privately during setup; only the chosen cards are active, and their identities stay secret.`, `O Sniper tem ${upgradedLoadoutCount} edge${upgradedLoadoutCount === 1 ? "" : "s"} de Upgraded Loadout. Escolha essa quantidade de cartas em segredo durante a preparação; somente as cartas escolhidas ficam ativas e suas identidades permanecem ocultas.`)}${!isSelected("eagle") ? t(" Bayonet is unavailable because Eagle's Nest is not in this match.", " Bayonet não está disponível porque Eagle's Nest não está nesta partida.") : ""}</div><div class="action-grid">${list.map(([name, en, pt]) => `<article class="action-card"><strong>${name}</strong><p>${state.language === "pt-BR" ? pt : en}</p></article>`).join("")}</div>${referenceLink("escalation", 12)} ${referenceLink("escalation", 13)}</div>`;
     }
     return html;
   }
@@ -1108,9 +1620,9 @@
         <article class="action-card"><strong>${t("Face-card objectives", "Objetivos de figuras")}</strong><p>${t("If both drawn objective cards have the same face value, return one to the bottom and draw again. The suit identifies the matching icon on the board.", "Se os dois objetivos comprados tiverem o mesmo valor de figura, devolva um ao fundo e compre outro. O naipe identifica o ícone correspondente no tabuleiro.")}</p></article>
       </div></div>`;
     }
-    const mechanisedHeavyWater = id === "heavy-water" && isSelected("escalation") && isSelected("kraken");
+    const mechanisedHeavyWater = id === "heavy-water" && selectedAdvantage("mechanisation");
     if (id === "norman-village" || mechanisedHeavyWater) {
-      return `<div class="turn-block"><h3>${mechanisedHeavyWater ? t("Mechanisation · vehicle actions (if selected)", "Mechanisation · ações de veículo (se escolhida)") : t("Norman Village · vehicle actions", "Norman Village · ações de veículo")}</h3><div class="action-grid">
+      return `<div class="turn-block"><h3>${mechanisedHeavyWater ? t("Mechanisation · vehicle actions", "Mechanisation · ações de veículo") : t("Norman Village · vehicle actions", "Norman Village · ações de veículo")}</h3><div class="action-grid">
         <article class="action-card"><strong>${t("Drive 3", "Dirigir 3")}</strong><p>${t("Move up to three road spaces; may pass through units/vehicles but cannot end on one.", "Mova até três espaços de estrada; pode passar por unidades/veículos, mas não terminar neles.")}</p></article>
         <article class="action-card"><strong>${t("Drive 1 + Sweep / Spot", "Dirigir 1 + Sweep / Spot")}</strong><p>${t("Optionally move one road space, then Sweep the vehicle space plus two matching-adjacent spaces, or Spot one adjacent space.", "Opcionalmente mova um espaço de estrada e depois faça Sweep no espaço do veículo e dois espaços adjacentes do mesmo tipo, ou use Spot em um espaço adjacente.")}</p></article>
         <article class="action-card"><strong>${t("Attack adjacent", "Atacar adjacente")}</strong><p>${t("Attack one adjacent space and wound the sniper if present.", "Ataque um espaço adjacente e fira o sniper se ele estiver ali.")}</p></article>
@@ -1127,10 +1639,9 @@
 
   function sniperVehicleRules() {
     const mapId = currentMap().id;
-    const mechanisedHeavyWater = mapId === "heavy-water" && isSelected("escalation") && isSelected("kraken");
+    const mechanisedHeavyWater = mapId === "heavy-water" && selectedAdvantage("mechanisation");
     if (mapId !== "norman-village" && !mechanisedHeavyWater) return "";
-    return `<div class="turn-block"><h3>${mechanisedHeavyWater ? t("Mechanisation · sniper rules (if selected)", "Mechanisation · regras do sniper (se escolhida)") : t("Norman Village · sniper rules", "Norman Village · regras do sniper")}</h3>
-      ${mechanisedHeavyWater ? `<div class="callout">${t("These rules apply only if the Mechanisation advantage was selected.", "Estas regras só se aplicam se a vantagem Mechanisation foi escolhida.")}</div>` : ""}
+    return `<div class="turn-block"><h3>${mechanisedHeavyWater ? t("Mechanisation · sniper rules", "Mechanisation · regras do sniper") : t("Norman Village · sniper rules", "Norman Village · regras do sniper")}</h3>
       <div class="action-grid">
         <article class="action-card"><strong>${t("Armour 2", "Blindagem 2")}</strong><p>${t("Shoot at a vehicle using normal shot rules, but need two extra aim tokens over the normal requirement, minimum three. A hit removes the vehicle and any passenger. Add the usual bag token for a killed soldier/officer, none for the vehicle; it never returns.", "Atire no veículo pelas regras normais, mas precisa de duas miras além do requisito normal, no mínimo três. Um acerto remove o veículo e o passageiro. Adicione a ficha normal por soldado/oficial eliminado, nenhuma pelo veículo; ele não retorna.")}</p></article>
         <article class="action-card"><strong>${t("Vehicles and movement", "Veículos e movimento")}</strong><p>${t("You may enter a space with an unoccupied vehicle, but not an occupied one. An embarked defender counts as being in the vehicle's space for noisy movement; an empty vehicle is not alerted.", "Você pode entrar no espaço de um veículo vazio, mas não no de um ocupado. Um defensor embarcado conta no espaço do veículo para movimento ruidoso; veículos vazios não são alertados.")}</p></article>
@@ -1139,7 +1650,7 @@
   }
 
   function specialistNotes() {
-    const elites = isSelected("escalation")
+    const elites = edgeCount("defenders", "eliteSpecialist") > 0
       ? `<div class="callout">${t(
           "<strong>Elite specialists:</strong> Their elite card replaces the basic version. A gold-band passive ability can be used every turn, even after both normal uses are spent, but never while its officer is off the board. Sennenhund protects soldiers (not officers) from other squads in matching-adjacent spaces and has armour 2; Spürhund lets a soldier he moved take non-attack actions that turn and moves a squadmate when gathering intel; Kobra attacks up to two spaces away in line of sight; Schakal may move before his ability (the deployed soldier cannot attack) and can dismiss any squad's unit without an action (but not redeploy it that turn); Adler spots up to three spaces away in line of sight; Koyote places dogs in matching-adjacent spaces, alerts them on sniper movement into/through/adjacent to them, and lets them move/spot/sweep using squad actions.",
           "<strong>Especialistas elite:</strong> A carta elite substitui a versão base. A habilidade passiva na faixa dourada pode ser usada todo turno, mesmo depois de esgotadas as duas utilizações normais, mas nunca se o oficial estiver fora do tabuleiro. Sennenhund protege soldados (não oficiais) de outros esquadrões em espaços adjacentes do mesmo tipo e tem blindagem 2; Spürhund permite ao soldado movido fazer ações que não sejam ataque nesse turno e move um companheiro ao reunir informação; Kobra ataca a até dois espaços em linha de visão; Schakal pode mover antes da habilidade (o soldado implantado não pode atacar) e pode retirar sem ação uma unidade de qualquer esquadrão (sem reimplantá-la no mesmo turno); Adler usa Spot a até três espaços em linha de visão; Koyote coloca cães em espaços adjacentes do mesmo tipo, alerta-os se o sniper entrar, atravessar ou ficar adjacente a eles, e permite que movam/usem Spot/Sweep gastando ações do esquadrão."
@@ -1148,11 +1659,11 @@
     return `<div class="turn-block"><h3>${t("Specialist abilities", "Habilidades de especialista")}</h3><div class="callout">${t(
       "The six base specialist cards are Medic, Scout, Jager, Radio Operator, Sniper, and Kennel Master; each card contains its own ability text. Each officer's ability can be used twice per game, at most once per turn, and only while that officer is on the board; the officer does not need to be in their own sector. Different officers may use their abilities in the same turn. To use an ability, return one action cube from that specialist card to the box. Use it before or after an action/intel; if it modifies an action, declare it first. It does not grant an extra action. An effect that stops a specific unit from taking an action does not stop that squad from gathering intel; “soldier” effects do not apply to officers.",
       "As seis cartas de especialista base são Medic, Scout, Jager, Radio Operator, Sniper e Kennel Master; o texto da habilidade está impresso em cada carta. A habilidade de cada oficial pode ser usada duas vezes por partida, no máximo uma vez por turno, e só enquanto esse oficial estiver no tabuleiro; ele não precisa estar no próprio setor. Oficiais diferentes podem usar suas habilidades no mesmo turno. Para usar uma habilidade, devolva um cubo de ação daquela carta à caixa. Use antes ou depois de uma ação/informação; se modificar uma ação, declare primeiro. Ela não concede ação extra. Um efeito que impeça uma unidade específica de agir não impede o esquadrão de reunir informação; efeitos que citam soldados não se aplicam a oficiais."
-    )}</div>${elites}${referenceLink("core", 9)}${isSelected("escalation") ? ` ${referenceLink("escalation", 14)} ${referenceLink("escalation", 15, t("Elite specialists · p. 15 ↗", "Especialistas elite · p. 15 (EN) ↗"))}` : ""}</div>`;
+    )}</div>${elites}${referenceLink("core", 9)}${edgeCount("defenders", "eliteSpecialist") > 0 ? ` ${referenceLink("escalation", 14)} ${referenceLink("escalation", 15, t("Elite specialists · p. 15 ↗", "Especialistas elite · p. 15 (EN) ↗"))}` : ""}</div>`;
   }
 
   function escalationAdvantages() {
-    if (!isSelected("escalation")) return "";
+    if (!isSpecialOps()) return "";
     const map = currentMap().id;
     const cards = [
       ["Accelerated Schedule", "Any map", "The sniper has only seven turns to complete each objective.", "Qualquer mapa", "O sniper tem apenas sete turnos para completar cada objetivo."],
@@ -1176,21 +1687,31 @@
             "Mechanisation",
             "Heavy Water",
             isSelected("kraken")
-              ? "If selected, add the Norman Village vehicles and use the Heavy Water road/start-space diagram."
+              ? "Add the Norman Village vehicles and use the Heavy Water road/start-space diagram."
               : "Requires Operation Kraken. Enable that expansion to add the Norman Village vehicles to Heavy Water.",
             "Heavy Water",
             isSelected("kraken")
-              ? "Se escolhida, adicione os veículos de Norman Village conforme o diagrama de estradas e início de Heavy Water."
+              ? "Adicione os veículos de Norman Village conforme o diagrama de estradas e início de Heavy Water."
               : "Exige Operation Kraken. Ative essa expansão para adicionar os veículos de Norman Village a Heavy Water."
           ]]
         : [])
     ];
     const page = map === "heavy-water" ? 19
       : (map === "launch-facility" || map === "norman-village" || map === "eagles-nest" ? 17 : 16);
+    const advantageIds = {
+      "Accelerated Schedule": "acceleratedSchedule",
+      "Rapid Response": "rapidResponse",
+      "Tipped Off": "tippedOff",
+      Roadblocks: "roadblocks",
+      "Under Curfew": "underCurfew",
+      Sentries: "sentries",
+      Mechanisation: "mechanisation"
+    };
+    const selectedCards = cards.filter(([name]) => selectedAdvantage(advantageIds[name]));
+    if (!selectedCards.length) return "";
     return `
-      <div class="turn-block"><h3>${t("Map-specific advantages", "Vantagens específicas do mapa")}</h3>
-        <div class="callout">${t("These are the available options for this map; only advantages selected during setup are in play.", "Estas são as opções disponíveis para este mapa; somente as vantagens escolhidas na preparação estão em jogo.")}</div>
-        <div class="mission-list">${cards.map(([name, mapName, en, mapPt, pt]) => `<article class="mission-card"><div><span class="mission-side">${mapName}</span><h3>${name}</h3></div><p>${state.language === "pt-BR" ? pt : en}</p></article>`).join("")}</div>
+      <div class="turn-block"><h3>${t("Selected advantages", "Vantagens escolhidas")}</h3>
+        <div class="mission-list">${selectedCards.map(([name, mapName, en, mapPt, pt]) => `<article class="mission-card"><div><span class="mission-side">${mapName}</span><h3>${name}</h3></div><p>${state.language === "pt-BR" ? pt : en}</p></article>`).join("")}</div>
         ${referenceLink("escalation", page)}
       </div>`;
   }
@@ -1206,10 +1727,10 @@
           "Move once; do not split movement, enter a defender's space, or revisit a space this turn. Enter or leave enclosed/elevated spaces only through marked access points.",
           "Mova uma vez; não divida o movimento, entre no espaço de um defensor nem repita um espaço neste turno. Entre ou saia de espaços fechados/elevados apenas por acessos indicados."
         );
-    const sniperTurnSummary = isSelected("escalation")
+    const sniperTurnSummary = isSpecialOps()
       ? t(
-          "Take at most one move and one extra action in any order; normally use no more than one loadout card. If Bayonet is the chosen upgrade, it permits one additional loadout after Bayonet. You may skip any option, but cannot repeat one. Your first action in the first turn must be a move onto the board.",
-          "Faça no máximo um movimento e uma ação extra, em qualquer ordem; normalmente use no máximo uma carta de equipamento. Se Bayonet for a melhoria escolhida, ela permite mais uma carta depois de Bayonet. Pode pular opções, mas não repetir. A primeira ação do primeiro turno deve ser mover-se para o tabuleiro."
+          `Take at most one move and one extra action in any order; normally use no more than one loadout card.${edgeCount("sniper", "upgradedLoadout") > 0 ? " Follow the selected upgrade card's text if it changes this limit." : ""} You may skip any option, but cannot repeat one. Your first action in the first turn must be a move onto the board.`,
+          `Faça no máximo um movimento e uma ação extra, em qualquer ordem; normalmente use no máximo uma carta de equipamento.${edgeCount("sniper", "upgradedLoadout") > 0 ? " Siga o texto da melhoria escolhida se alterar esse limite." : ""} Pode pular opções, mas não repetir. A primeira ação do primeiro turno deve ser mover-se para o tabuleiro.`
         )
       : t(
           "Take at most one move, one loadout card, and one extra action in any order; you may skip any of them, but cannot repeat another option. Your first action in the first turn must be a move onto the board.",
@@ -1225,7 +1746,7 @@
       <div class="turn-block"><h3>${t("Shoot, loot & objective", "Atirar, saquear e objetivo")}</h3><div class="action-grid">
         <article class="action-card"><strong>${t("Shoot", "Atirar")}</strong><p>${t("Choose a target secretly; reveal the target only if hit. Count the shortest straight line in spaces (include target, not your own space), announce how many tokens you risk, then draw and show every token. Hit needs one aim per counted space; same-space targets need at least one. If noise drawn reaches 2 plus the number of suppression tokens drawn, reveal your position and place the miniature, even on a misfire. Return all drawn tokens after resolving the shot.", "Escolha o alvo em segredo; revele-o apenas se acertar. Conte a menor linha reta em espaços (inclua o alvo, não sua posição), anuncie quantas fichas arrisca, depois compre e mostre todas. Precisa de uma mira por espaço contado; no mesmo espaço, precisa de pelo menos uma. Se o ruído comprado atingir 2 mais a quantidade de supressões compradas, revele sua posição e coloque a miniatura, mesmo em caso de falha. Devolva ao saco todas as fichas depois de resolver o disparo.")}</p></article>
         <article class="action-card"><strong>${t("Loot", "Saquear")}</strong><p>${t("On a numbered space that is not one of your objectives, draw three loadouts and keep one. Return the other two and shuffle the deck. Mark that space on your hidden board; it cannot be looted again. Looting reveals that you are at a numbered space, but not which one.", "Em um espaço numerado que não seja um dos seus objetivos, compre três equipamentos e fique com um. Devolva os outros dois e embaralhe o baralho. Marque o espaço no tabuleiro oculto; não pode saquear ali novamente. Saquear revela que você está em um espaço numerado, mas não em qual.")}</p></article>
-        <article class="action-card"><strong>${t("Complete objective", "Completar objetivo")}</strong><p>${t("Reveal the matching objective card, place the sniper miniature on the space, add one noise token and reset all defender countdown cubes (including the Hunter's, if in play) to 10 or 7 with Accelerated Schedule.", "Revele a carta correspondente, coloque a miniatura no espaço, adicione uma ficha de ruído e reinicie todos os cubos de contagem dos alemães (inclusive o do Hunter, se estiver em jogo) em 10 ou 7 com Accelerated Schedule.")}</p></article>
+        <article class="action-card"><strong>${t("Complete objective", "Completar objetivo")}</strong><p>${t(`Reveal the matching objective card, place the Sniper miniature on the space, add one noise token, and reset all defender countdown cubes${edgeCount("defenders", "callHunter") > 0 ? " (including the Hunter's)" : ""} to ${selectedAdvantage("acceleratedSchedule") ? "7" : "10"}.`, `Revele a carta correspondente, coloque a miniatura do Sniper no espaço, adicione uma ficha de ruído e reinicie todos os cubos de contagem dos alemães${edgeCount("defenders", "callHunter") > 0 ? " (inclusive o do Hunter)" : ""} em ${selectedAdvantage("acceleratedSchedule") ? "7" : "10"}.`)}</p></article>
         <article class="action-card"><strong>${t("Bag changes", "Mudanças no saco")}</strong><p>${t("Kill soldier: add aim. Kill officer: add their specialist's suppression token, or aim if that token was already added. Completing an objective or being found by Spot adds noise. Maximums: 11 aim, 3 suppression, 9 noise; if that supply is exhausted, skip the addition.", "Eliminar soldado: adicione mira. Eliminar oficial: adicione a supressão do especialista ou mira se essa ficha já tiver sido adicionada. Completar objetivo ou ser encontrado por Spot adiciona ruído. Limites: 11 miras, 3 supressões e 9 ruídos; se acabar, não adicione ficha.")}</p></article>
       </div></div>
       <div class="turn-block"><h3>${t("Core loadout cards", "Equipamentos do jogo base")}</h3><div class="action-grid">${baseLoadouts.map(([en, pt, bodyEn, bodyPt]) => `<article class="action-card"><strong>${state.language === "pt-BR" ? pt : en}</strong><p>${state.language === "pt-BR" ? bodyPt : bodyEn}</p></article>`).join("")}</div></div>
@@ -1254,7 +1775,7 @@
         <div class="callout">${t(
           "Trace a straight line from any edge of your space to any edge of the target. You may shoot into/out of an enclosed or elevated space, but not through it. From an enclosed space, see within that same enclosed area; from an elevated space, see other elevated spaces unless obstructed. Water does not block sight.",
           "Trace uma linha reta entre qualquer borda do seu espaço e qualquer borda do alvo. É possível atirar para dentro/fora de espaços fechados ou elevados, mas não atravessá-los. De um espaço fechado, vê-se a mesma área fechada; de um elevado, outros elevados salvo obstrução. Água não bloqueia visão."
-        )}${isSelected("escalation") ? `<p>${t("Armour-piercing Rounds, if chosen, permits its stated exception for shooting into/through buildings; it does not override map rules that block actions through a wall.", "Armour-piercing Rounds, se escolhida, permite a exceção descrita para atirar para dentro/através de edifícios; não substitui regras do mapa que bloqueiem ações através de paredes.")}</p>` : ""}</div>
+        )}</div>
       </div>`;
   }
 
@@ -1309,7 +1830,7 @@
         source: ["core", 9, t("Manual p. 9 ↗", "Manual p. 9 (EN) ↗")]
       }
     ];
-    if (isSelected("eagle")) {
+    if (state.matchOptions.sniper === "ghost") {
       examples.push({
         title: t("A hidden allied sniper is revealed", "Um sniper aliado oculto é revelado"),
         body: t("In Ghost Sniper, the identity stays secret until the ability is used, the sniper is revealed, an objective is completed, or a successful defender Spot/Attack finds them.", "Em Ghost Sniper, a identidade fica secreta até usar a habilidade, ser revelado, completar objetivo ou ser encontrado por Spot/Ataque dos defensores."),
@@ -1342,12 +1863,14 @@
         source: ["kraken", 6, t("Manual p. 6 ↗", "Manual p. 6 (EN) ↗")]
       });
     }
-    if (isSelected("escalation")) {
+    if (edgeCount("sniper", "killshot") > 0) {
       examples.push({
         title: t("Killshot secondary target", "Alvo secundário de Killshot"),
         body: t("A non-armoured defender crossed by the line can be selected as a secondary target. A successful hit with 0–1 recoil removes both and adds the normal bag token for each; with 2+ recoil, the sniper may remove only the secondary and add only that target's token.", "Um defensor sem blindagem atravessado pela linha pode ser escolhido como alvo secundário. Com acerto e 0–1 recuo, elimine ambos e adicione ao saco a ficha normal de cada um; com 2+ recuos, o sniper pode eliminar apenas o secundário e adicionar somente a ficha dele."),
         source: ["escalation", 8, t("Manual p. 8 ↗", "Manual p. 8 (EN) ↗")]
       });
+    }
+    if (edgeCount("defenders", "callHunter") > 0) {
       examples.push({
         title: t("Calling the Hunter uses the squad's turn", "Chamar o Hunter consome o turno do esquadrão"),
         body: t("The squad that calls the Hunter gives up its actions and intel, advances both action cubes, and lets the Hunter take one unused action immediately. The Hunter cannot gather intel.", "O esquadrão que chama o Hunter abre mão das ações e da informação, avança os dois cubos e permite que o Hunter faça imediatamente uma ação ainda não usada. O Hunter não pode reunir informação."),
@@ -1387,13 +1910,13 @@
     addTerm(
       "Countdown track",
       "Trilha de contagem",
-      isSelected("escalation")
-        ? "Tracks the defenders' time to stop each objective: normally 10 turns, or 7 if Accelerated Schedule is selected. Completing an objective resets the countdown for the next one."
+      selectedAdvantage("acceleratedSchedule")
+        ? "Tracks the defenders' time to stop each objective: 7 turns. Completing an objective resets the countdown for the next one."
         : "Tracks the defenders' time to stop each objective: 10 turns per objective. Completing an objective resets the countdown for the next one.",
-      isSelected("escalation")
-        ? "Registra o tempo dos alemães para impedir cada objetivo: normalmente 10 turnos, ou 7 se Accelerated Schedule for escolhida. Completar um objetivo reinicia a contagem para o próximo."
+      selectedAdvantage("acceleratedSchedule")
+        ? "Registra o tempo dos alemães para impedir cada objetivo: 7 turnos. Completar um objetivo reinicia a contagem para o próximo."
         : "Registra o tempo dos alemães para impedir cada objetivo: 10 turnos por objetivo. Completar um objetivo reinicia a contagem para o próximo.",
-      [["core", 4], ["core", 7], ...(isSelected("escalation") ? [["escalation", 16]] : [])]
+      [["core", 4], ["core", 7], ...(selectedAdvantage("acceleratedSchedule") ? [["escalation", 16]] : [])]
     );
     addTerm(
       "Hidden board",
@@ -1479,41 +2002,13 @@
       );
     }
 
-    if (isSelected("escalation")) {
-      addTerm(
-        "Advantage",
-        "Vantagem",
-        "An Escalation card chosen by the defenders. Accelerated Schedule works on any map; each other advantage is limited to its printed map and only selected advantages are in play.",
-        "Carta Escalation escolhida pelos alemães. Accelerated Schedule vale em qualquer mapa; as demais vantagens se limitam ao mapa indicado e só as escolhidas estão em jogo.",
-        [["escalation", 16], ["escalation", 17]]
-      );
+    if (isSpecialOps()) {
       addTerm(
         "Edge",
         "Opção (edge)",
         "A Special Ops choice from one side's list. Rank sets how many edges each side gets; an edge is a selection, not a token, and the same edge can be chosen more than once.",
         "Escolha Special Ops da lista de um dos lados. A patente define quantas opções cada lado recebe; edge é uma escolha, não uma ficha, e pode ser repetida.",
         [["escalation", 6], ["escalation", 7]]
-      );
-      addTerm(
-        "Elite Specialist edge",
-        "Edge de Elite Specialist",
-        "Lets the defenders choose an elite specialist instead of its matching base specialist. Remove the non-elite card from the game.",
-        "Permite aos alemães escolher um especialista elite no lugar do especialista base correspondente. Retire do jogo a carta não elite.",
-        [["escalation", 7], ["escalation", 14]]
-      );
-      addTerm(
-        "Extra Loadout edge",
-        "Edge de Extra Loadout",
-        "For each Extra Loadout edge selected, the sniper starts with one additional loadout card beyond the normal three. Choose the extra card during setup; it does not grant an extra turn action.",
-        "Para cada edge de Extra Loadout escolhida, o sniper começa com uma carta de equipamento a mais que as três normais. Escolha a carta extra na preparação; ela não concede uma ação extra no turno.",
-        [["escalation", 7], ["escalation", 13]]
-      );
-      addTerm(
-        "Mission",
-        "Missão",
-        "An Escalation card that adds a special rule for one side. Announce it when selected, follow its setup instructions, and leave it face up for reference.",
-        "Carta Escalation que acrescenta uma regra especial para um dos lados. Anuncie ao escolhê-la, siga sua preparação e deixe-a visível para consulta.",
-        [["escalation", 7], ["escalation", 8], ["escalation", 10]]
       );
       addTerm(
         "Rank",
@@ -1529,15 +2024,53 @@
         "Modo opcional de Escalation que personaliza a partida com patentes, edges, missões, vantagens, equipamentos melhorados e especialistas elite.",
         [["escalation", 3], ["escalation", 6]]
       );
-      addTerm(
-        "Upgraded Loadout edge",
-        "Edge de Upgraded Loadout",
-        "Adds a selected upgraded card to the loadout pool and replaces one matching base card. Remove one base copy; if there were two, only one is removed. Bayonet requires Eagle's Nest because it replaces Knife.",
-        "Acrescenta uma carta melhorada escolhida à reserva e substitui uma carta base correspondente. Retire uma cópia base; se houver duas, retire apenas uma. Bayonet exige Eagle's Nest porque substitui Knife.",
-        [["escalation", 7], ["escalation", 12], ["escalation", 13]]
-      );
+      if (availableAdvantagesFor(mapId, state.expansions).some((option) => selectedAdvantage(option.id))) {
+        addTerm(
+          "Advantage",
+          "Vantagem",
+          "An Escalation card selected by the defenders for this map. Its effect is active for this match.",
+          "Carta Escalation escolhida pelos alemães para este mapa. Seu efeito vale nesta partida.",
+          [["escalation", 16], ["escalation", 17]]
+        );
+      }
+      if (edgeCount("defenders", "eliteSpecialist") > 0) {
+        addTerm(
+          "Elite Specialist edge",
+          "Edge de Elite Specialist",
+          "Each selected edge lets the defenders choose an elite specialist instead of its matching base specialist. Remove each replaced base card from the game.",
+          "Cada edge escolhida permite aos alemães usar um especialista elite no lugar do especialista base correspondente. Retire do jogo cada carta base substituída.",
+          [["escalation", 7], ["escalation", 14]]
+        );
+      }
+      if (edgeCount("sniper", "extraLoadout") > 0) {
+        addTerm(
+          "Extra Loadout edge",
+          "Edge de Extra Loadout",
+          `Each selected edge adds one card to the Sniper's normal starting three (${3 + edgeCount("sniper", "extraLoadout")} total). It does not grant an extra turn action.`,
+          `Cada edge escolhida acrescenta uma carta às três iniciais normais do Sniper (total: ${3 + edgeCount("sniper", "extraLoadout")}). Não concede ação extra no turno.`,
+          [["escalation", 7], ["escalation", 13]]
+        );
+      }
+      if (edgeCount("sniper", "killshot") + edgeCount("sniper", "goodBoy") + edgeCount("defenders", "flares") + edgeCount("defenders", "callHunter") > 0) {
+        addTerm(
+          "Mission",
+          "Missão",
+          "A selected Escalation card that adds a special rule for one side. Keep it face up and follow its configured setup steps.",
+          "Carta Escalation escolhida que acrescenta uma regra especial para um dos lados. Deixe-a visível e siga as etapas de preparação configuradas.",
+          [["escalation", 7], ["escalation", 8], ["escalation", 10]]
+        );
+      }
+      if (edgeCount("sniper", "upgradedLoadout") > 0) {
+        addTerm(
+          "Upgraded Loadout edge",
+          "Edge de Upgraded Loadout",
+          "Each selected edge lets the Sniper secretly choose one upgraded card for the loadout pool, replacing one matching base card. Remove one base copy; if there were two, only one is removed. Bayonet requires Eagle's Nest.",
+          "Cada edge escolhida permite ao Sniper selecionar em segredo uma carta melhorada para a reserva, substituindo uma carta base correspondente. Retire uma cópia base; se houver duas, retire apenas uma. Bayonet exige Eagle's Nest.",
+          [["escalation", 7], ["escalation", 12], ["escalation", 13]]
+        );
+      }
     }
-    if (isSelected("eagle")) {
+    if (state.matchOptions.sniper !== "base") {
       addTerm(
         "Allied Sniper",
         "Sniper aliado",
@@ -1545,6 +2078,8 @@
         "Personagem de Eagle's Nest que substitui a miniatura e a carta do Sniper base. Use as quantidades de mira/ruído/recuo impressas na carta; a habilidade é obrigatória salvo indicação contrária.",
         [["eagle", 3]]
       );
+    }
+    if (state.matchOptions.sniper === "ghost") {
       addTerm(
         "Ghost Sniper",
         "Ghost Sniper",
@@ -1553,33 +2088,41 @@
         [["eagle", 8]]
       );
     }
-    if (mapId === "super-carrier" || (mapId === "norman-village" && isSelected("escalation"))) {
+    if (mapId === "super-carrier" || (mapId === "norman-village" && selectedAdvantage("underCurfew"))) {
       addTerm(
         "Door token",
         "Ficha de porta",
         mapId === "super-carrier"
           ? "On Super Carrier, the unlocked side acts as a doorway; the locked side blocks movement and line of sight. A successful sniper shot removes the token permanently."
-          : "If Under Curfew is selected, place the tokens unlocked-side up on Norman Village doorways; defenders can lock/unlock them during movement, except from vehicles.",
+          : "Place the tokens unlocked-side up on Norman Village doorways; defenders can lock/unlock them during movement, except from vehicles.",
         mapId === "super-carrier"
           ? "No Super Carrier, o lado destrancado funciona como porta; o lado trancado bloqueia movimento e visão. Um disparo bem-sucedido do sniper remove a ficha permanentemente."
-          : "Se Under Curfew for escolhida, coloque as fichas com o lado destrancado nas portas de Norman Village; os alemães podem trancá-las/destrancá-las ao mover, exceto de veículos.",
+          : "Coloque as fichas com o lado destrancado nas portas de Norman Village; os alemães podem trancá-las/destrancá-las ao mover, exceto de veículos.",
         mapId === "super-carrier" ? [["kraken", 6]] : [["escalation", 17], ["kraken", 6]]
       );
     }
-    if (mapId === "norman-village" || isSelected("escalation")) {
+    const armourTargetsEn = [
+      ...(mapId === "norman-village" || selectedAdvantage("mechanisation") ? ["vehicles"] : []),
+      ...(edgeCount("defenders", "callHunter") > 0 ? ["the Hunter"] : [])
+    ].join(" and ");
+    const armourTargetsPt = [
+      ...(mapId === "norman-village" || selectedAdvantage("mechanisation") ? ["veículos"] : []),
+      ...(edgeCount("defenders", "callHunter") > 0 ? ["o Hunter"] : [])
+    ].join(" e ");
+    if (armourTargetsEn) {
       addTerm(
         "Armour 2",
         "Blindagem 2",
-        "Adds two aim tokens to the normal hit requirement, with a minimum of three. It applies to vehicles and to the Hunter if Call the Hunter is in play.",
-        "Adiciona duas miras ao requisito normal para acertar, no mínimo três. Vale para veículos e para o Hunter se Call the Hunter estiver em jogo.",
+        `Adds two aim tokens to the normal hit requirement, with a minimum of three. It applies to ${armourTargetsEn}.`,
+        `Adiciona duas miras ao requisito normal para acertar, no mínimo três. Vale para ${armourTargetsPt}.`,
         [
-          ...(mapId === "norman-village" || (mapId === "heavy-water" && isSelected("kraken")) ? [["kraken", 4]] : []),
-          ...(mapId === "heavy-water" && isSelected("kraken") ? [["escalation", 19]] : []),
-          ...(isSelected("escalation") ? [["escalation", 11]] : [])
+          ...(mapId === "norman-village" || selectedAdvantage("mechanisation") ? [["kraken", 4]] : []),
+          ...(selectedAdvantage("mechanisation") ? [["escalation", 19]] : []),
+          ...(edgeCount("defenders", "callHunter") > 0 ? [["escalation", 11]] : [])
         ]
       );
     }
-    if (mapId === "norman-village" || (mapId === "heavy-water" && isSelected("escalation") && isSelected("kraken"))) {
+    if (mapId === "norman-village" || selectedAdvantage("mechanisation")) {
       addTerm(
         "Embarked",
         "Embarcado",
@@ -1590,12 +2133,12 @@
       addTerm(
         "Vehicle",
         "Veículo",
-        "Armoured defender unit in Norman Village, or in Heavy Water only if Mechanisation is selected. Vehicles move on roads, can carry one defender, and are permanently removed when destroyed.",
-        "Unidade blindada dos alemães em Norman Village, ou em Heavy Water somente se Mechanisation for escolhida. Veículos movem-se nas estradas, transportam um defensor e são removidos permanentemente quando destruídos.",
+        "Armoured defender unit in this match. Vehicles move on roads, can carry one defender, and are permanently removed when destroyed.",
+        "Unidade blindada dos alemães nesta partida. Veículos movem-se nas estradas, transportam um defensor e são removidos permanentemente quando destruídos.",
         mapId === "norman-village" ? [["kraken", 4]] : [["kraken", 4], ["escalation", 19]]
       );
     }
-    if (mapId === "heavy-water" && isSelected("escalation") && isSelected("kraken")) {
+    if (selectedAdvantage("mechanisation")) {
       addTerm(
         "Mechanisation",
         "Mechanisation",
@@ -1723,6 +2266,7 @@
             <h3 class="subhead">${t("Choose a map", "Escolha o mapa")}</h3>
             <div class="map-grid">${mapCards}</div>
             <div class="map-summary"><div><strong>${pair(chosen.name)}</strong><p>${pair(chosen.description)}</p></div>${referenceLink(chosen.reference[0], chosen.reference[1])}</div>
+            ${optionalRulesSection()}
           </section>
           <section class="rule-section">${renderIcons()}</section>
           <section class="rule-section">${quickReference()}</section>
@@ -1769,20 +2313,22 @@
       return;
     }
     if (button.dataset.expansion) {
-      const previousSetupConfig = setupConfigurationKey(state.map, state.expansions);
+      const previousSetupConfig = setupConfigurationKey(state.map, state.expansions, state.matchOptions);
       const id = button.dataset.expansion;
       state.expansions = isSelected(id)
         ? state.expansions.filter((item) => item !== id)
         : [...state.expansions, id];
       if (!availableMaps().some((item) => item.id === state.map)) state.map = "launch-facility";
+      state.matchOptions = normalizeMatchOptions(state.matchOptions, state.map, state.expansions);
       resetSetupChecksWhenConfigurationChanges(previousSetupConfig);
       saveState();
       render();
       return;
     }
     if (button.dataset.map) {
-      const previousSetupConfig = setupConfigurationKey(state.map, state.expansions);
+      const previousSetupConfig = setupConfigurationKey(state.map, state.expansions, state.matchOptions);
       state.map = button.dataset.map;
+      state.matchOptions = normalizeMatchOptions(state.matchOptions, state.map, state.expansions);
       resetSetupChecksWhenConfigurationChanges(previousSetupConfig);
       saveState();
       render();
@@ -1809,15 +2355,63 @@
   }
 
   function onAppChange(event) {
-    const checkbox = event.target;
-    if (!(checkbox instanceof HTMLInputElement) || !checkbox.matches("[data-setup-check]")) return;
-    const id = checkbox.dataset.setupCheck;
-    const checked = new Set(state.setupChecks);
-    if (checkbox.checked) checked.add(id);
-    else checked.delete(id);
-    state.setupChecks = [...checked];
+    const target = event.target;
+    if (target instanceof HTMLInputElement && target.matches("[data-setup-check]")) {
+      const id = target.dataset.setupCheck;
+      const checked = new Set(state.setupChecks);
+      if (target.checked) checked.add(id);
+      else checked.delete(id);
+      state.setupChecks = [...checked];
+      saveState();
+      updateSetupProgress();
+      return;
+    }
+
+    if (target instanceof HTMLInputElement && target.matches("[data-special-ops]")) {
+      const previousSetupConfig = setupConfigurationKey(state.map, state.expansions, state.matchOptions);
+      state.matchOptions.specialOps = target.checked;
+      if (!target.checked) state.matchOptions.edges = emptyEdgeSelections();
+      resetSetupChecksWhenConfigurationChanges(previousSetupConfig);
+      saveState();
+      render();
+      return;
+    }
+
+    if (target instanceof HTMLInputElement && target.matches("[data-match-sniper]")) {
+      const previousSetupConfig = setupConfigurationKey(state.map, state.expansions, state.matchOptions);
+      state.matchOptions.sniper = target.value;
+      resetSetupChecksWhenConfigurationChanges(previousSetupConfig);
+      saveState();
+      render();
+      return;
+    }
+
+    if (!(target instanceof HTMLSelectElement)) return;
+
+    const previousSetupConfig = setupConfigurationKey(state.map, state.expansions, state.matchOptions);
+    if (target.matches("[data-special-ops-rank]")) {
+      state.matchOptions.rank = Number(target.value);
+      state.matchOptions.edges = emptyEdgeSelections();
+    } else if (target.matches("[data-edge-side][data-edge-id]")) {
+      const side = target.dataset.edgeSide;
+      const id = target.dataset.edgeId;
+      const definitions = side === "sniper"
+        ? sniperEdgeOptions
+        : side === "defenders"
+          ? [...defenderEdgeOptions, ...availableAdvantagesFor(state.map, state.expansions)]
+          : [];
+      const option = definitions.find((item) => item.id === id);
+      if (!option || !isSpecialOps()) return;
+      const requested = Number(target.value);
+      const otherTotal = sideEdgeTotal(side) - state.matchOptions.edges[side][id];
+      if (!Number.isInteger(requested) || requested < 0 || requested > option.max || requested + otherTotal > state.matchOptions.rank) return;
+      state.matchOptions.edges[side][id] = requested;
+    } else {
+      return;
+    }
+    resetSetupChecksWhenConfigurationChanges(previousSetupConfig);
     saveState();
-    updateSetupProgress();
+    render();
   }
 
   app.addEventListener("click", onAppClick);
