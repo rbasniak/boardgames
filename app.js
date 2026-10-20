@@ -22,6 +22,9 @@
     if (hash.startsWith("#/avalon-the-riven-veil")) {
       return "avalon-the-riven-veil";
     }
+    if (hash.startsWith("#/pagan")) {
+      return "pagan";
+    }
     return "index";
   }
 
@@ -46,14 +49,14 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, and Avalon: The Riven Veil.",
-        "Livros de regras interativos de Sniper Elite, Not Enough Mana e Avalon: The Riven Veil."
+        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, and Pagan: The Fate of Roanoke.",
+        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil e Pagan: The Fate of Roanoke."
       );
     }
     app.innerHTML = `
@@ -98,6 +101,10 @@
             <img class="game-cover" src="assets/covers/avalon-the-riven-veil.webp" alt="${t("Cover of the Avalon: The Riven Veil Retail Edition rulebook", "Capa do manual Retail de Avalon: The Riven Veil")}">
             <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Avalon: The Riven Veil</h3><p>${t("Core retail rules for 2–4 players. Configure the factions, seasons, battle system, and catch-up rules before setup.", "Regras Retail base para 2–4 jogadores. Configure as facções, estações, sistema de batalha e recuperação antes da preparação.")}</p><a class="button-primary" href="#/avalon-the-riven-veil">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
           </article>
+          <article class="game-card available">
+            <img class="game-cover" src="assets/covers/pagan-fate-of-roanoke.webp" alt="${t("Cover of the Pagan: The Fate of Roanoke rulebook", "Capa do manual de Pagan: The Fate of Roanoke")}">
+            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Pagan: The Fate of Roanoke</h3><p>${t("Asymmetric Witch vs. Witch Hunter card duel. Choose the starter-deck scenario or build your own standard decks before setup.", "Duelo de cartas assimétrico Witch vs. Witch Hunter. Escolha o cenário de decks iniciais ou monte seus próprios decks padrão antes da preparação.")}</p><a class="button-primary" href="#/pagan">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
+          </article>
           <article class="game-card coming-soon">
             <div class="game-cover-empty" aria-hidden="true"></div>
             <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
@@ -127,6 +134,10 @@
       window.AvalonTheRivenVeil.renderInto(app);
       return;
     }
+    if (route === "pagan" && window.Pagan) {
+      window.Pagan.renderInto(app);
+      return;
+    }
     renderLanding();
   }
 
@@ -142,6 +153,10 @@
     }
     if (route === "avalon-the-riven-veil" && window.AvalonTheRivenVeil) {
       window.AvalonTheRivenVeil.onClick(event);
+      return;
+    }
+    if (route === "pagan" && window.Pagan) {
+      window.Pagan.onClick(event);
       return;
     }
     const button = event.target.closest("button");
@@ -192,6 +207,9 @@
     if (route === "avalon-the-riven-veil" && window.AvalonTheRivenVeil) {
       window.AvalonTheRivenVeil.onChange(event);
     }
+    if (route === "pagan" && window.Pagan) {
+      window.Pagan.onChange(event);
+    }
   }
 
   app.addEventListener("click", onClick);
@@ -199,6 +217,9 @@
   app.addEventListener("input", (event) => {
     if (currentRoute() === "not-enough-mana" && window.NotEnoughMana) {
       window.NotEnoughMana.onInput(event);
+    }
+    if (currentRoute() === "pagan" && window.Pagan) {
+      window.Pagan.onInput(event);
     }
   });
   window.addEventListener("hashchange", () => {

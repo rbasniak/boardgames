@@ -1168,6 +1168,55 @@ p {
   font-size: 12px;
 }
 
+.villager-card {
+  border-left: 4px solid var(--line);
+}
+
+.villager-card.villager-red {
+  border-left-color: var(--red);
+}
+
+.villager-card.villager-blue {
+  border-left-color: var(--blue);
+}
+
+.villager-card.villager-green {
+  border-left-color: var(--green);
+}
+
+.card-type-card .example-inline {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.starter-deck-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.starter-deck-table caption {
+  margin-bottom: 8px;
+  color: var(--ink-soft);
+  font-weight: 700;
+  text-align: left;
+}
+
+.starter-deck-table th,
+.starter-deck-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.starter-deck-table th {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .team-switch {
   display: flex;
   gap: 4px;
@@ -1740,6 +1789,33 @@ p {
   height: 320px;
   object-fit: contain;
   background: #24180f;
+  filter: none;
+}
+
+.theme-pagan {
+  --ink: #241319;
+  --ink-soft: #3a1f26;
+  --paper: #ece4d4;
+  --paper-light: #f8f2e4;
+  --paper-deep: #ddd0b3;
+  --line: #c9b78f;
+  --muted: #6b5c4d;
+  --red: #7a1f26;
+  --red-dark: #4e1218;
+  --gold: #b98a3e;
+  --blue: #2c6e74;
+  --green: #4b6b3f;
+  --shadow: 0 18px 45px rgb(36 19 25 / 14%);
+}
+
+.theme-pagan .manual-icon-frame {
+  background: #efe6d2;
+}
+
+.theme-pagan .hero-map img {
+  height: 320px;
+  object-fit: contain;
+  background: #1c0e12;
   filter: none;
 }
 
