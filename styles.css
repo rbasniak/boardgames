@@ -2713,3 +2713,515 @@ p {
     height: 300px;
   }
 }
+
+.theme-western-legends {
+  --ink: #2b1a10;
+  --ink-soft: #46301f;
+  --paper: #f1e7d3;
+  --paper-light: #faf4e7;
+  --paper-deep: #e3d3b2;
+  --line: #cfb88e;
+  --muted: #6e5a45;
+  --red: #9c3b1f;
+  --red-dark: #6c2814;
+  --gold: #c8923a;
+  --blue: #3d6478;
+  --green: #55673a;
+  --shadow: 0 18px 45px rgb(43 26 16 / 14%);
+  background:
+    radial-gradient(circle at 12% 7%, rgb(200 146 58 / 12%), transparent 24rem),
+    var(--paper);
+}
+
+.theme-western-legends .site-header {
+  background: #2b1a10;
+}
+
+.theme-western-legends .game-hero {
+  background:
+    radial-gradient(ellipse at 86% 0%, rgb(200 146 58 / 32%), transparent 40%),
+    linear-gradient(118deg, #24150c 0%, #4a2a17 62%, #7a3f1d 100%);
+}
+
+.theme-western-legends .hero-map {
+  background: #1f130b;
+}
+
+.theme-western-legends .hero-map img {
+  height: 360px;
+  object-fit: contain;
+  background: #1f130b;
+  filter: none;
+}
+
+.theme-western-legends .manual-icon-frame {
+  background: #f6eedc;
+}
+
+.wl-page {
+  padding-top: 30px;
+}
+
+.wl-jump {
+  position: sticky;
+  z-index: 10;
+  top: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 28px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: rgb(250 244 231 / 94%);
+  backdrop-filter: blur(4px);
+}
+
+.wl-jump button {
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.wl-jump button:hover {
+  border-color: var(--red);
+  color: var(--red-dark);
+}
+
+.wl-config {
+  margin-bottom: 48px;
+}
+
+.wl-choice-group {
+  min-width: 0;
+  margin: 0 0 14px;
+  padding: 20px clamp(14px, 2vw, 30px) 24px;
+  border: 1px solid var(--line);
+  background: rgb(250 244 231 / 45%);
+}
+
+.wl-choice-group.is-fixed {
+  border-style: dashed;
+  background: rgb(227 211 178 / 30%);
+}
+
+.wl-choice-group legend {
+  padding: 0 7px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.wl-choice-summary {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.wl-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.wl-choice-grid.is-wide {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.wl-choice-card {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  min-height: 80px;
+  padding: 16px 17px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.wl-choice-card:hover {
+  border-color: var(--red);
+}
+
+.wl-choice-card.is-selected {
+  border: 2px solid var(--red);
+  padding: 15px 16px;
+  box-shadow: 0 0 0 1px rgb(156 59 31 / 10%);
+}
+
+.wl-choice-card input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--red);
+  cursor: pointer;
+}
+
+.wl-choice-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.wl-choice-copy strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.wl-choice-copy small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.wl-choice-references {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0 0;
+}
+
+.wl-option-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.wl-group-block {
+  margin: 22px 0 14px;
+}
+
+.wl-block-title {
+  margin: 0 0 4px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.wl-block-intro {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.wl-optional-groups {
+  display: grid;
+  gap: 14px;
+}
+
+.wl-adjust {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--gold);
+  background: #f6e7c4;
+  color: #5c3f12;
+  font-size: 13px;
+}
+
+.wl-adjust p {
+  margin: 4px 0;
+}
+
+.wl-config-status {
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--green);
+  background: #ebeedd;
+  color: #3e4b27;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.wl-warning {
+  display: block;
+  margin-top: 6px;
+  color: var(--red-dark);
+}
+
+.wl-heading-refs,
+.wl-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.wl-refs {
+  margin: 12px 0 0;
+}
+
+.section-lead {
+  max-width: 920px;
+  margin: 0 0 18px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.wl-page .info-card .source-link {
+  margin-left: 0;
+}
+
+.wl-list,
+.wl-steps {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding-left: 20px;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.wl-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.wl-faq-note {
+  margin: 12px 0 0;
+  padding: 8px 11px;
+  border-left: 3px solid var(--blue);
+  background: #e6ecee;
+  color: #2c4552;
+  font-size: 12px;
+}
+
+.wl-hands {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 0;
+}
+
+.wl-hands > div {
+  display: grid;
+  grid-template-columns: minmax(110px, 34%) minmax(0, 1fr);
+  gap: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.wl-hands dt {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.wl-hands dd {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.wl-inventory {
+  margin: 24px 0;
+  padding: 20px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+}
+
+.wl-inventory h3 {
+  margin-bottom: 5px;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.wl-inventory > p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.wl-inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.wl-inventory-grid > div {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: #f5ecd9;
+}
+
+.wl-inventory-grid strong {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.wl-inventory-grid span {
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.wl-icon-grid .icon-card {
+  grid-template-columns: 72px minmax(0, 1fr);
+  min-height: 104px;
+}
+
+.wl-icon-grid .manual-icon-frame {
+  width: 72px;
+  height: 72px;
+}
+
+.wl-icon-grid .manual-icon {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.wl-glossary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.wl-glossary > div {
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+}
+
+.wl-glossary dt {
+  margin-bottom: 5px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.wl-glossary dd {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.theme-western-legends .setup-phase-header {
+  background: #efe1c3;
+}
+
+.theme-western-legends .setup-check-list {
+  padding: 5px 17px 11px;
+}
+
+.theme-western-legends .setup-check {
+  display: grid;
+  grid-template-columns: 19px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 12px 8px;
+  border-bottom: 1px solid #e3d3b2;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.theme-western-legends .setup-check:last-child {
+  border-bottom: 0;
+}
+
+.theme-western-legends .setup-check input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--red);
+}
+
+.theme-western-legends .setup-check > span {
+  display: grid;
+  gap: 4px;
+}
+
+.theme-western-legends .setup-check strong {
+  font-weight: 700;
+}
+
+.theme-western-legends .setup-substeps {
+  display: grid;
+  gap: 4px;
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.theme-western-legends .setup-substeps [role="listitem"] {
+  display: block;
+  padding-left: 12px;
+  text-indent: -12px;
+}
+
+.theme-western-legends .setup-substeps [role="listitem"]::before {
+  padding-right: 6px;
+  color: var(--red);
+  content: "•";
+}
+
+.theme-western-legends .setup-check small {
+  color: #5f4c39;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.theme-western-legends .setup-check:has(input:checked) strong {
+  color: #8a7660;
+  text-decoration: line-through;
+}
+
+.theme-western-legends .setup-progress-controls progress::-webkit-progress-value,
+.theme-western-legends .setup-progress-controls progress::-moz-progress-bar {
+  background: var(--red);
+}
+
+@media (max-width: 860px) {
+  .wl-choice-grid.is-wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .wl-choice-grid,
+  .wl-choice-grid.is-wide,
+  .wl-inventory-grid,
+  .wl-glossary {
+    grid-template-columns: 1fr;
+  }
+
+  .wl-page {
+    padding-top: 18px;
+  }
+
+  .wl-jump {
+    top: 0;
+    position: static;
+  }
+
+  .wl-choice-group {
+    padding: 15px 12px 18px;
+  }
+
+  .wl-hands > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .theme-western-legends .hero-map img {
+    height: 280px;
+  }
+}

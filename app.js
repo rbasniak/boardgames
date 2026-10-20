@@ -28,6 +28,9 @@
     if (hash.startsWith("#/odins-ravens")) {
       return "odins-ravens";
     }
+    if (hash.startsWith("#/western-legends")) {
+      return "western-legends";
+    }
     return "index";
   }
 
@@ -52,14 +55,14 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, and Odin's Ravens.",
-        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke e Odin's Ravens."
+        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, and Western Legends.",
+        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens e Western Legends."
       );
     }
     app.innerHTML = `
@@ -112,6 +115,10 @@
             <img class="game-cover" src="assets/covers/odins-ravens.webp" alt="${t("Cover of the Odin's Ravens rulebook", "Capa do manual de Odin's Ravens")}">
             <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Odin's Ravens</h3><p>${t("A mythical 2-player race game. Fly your raven along the path with Flight cards, and use Loki's Trickery cards to help yourself or hinder your opponent.", "Um jogo de corrida mítica para 2 jogadores. Voe pela rota com cartas de Voo e use as cartas de Trapaça de Loki para se ajudar ou atrapalhar o oponente.")}</p><a class="button-primary" href="#/odins-ravens">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
           </article>
+          <article class="game-card available">
+            <img class="game-cover" src="assets/covers/western-legends.webp" alt="${t("Cover of the Western Legends rulebook", "Capa do livro de regras de Western Legends")}">
+            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Western Legends</h3><p>${t("Wild West sandbox for 2–6 players with Ante Up, Blood Money, the small expansions, the five game modes and the official FAQ folded in. Pick a mode first; the guide filters every option, setup step and rule.", "Sandbox do Velho Oeste para 2–6 jogadores com Ante Up, Blood Money, as expansões pequenas, os cinco modos de jogo e o FAQ oficial incorporado. Escolha o modo primeiro; o guia filtra cada opção, passo de preparação e regra.")}</p><a class="button-primary" href="#/western-legends">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
+          </article>
           <article class="game-card coming-soon">
             <div class="game-cover-empty" aria-hidden="true"></div>
             <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
@@ -128,6 +135,13 @@
     const route = currentRoute();
     if (route !== "avalon-the-riven-veil") {
       document.body.classList.remove("theme-avalon");
+    }
+    if (route !== "western-legends") {
+      document.body.classList.remove("theme-western-legends");
+    }
+    if (route === "western-legends" && window.WesternLegends) {
+      window.WesternLegends.renderInto(app);
+      return;
     }
     if (route === "sniper-elite" && window.SniperElite) {
       window.SniperElite.renderInto(app);
@@ -172,6 +186,10 @@
     }
     if (route === "odins-ravens" && window.OdinsRavens) {
       window.OdinsRavens.onClick(event);
+      return;
+    }
+    if (route === "western-legends" && window.WesternLegends) {
+      window.WesternLegends.onClick(event);
       return;
     }
     const button = event.target.closest("button");
@@ -227,6 +245,9 @@
     }
     if (route === "odins-ravens" && window.OdinsRavens) {
       window.OdinsRavens.onChange(event);
+    }
+    if (route === "western-legends" && window.WesternLegends) {
+      window.WesternLegends.onChange(event);
     }
   }
 

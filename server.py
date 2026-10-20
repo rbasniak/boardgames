@@ -13,6 +13,13 @@ MANUALS = {
     "/manuals/avalon_core.pdf": ROOT / "manuals" / "avalon_core.pdf",
     "/manuals/pagan-fate-of-roanoke_core.pdf": ROOT / "manuals" / "pagan-fate-of-roanoke_core.pdf",
     "/manuals/odins-ravens_core.pdf": ROOT / "manuals" / "odins-ravens_core.pdf",
+    "/manuals/western-legends_core.pdf": ROOT / "manuals" / "western-legends_core.pdf",
+    "/manuals/western-legends_ante-up.pdf": ROOT / "manuals" / "western-legends_ante-up.pdf",
+    "/manuals/western-legends_blood-money.pdf": ROOT / "manuals" / "western-legends_blood-money.pdf",
+    "/manuals/western-legends_fistful-of-extras.pdf": ROOT / "manuals" / "western-legends_fistful-of-extras.pdf",
+    "/manuals/western-legends_the-good-the-bad-and-the-handsome.pdf": ROOT / "manuals" / "western-legends_the-good-the-bad-and-the-handsome.pdf",
+    "/manuals/western-legends_wild-bunch-of-extras.pdf": ROOT / "manuals" / "western-legends_wild-bunch-of-extras.pdf",
+    "/manuals/western-legends_faq.pdf": ROOT / "manuals" / "western-legends_faq.pdf",
 }
 
 
