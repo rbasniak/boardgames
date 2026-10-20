@@ -2026,3 +2026,425 @@ p {
     transition-duration: 0.01ms !important;
   }
 }
+
+.theme-avalon {
+  --ink: #123a48;
+  --ink-soft: #234b57;
+  --paper: #edf5f3;
+  --paper-light: #fbfdfb;
+  --paper-deep: #dce9e7;
+  --line: #bfd1d0;
+  --muted: #5c7477;
+  --red: #0b7881;
+  --red-dark: #07565f;
+  --gold: #c69a42;
+  --blue: #2e88aa;
+  --green: #38796b;
+  --shadow: 0 18px 45px rgb(18 58 72 / 12%);
+  background:
+    radial-gradient(circle at 12% 7%, rgb(46 136 170 / 10%), transparent 24rem),
+    var(--paper);
+}
+
+.theme-avalon .site-header {
+  background: #0e3442;
+}
+
+.theme-avalon .game-hero {
+  background:
+    radial-gradient(ellipse at 86% 0%, rgb(43 163 170 / 34%), transparent 38%),
+    linear-gradient(118deg, #082b3c 0%, #104657 66%, #176b74 100%);
+}
+
+.theme-avalon .hero-map {
+  background: #083447;
+}
+
+.theme-avalon .hero-map img {
+  height: 360px;
+  object-fit: contain;
+  background: #083447;
+  filter: none;
+}
+
+.theme-avalon .manual-icon-frame {
+  background: #f3fbfa;
+}
+
+.avalon-page {
+  padding-top: 34px;
+}
+
+.avalon-config {
+  margin-bottom: 48px;
+}
+
+.avalon-config-grid,
+.avalon-faction-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.avalon-field {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.avalon-field select {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--paper-light);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+}
+
+.avalon-field small,
+.avalon-faction-picker p {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.avalon-faction-picker {
+  margin: 24px 0 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  background: #f2f8f6;
+}
+
+.avalon-faction-picker legend {
+  padding: 0 7px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+}
+
+.avalon-faction-picker p {
+  margin: 0 0 14px;
+}
+
+.avalon-table-options {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  background: #f2f8f6;
+}
+
+.avalon-table-options legend {
+  padding: 0 7px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+}
+
+.avalon-option {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.avalon-option input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--red);
+}
+
+.avalon-option span {
+  display: grid;
+  gap: 4px;
+}
+
+.avalon-option strong {
+  font-size: 13px;
+}
+
+.avalon-option small,
+.avalon-option-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.avalon-config-status {
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--green);
+  background: #e8f2ee;
+  color: #285c50;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.avalon-iconography-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.avalon-symbol-figure {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  min-height: 260px;
+  margin: 0;
+  padding: 15px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+}
+
+.avalon-symbol-figure img {
+  display: block;
+  width: 86px;
+  max-height: 280px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.avalon-symbol-figure figcaption {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.avalon-symbol-figure figcaption strong {
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+}
+
+.avalon-inventory {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+}
+
+.avalon-inventory h3 {
+  margin-bottom: 5px;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.avalon-inventory > p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.avalon-inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.avalon-inventory-grid > div {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: #f4f9f7;
+}
+
+.avalon-inventory-grid strong {
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.avalon-inventory-grid span {
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+
+.avalon-glossary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.avalon-glossary > div {
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+}
+
+.avalon-glossary dt {
+  margin-bottom: 5px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.avalon-glossary dd {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.avalon-appendix-title {
+  margin: 26px 0 12px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.avalon-page .info-card ul {
+  display: grid;
+  gap: 9px;
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.avalon-faq {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.avalon-faq details {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+}
+
+.avalon-faq summary {
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.avalon-faq details p {
+  margin: 9px 0 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.theme-avalon .info-card button[data-scroll] {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--red-dark);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.theme-avalon .callout {
+  border-left-color: var(--red);
+  background: #e0efec;
+  color: var(--ink-soft);
+}
+
+.theme-avalon .setup-phase-header {
+  background: #e5f0ed;
+}
+
+.theme-avalon .setup-check-list {
+  padding: 5px 17px 11px;
+}
+
+.theme-avalon .setup-check {
+  display: grid;
+  grid-template-columns: 19px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 12px 8px;
+  border-bottom: 1px solid #dbe7e4;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.theme-avalon .setup-check:last-child {
+  border-bottom: 0;
+}
+
+.theme-avalon .setup-check input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--red);
+}
+
+.theme-avalon .setup-check span {
+  display: grid;
+  gap: 4px;
+}
+
+.theme-avalon .setup-check strong {
+  font-weight: 700;
+}
+
+.theme-avalon .setup-check small {
+  color: #4e6669;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.theme-avalon .setup-check:has(input:checked) strong {
+  color: #647b79;
+  text-decoration: line-through;
+}
+
+.theme-avalon .setup-progress-controls progress::-webkit-progress-value,
+.theme-avalon .setup-progress-controls progress::-moz-progress-bar {
+  background: var(--red);
+}
+
+@media (max-width: 720px) {
+  .avalon-config-grid,
+  .avalon-faction-grid,
+  .avalon-iconography-grid,
+  .avalon-inventory-grid,
+  .avalon-glossary,
+  .avalon-faq {
+    grid-template-columns: 1fr;
+  }
+
+  .avalon-symbol-figure {
+    grid-template-columns: 72px minmax(0, 1fr);
+    min-height: 220px;
+  }
+
+  .avalon-symbol-figure img {
+    width: 68px;
+    max-height: 220px;
+  }
+
+  .avalon-page {
+    padding-top: 20px;
+  }
+
+  .theme-avalon .hero-map img {
+    height: 300px;
+  }
+}

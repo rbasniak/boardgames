@@ -19,6 +19,9 @@
     if (hash.startsWith("#/not-enough-mana")) {
       return "not-enough-mana";
     }
+    if (hash.startsWith("#/avalon-the-riven-veil")) {
+      return "avalon-the-riven-veil";
+    }
     return "index";
   }
 
@@ -43,14 +46,14 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem");
+    document.body.classList.remove("theme-nem", "theme-avalon");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive multiplayer rules for Sniper Elite, its expansions, and maps.",
-        "Regras multijogador interativas de Sniper Elite, suas expansões e mapas."
+        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, and Avalon: The Riven Veil.",
+        "Livros de regras interativos de Sniper Elite, Not Enough Mana e Avalon: The Riven Veil."
       );
     }
     app.innerHTML = `
@@ -91,6 +94,10 @@
             <img class="game-cover" src="assets/covers/not-enough-mana.webp" alt="${t("Cover of the Not Enough Mana booklet", "Capa do livreto de Not Enough Mana")}">
             <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Not Enough Mana</h3><p>${t("Potion-drinking card duel for 3–6 wizards. Choose the table size, potion mana, and the printed variants before setup.", "Duelo de cartas com poções para 3–6 magos. Escolha o tamanho da mesa, a mana da poção e as variantes impressas antes da preparação.")}</p><a class="button-primary" href="#/not-enough-mana">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
           </article>
+          <article class="game-card available">
+            <img class="game-cover" src="assets/covers/avalon-the-riven-veil.webp" alt="${t("Cover of the Avalon: The Riven Veil Retail Edition rulebook", "Capa do manual Retail de Avalon: The Riven Veil")}">
+            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Avalon: The Riven Veil</h3><p>${t("Core retail rules for 2–4 players. Configure the factions, seasons, battle system, and catch-up rules before setup.", "Regras Retail base para 2–4 jogadores. Configure as facções, estações, sistema de batalha e recuperação antes da preparação.")}</p><a class="button-primary" href="#/avalon-the-riven-veil">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
+          </article>
           <article class="game-card coming-soon">
             <div class="game-cover-empty" aria-hidden="true"></div>
             <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
@@ -105,12 +112,19 @@
 
   function render() {
     const route = currentRoute();
+    if (route !== "avalon-the-riven-veil") {
+      document.body.classList.remove("theme-avalon");
+    }
     if (route === "sniper-elite" && window.SniperElite) {
       window.SniperElite.renderInto(app);
       return;
     }
     if (route === "not-enough-mana" && window.NotEnoughMana) {
       window.NotEnoughMana.renderInto(app);
+      return;
+    }
+    if (route === "avalon-the-riven-veil" && window.AvalonTheRivenVeil) {
+      window.AvalonTheRivenVeil.renderInto(app);
       return;
     }
     renderLanding();
@@ -124,6 +138,10 @@
     }
     if (route === "not-enough-mana" && window.NotEnoughMana) {
       window.NotEnoughMana.onClick(event);
+      return;
+    }
+    if (route === "avalon-the-riven-veil" && window.AvalonTheRivenVeil) {
+      window.AvalonTheRivenVeil.onClick(event);
       return;
     }
     const button = event.target.closest("button");
@@ -169,6 +187,10 @@
     }
     if (route === "not-enough-mana" && window.NotEnoughMana) {
       window.NotEnoughMana.onChange(event);
+      return;
+    }
+    if (route === "avalon-the-riven-veil" && window.AvalonTheRivenVeil) {
+      window.AvalonTheRivenVeil.onChange(event);
     }
   }
 
