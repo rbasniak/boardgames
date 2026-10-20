@@ -25,6 +25,9 @@
     if (hash.startsWith("#/pagan")) {
       return "pagan";
     }
+    if (hash.startsWith("#/odins-ravens")) {
+      return "odins-ravens";
+    }
     return "index";
   }
 
@@ -49,14 +52,14 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, and Pagan: The Fate of Roanoke.",
-        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil e Pagan: The Fate of Roanoke."
+        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, and Odin's Ravens.",
+        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke e Odin's Ravens."
       );
     }
     app.innerHTML = `
@@ -105,6 +108,10 @@
             <img class="game-cover" src="assets/covers/pagan-fate-of-roanoke.webp" alt="${t("Cover of the Pagan: The Fate of Roanoke rulebook", "Capa do manual de Pagan: The Fate of Roanoke")}">
             <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Pagan: The Fate of Roanoke</h3><p>${t("Asymmetric Witch vs. Witch Hunter card duel. Choose the starter-deck scenario or build your own standard decks before setup.", "Duelo de cartas assimétrico Witch vs. Witch Hunter. Escolha o cenário de decks iniciais ou monte seus próprios decks padrão antes da preparação.")}</p><a class="button-primary" href="#/pagan">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
           </article>
+          <article class="game-card available">
+            <img class="game-cover" src="assets/covers/odins-ravens.webp" alt="${t("Cover of the Odin's Ravens rulebook", "Capa do manual de Odin's Ravens")}">
+            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Odin's Ravens</h3><p>${t("A mythical 2-player race game. Fly your raven along the path with Flight cards, and use Loki's Trickery cards to help yourself or hinder your opponent.", "Um jogo de corrida mítica para 2 jogadores. Voe pela rota com cartas de Voo e use as cartas de Trapaça de Loki para se ajudar ou atrapalhar o oponente.")}</p><a class="button-primary" href="#/odins-ravens">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
+          </article>
           <article class="game-card coming-soon">
             <div class="game-cover-empty" aria-hidden="true"></div>
             <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
@@ -138,6 +145,10 @@
       window.Pagan.renderInto(app);
       return;
     }
+    if (route === "odins-ravens" && window.OdinsRavens) {
+      window.OdinsRavens.renderInto(app);
+      return;
+    }
     renderLanding();
   }
 
@@ -157,6 +168,10 @@
     }
     if (route === "pagan" && window.Pagan) {
       window.Pagan.onClick(event);
+      return;
+    }
+    if (route === "odins-ravens" && window.OdinsRavens) {
+      window.OdinsRavens.onClick(event);
       return;
     }
     const button = event.target.closest("button");
@@ -210,6 +225,9 @@
     if (route === "pagan" && window.Pagan) {
       window.Pagan.onChange(event);
     }
+    if (route === "odins-ravens" && window.OdinsRavens) {
+      window.OdinsRavens.onChange(event);
+    }
   }
 
   app.addEventListener("click", onClick);
@@ -220,6 +238,9 @@
     }
     if (currentRoute() === "pagan" && window.Pagan) {
       window.Pagan.onInput(event);
+    }
+    if (currentRoute() === "odins-ravens" && window.OdinsRavens) {
+      window.OdinsRavens.onInput(event);
     }
   });
   window.addEventListener("hashchange", () => {

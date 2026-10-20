@@ -1819,6 +1819,33 @@ p {
   filter: none;
 }
 
+.theme-odins-ravens {
+  --ink: #161a2c;
+  --ink-soft: #272b44;
+  --paper: #eee6d6;
+  --paper-light: #f8f2e3;
+  --paper-deep: #ddcfa9;
+  --line: #bfae82;
+  --muted: #6a6252;
+  --red: #a84a2a;
+  --red-dark: #6f2f1a;
+  --gold: #d6a63f;
+  --blue: #2d4a66;
+  --green: #3e5c45;
+  --shadow: 0 18px 45px rgb(10 12 24 / 18%);
+}
+
+.theme-odins-ravens .manual-icon-frame {
+  background: #ece2c7;
+}
+
+.theme-odins-ravens .hero-map img {
+  height: 320px;
+  object-fit: contain;
+  background: #10121f;
+  filter: none;
+}
+
 @media (max-width: 720px) {
   .site-header {
     min-height: 62px;

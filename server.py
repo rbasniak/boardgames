@@ -12,6 +12,7 @@ MANUALS = {
     "/manuals/not-enough-mana_core.pdf": ROOT / "manuals" / "not-enough-mana_core.pdf",
     "/manuals/avalon_core.pdf": ROOT / "manuals" / "avalon_core.pdf",
     "/manuals/pagan-fate-of-roanoke_core.pdf": ROOT / "manuals" / "pagan-fate-of-roanoke_core.pdf",
+    "/manuals/odins-ravens_core.pdf": ROOT / "manuals" / "odins-ravens_core.pdf",
 }
 
 
