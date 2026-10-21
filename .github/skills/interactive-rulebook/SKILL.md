@@ -1,6 +1,6 @@
 ---
 name: interactive-rulebook
-description: Use when adding a new board game or expansion to this repository's interactive rulebook, or when revising a game guide against its manuals. Covers source research, configurable rules, bilingual content, setup, artwork, implementation, and verification.
+description: Use when adding a new board game or expansion to this repository's interactive rulebook, or when revising a game guide against its manuals. Covers source research, configurable rules, bilingual content, setup, artwork, implementation, verification, and the required fresh-reader quality gate.
 ---
 
 # Criar ou revisar um rulebook interativo
@@ -48,3 +48,24 @@ Esta skill orienta a criação ponta a ponta de **um novo jogo neste repositóri
 2. Teste jogo base e combinações representativas de expansões/mapas/opções: dependências, limites e escolhas repetidas; conteúdo incluído **e** excluído; lados, segredos, vitória, turnos, exemplos, glossário e links.
 3. No navegador, confira persistência após recarga; reinício da checklist após mudar a configuração; botão “Desmarcar tudo”; preservação do progresso ao alternar idioma/lado; EN-US/PT-BR; layout móvel; ícones/mapas carregados; erros no console.
 4. Execute as verificações existentes mais específicas (sintaxe, testes, lint ou build pertinentes) e `git diff --check`. Corrija falhas causadas pela alteração. Relate limitações documentadas, sem declarar o guia completo quando restarem lacunas.
+5. Em seguida execute o quality gate da seção 6. A releitura feita por quem escreveu o guia não o substitui.
+
+## 6. Quality gate
+
+Obrigatório ao criar ou revisar um guia, depois da verificação no navegador e antes de declarar o trabalho pronto. É o mesmo gate usado em Western Legends: leitores novos, sem contexto e sem os manuais, julgam se dá para jogar a partida filtrada.
+
+1. Renderize o guia já filtrado, em texto, para configurações distintas. Cada texto contém só o que aquela partida mostra. Não entregue o JavaScript, os PDFs, a matriz de rastreabilidade nem anotações de implementação.
+2. Cubra combinações que mudem a preparação e as regras, não variações cosméticas. No mínimo:
+   - a partida mais simples para aprender (jogo base ou modo introdutório, com as opções que um iniciante usaria);
+   - uma combinação parcial de expansões, inclusive poucas pessoas quando isso traz rival automático ou outra contagem;
+   - a combinação mais completa, com as expansões e vários sistemas opcionais ligados;
+   - cada modo que remove, substitui ou torna obrigatório um sistema da base.
+   Western Legends usou quatro: base com 4 jogadores e objetivos; 2 jogadores com Ante Up, Wild Bunch e Man in Black; padrão com todas as expansões, Histórias Lendárias e várias opções; Who Runs Border Town.
+3. Lance os leitores em paralelo, um por configuração. Cada um começa do zero: não retome um agente que já leu os manuais ou o código. O pedido de cada um deve dizer:
+   - você nunca jogou este jogo e lê somente o arquivo desta configuração;
+   - não abra PDF, código-fonte nem outro arquivo;
+   - o painel que explica opções não selecionadas faz parte do guia; não o trate como defeito. Julgue a checklist de preparação e as regras da partida selecionada;
+   - texto que o guia manda ler na carta ou no componente físico é aceitável. Um diagrama impresso no componente conta como componente, desde que o guia diga onde olhar;
+   - não assuma regra ausente e não invente correção;
+   - responda sim ou não: dá para preparar e jogar esta partida sem os manuais originais? Se não, liste só os bloqueios, cada um com uma citação curta. Se sim, liste no máximo os riscos de jogada errada, também com citação.
+4. Corrija no guia os bloqueios citados. Gere de novo o texto das configurações que falharam e repita o gate nessas configurações com leitores novos. Continue até cada uma receber sim, ou até restar só uma limitação que o próprio guia declara (carta física ou interpretação marcada). Não declare o guia completo enquanto um leitor disser que não dá para jogar sem adivinhar.

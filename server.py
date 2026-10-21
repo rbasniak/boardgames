@@ -20,6 +20,7 @@ MANUALS = {
     "/manuals/western-legends_the-good-the-bad-and-the-handsome.pdf": ROOT / "manuals" / "western-legends_the-good-the-bad-and-the-handsome.pdf",
     "/manuals/western-legends_wild-bunch-of-extras.pdf": ROOT / "manuals" / "western-legends_wild-bunch-of-extras.pdf",
     "/manuals/western-legends_faq.pdf": ROOT / "manuals" / "western-legends_faq.pdf",
+    "/manuals/lotr-fate-of-the-fellowship_core.pdf": ROOT / "manuals" / "lotr-fate-of-the-fellowship_core.pdf",
 }
 
 
