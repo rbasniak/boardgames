@@ -37,6 +37,9 @@
     if (hash.startsWith("#/witcher-path-of-destiny")) {
       return "witcher-path-of-destiny";
     }
+    if (hash.startsWith("#/cangaceiros")) {
+      return "cangaceiros";
+    }
     return "index";
   }
 
@@ -61,14 +64,14 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, and The Witcher: Path of Destiny.",
-        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship e The Witcher: Path of Destiny."
+        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, and Cangaceiros.",
+        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny e Cangaceiros."
       );
     }
     app.innerHTML = `
@@ -133,6 +136,10 @@
             <img class="game-cover" src="assets/covers/witcher-path-of-destiny.webp" alt="${t("Cover of The Witcher: Path of Destiny rulebook", "Capa do manual de The Witcher: Path of Destiny")}">
             <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>The Witcher: Path of Destiny</h3><p>${t("Tableau-building card game for 1–5 players with Stretch Goals, A Grain of Truth, Wild Hunt, Legendary Monsters, Naglfar and Geralt on Roach. Mark your boxes and pick a mode — competitive Tale, Wild Hunt one-against-many or Legendary Monsters co-op; the guide filters every option, setup step and rule.", "Jogo de cartas de tableau para 1–5 jogadores com Stretch Goals, A Grain of Truth, Wild Hunt, Legendary Monsters, Naglfar e Geralt on Roach. Marque suas caixas e escolha o modo — Conto competitivo, Wild Hunt um contra todos ou Legendary Monsters cooperativo; o guia filtra cada opção, passo de preparação e regra.")}</p><a class="button-primary" href="#/witcher-path-of-destiny">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
           </article>
+          <article class="game-card available">
+            <img class="game-cover" src="assets/covers/cangaceiros.webp" alt="${t("Cover of the Cangaceiros rulebook", "Capa do manual de Cangaceiros")}">
+            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Cangaceiros</h3><p>${t("Every-gang-for-itself race for 2–5 players across Brazil's Sertão. Choose your player count; the guide scales the Setup inventory and card counts for you.", "Corrida sem cooperação para 2–5 jogadores pelo Sertão nordestino. Escolha o número de jogadores; o guia ajusta o inventário de Preparação e as quantidades de cartas automaticamente.")}</p><a class="button-primary" href="#/cangaceiros">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
+          </article>
           <article class="game-card coming-soon">
             <div class="game-cover-empty" aria-hidden="true"></div>
             <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
@@ -158,6 +165,13 @@
     }
     if (route !== "witcher-path-of-destiny") {
       document.body.classList.remove("theme-witcher");
+    }
+    if (route !== "cangaceiros") {
+      document.body.classList.remove("theme-cangaceiros");
+    }
+    if (route === "cangaceiros" && window.Cangaceiros) {
+      window.Cangaceiros.renderInto(app);
+      return;
     }
     if (route === "lotr-fate-of-the-fellowship" && window.LotrFateOfTheFellowship) {
       window.LotrFateOfTheFellowship.renderInto(app);
@@ -228,6 +242,10 @@
       window.WitcherPathOfDestiny.onClick(event);
       return;
     }
+    if (route === "cangaceiros" && window.Cangaceiros) {
+      window.Cangaceiros.onClick(event);
+      return;
+    }
     const button = event.target.closest("button");
     if (!button || !app.contains(button)) {
       return;
@@ -291,6 +309,9 @@
     if (route === "witcher-path-of-destiny" && window.WitcherPathOfDestiny) {
       window.WitcherPathOfDestiny.onChange(event);
     }
+    if (route === "cangaceiros" && window.Cangaceiros) {
+      window.Cangaceiros.onChange(event);
+    }
   }
 
   app.addEventListener("click", onClick);
@@ -304,6 +325,9 @@
     }
     if (currentRoute() === "odins-ravens" && window.OdinsRavens) {
       window.OdinsRavens.onInput(event);
+    }
+    if (currentRoute() === "cangaceiros" && window.Cangaceiros) {
+      window.Cangaceiros.onInput(event);
     }
   });
   window.addEventListener("hashchange", () => {

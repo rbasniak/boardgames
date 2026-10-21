@@ -1882,6 +1882,33 @@ p {
   filter: none;
 }
 
+.theme-cangaceiros {
+  --ink: #2c1810;
+  --ink-soft: #432415;
+  --paper: #ecdfc2;
+  --paper-light: #f8f0da;
+  --paper-deep: #d9c293;
+  --line: #bb9a5c;
+  --muted: #6e5a3e;
+  --red: #9c2a1e;
+  --red-dark: #631a12;
+  --gold: #c08a2e;
+  --blue: #2f6e5e;
+  --green: #4c6b2f;
+  --shadow: 0 18px 45px rgb(44 24 16 / 16%);
+}
+
+.theme-cangaceiros .manual-icon-frame {
+  background: #f1e6c8;
+}
+
+.theme-cangaceiros .hero-map img {
+  height: 320px;
+  object-fit: contain;
+  background: #241307;
+  filter: none;
+}
+
 @media (max-width: 720px) {
   .site-header {
     min-height: 62px;
