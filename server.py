@@ -21,6 +21,13 @@ MANUALS = {
     "/manuals/western-legends_wild-bunch-of-extras.pdf": ROOT / "manuals" / "western-legends_wild-bunch-of-extras.pdf",
     "/manuals/western-legends_faq.pdf": ROOT / "manuals" / "western-legends_faq.pdf",
     "/manuals/lotr-fate-of-the-fellowship_core.pdf": ROOT / "manuals" / "lotr-fate-of-the-fellowship_core.pdf",
+    "/manuals/witcher-path-of-destiny_core.pdf": ROOT / "manuals" / "witcher-path-of-destiny_core.pdf",
+    "/manuals/witcher-path-of-destiny_stretch-goals.pdf": ROOT / "manuals" / "witcher-path-of-destiny_stretch-goals.pdf",
+    "/manuals/witcher-path-of-destiny_a-grain-of-truth.pdf": ROOT / "manuals" / "witcher-path-of-destiny_a-grain-of-truth.pdf",
+    "/manuals/witcher-path-of-destiny_wild-hunt.pdf": ROOT / "manuals" / "witcher-path-of-destiny_wild-hunt.pdf",
+    "/manuals/witcher-path-of-destiny_legendary-monsters.pdf": ROOT / "manuals" / "witcher-path-of-destiny_legendary-monsters.pdf",
+    "/manuals/witcher-path-of-destiny_naglfar.pdf": ROOT / "manuals" / "witcher-path-of-destiny_naglfar.pdf",
+    "/manuals/witcher-path-of-destiny_geralt-on-roach.pdf": ROOT / "manuals" / "witcher-path-of-destiny_geralt-on-roach.pdf",
 }
 
 
