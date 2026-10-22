@@ -1909,6 +1909,286 @@ p {
   filter: none;
 }
 
+.theme-lotr-duel {
+  --ink: #2a1d12;
+  --ink-soft: #40301f;
+  --paper: #ede3cf;
+  --paper-light: #f8f2e3;
+  --paper-deep: #dccba6;
+  --line: #c4ad7e;
+  --muted: #6b5a42;
+  --red: #8f2419;
+  --red-dark: #5f160f;
+  --gold: #b4832b;
+  --blue: #2f5a7a;
+  --green: #3f6a3a;
+  --shadow: 0 18px 45px rgb(42 29 18 / 14%);
+  background:
+    radial-gradient(circle at 10% 6%, rgb(180 131 43 / 14%), transparent 24rem),
+    var(--paper);
+}
+
+.theme-lotr-duel .site-header {
+  background: #1d1710;
+}
+
+.theme-lotr-duel .game-hero {
+  background:
+    radial-gradient(ellipse at 88% 0%, rgb(190 60 30 / 38%), transparent 42%),
+    linear-gradient(118deg, #15110c 0%, #3a2a1a 55%, #5a1a12 100%);
+}
+
+.theme-lotr-duel .hero-map {
+  background: #15110c;
+}
+
+.theme-lotr-duel .hero-map img {
+  height: auto;
+  max-height: 460px;
+  object-fit: contain;
+  background: #15110c;
+  filter: none;
+}
+
+.theme-lotr-duel .hero-map figcaption {
+  padding: 18px 10px 8px;
+  font-size: 12px;
+}
+
+.theme-lotr-duel .game-hero h1 {
+  font-size: clamp(32px, 4.6vw, 56px);
+}
+
+.theme-lotr-duel .manual-icon-frame {
+  background: #f8f1df;
+}
+
+.theme-lotr-duel .setup-phase-header {
+  background: #e6d9b9;
+}
+
+.theme-lotr-duel .setup-check-list {
+  padding: 5px 17px 11px;
+}
+
+.theme-lotr-duel .setup-check {
+  display: grid;
+  grid-template-columns: 19px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 12px 8px;
+  border-bottom: 1px solid #ddcda8;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.theme-lotr-duel .setup-check:last-child {
+  border-bottom: 0;
+}
+
+.theme-lotr-duel .setup-check input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--red);
+}
+
+.theme-lotr-duel .setup-check > span {
+  display: grid;
+  gap: 4px;
+}
+
+.theme-lotr-duel .setup-check strong {
+  font-weight: 700;
+}
+
+.theme-lotr-duel .setup-substeps {
+  display: grid;
+  gap: 4px;
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.theme-lotr-duel .setup-substeps [role="listitem"] {
+  display: block;
+  padding-left: 12px;
+  text-indent: -12px;
+}
+
+.theme-lotr-duel .setup-substeps [role="listitem"]::before {
+  padding-right: 6px;
+  color: var(--gold);
+  content: "•";
+}
+
+.theme-lotr-duel .setup-check:has(input:checked) strong {
+  color: #8a7c62;
+  text-decoration: line-through;
+}
+
+.theme-lotr-duel .setup-progress-controls progress::-webkit-progress-value,
+.theme-lotr-duel .setup-progress-controls progress::-moz-progress-bar {
+  background: var(--red);
+}
+
+.theme-lotr-duel .setup-phase .duel-figure,
+.theme-lotr-duel .setup-phase .icon-grid {
+  margin: 0 17px 16px;
+}
+
+.duel-figure {
+  margin: 16px 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+}
+
+.duel-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.duel-figure.is-small img {
+  width: auto;
+  max-width: 100%;
+  max-height: 220px;
+  margin: 0 auto;
+}
+
+.duel-figure.is-legend img {
+  width: auto;
+  max-width: 100%;
+  max-height: 44px;
+  margin: 0;
+}
+
+.duel-figure figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.duel-layouts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 12px 0 18px;
+}
+
+.duel-layouts .duel-figure {
+  margin: 0;
+}
+
+.duel-layouts .duel-figure.is-layout img {
+  width: auto;
+  max-width: 100%;
+  max-height: 180px;
+  margin: 0 auto;
+}
+
+.duel-layouts .duel-figure.is-legend {
+  grid-column: 1 / -1;
+}
+
+.duel-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.duel-list {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.duel-list li + li {
+  margin-top: 4px;
+}
+
+.duel-notes {
+  margin: 14px 0 6px;
+  font-size: 13px;
+}
+
+.duel-icon-ref {
+  margin-top: 6px !important;
+  font-size: 11px;
+}
+
+.duel-icon-ref .source-link {
+  min-height: 0;
+  padding: 3px 8px;
+  font-size: 10px;
+}
+
+.duel-table th[scope="row"] {
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.duel-table td .duel-list {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.duel-table + .glossary-intro {
+  margin-top: 14px;
+}
+
+.duel-interpretation {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--gold);
+  background: var(--paper-light);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.duel-race-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.duel-race-head small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.duel-race-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+@media (max-width: 1100px) {
+  .duel-three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .duel-layouts,
+  .duel-three {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-lotr-duel .hero-map img {
+    max-height: 320px;
+  }
+}
+
 @media (max-width: 720px) {
   .site-header {
     min-height: 62px;

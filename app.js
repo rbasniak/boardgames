@@ -40,6 +40,9 @@
     if (hash.startsWith("#/cangaceiros")) {
       return "cangaceiros";
     }
+    if (hash.startsWith("#/lotr-duel-for-middle-earth")) {
+      return "lotr-duel-for-middle-earth";
+    }
     return "index";
   }
 
@@ -64,14 +67,14 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, and Cangaceiros.",
-        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny e Cangaceiros."
+        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, and The Lord of the Rings: Duel for Middle-earth.",
+        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros e The Lord of the Rings: Duel for Middle-earth."
       );
     }
     app.innerHTML = `
@@ -140,6 +143,10 @@
             <img class="game-cover" src="assets/covers/cangaceiros.webp" alt="${t("Cover of the Cangaceiros rulebook", "Capa do manual de Cangaceiros")}">
             <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Cangaceiros</h3><p>${t("Every-gang-for-itself race for 2–5 players across Brazil's Sertão. Choose your player count; the guide scales the Setup inventory and card counts for you.", "Corrida sem cooperação para 2–5 jogadores pelo Sertão nordestino. Escolha o número de jogadores; o guia ajusta o inventário de Preparação e as quantidades de cartas automaticamente.")}</p><a class="button-primary" href="#/cangaceiros">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
           </article>
+          <article class="game-card available">
+            <img class="game-cover" src="assets/covers/lotr-duel-for-middle-earth.webp" alt="${t("Front page of The Lord of the Rings: Duel for Middle-earth rulebook", "Primeira página do manual de The Lord of the Rings: Duel for Middle-earth")}">
+            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>The Lord of the Rings: Duel for Middle-earth</h3><p>${t("Two-player card-drafting duel: Fellowship vs. Sauron over 3 chapters, with three ways to win. The core box has no expansions or options, so the guide opens straight into Setup, with the Player Aid effects transcribed.", "Duelo de recrutamento de cartas para 2 jogadores: Sociedade vs. Sauron ao longo de 3 capítulos, com três formas de vencer. A caixa base não tem expansões nem opções, então o guia abre direto na Preparação, com os efeitos da Ajuda de jogo transcritos.")}</p><a class="button-primary" href="#/lotr-duel-for-middle-earth">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
+          </article>
           <article class="game-card coming-soon">
             <div class="game-cover-empty" aria-hidden="true"></div>
             <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
@@ -168,6 +175,13 @@
     }
     if (route !== "cangaceiros") {
       document.body.classList.remove("theme-cangaceiros");
+    }
+    if (route !== "lotr-duel-for-middle-earth") {
+      document.body.classList.remove("theme-lotr-duel");
+    }
+    if (route === "lotr-duel-for-middle-earth" && window.LotrDuelForMiddleEarth) {
+      window.LotrDuelForMiddleEarth.renderInto(app);
+      return;
     }
     if (route === "cangaceiros" && window.Cangaceiros) {
       window.Cangaceiros.renderInto(app);
@@ -246,6 +260,10 @@
       window.Cangaceiros.onClick(event);
       return;
     }
+    if (route === "lotr-duel-for-middle-earth" && window.LotrDuelForMiddleEarth) {
+      window.LotrDuelForMiddleEarth.onClick(event);
+      return;
+    }
     const button = event.target.closest("button");
     if (!button || !app.contains(button)) {
       return;
@@ -311,6 +329,9 @@
     }
     if (route === "cangaceiros" && window.Cangaceiros) {
       window.Cangaceiros.onChange(event);
+    }
+    if (route === "lotr-duel-for-middle-earth" && window.LotrDuelForMiddleEarth) {
+      window.LotrDuelForMiddleEarth.onChange(event);
     }
   }
 

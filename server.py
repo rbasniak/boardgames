@@ -29,6 +29,8 @@ MANUALS = {
     "/manuals/witcher-path-of-destiny_naglfar.pdf": ROOT / "manuals" / "witcher-path-of-destiny_naglfar.pdf",
     "/manuals/witcher-path-of-destiny_geralt-on-roach.pdf": ROOT / "manuals" / "witcher-path-of-destiny_geralt-on-roach.pdf",
     "/manuals/cangaceiros_core.pdf": ROOT / "manuals" / "cangaceiros_core.pdf",
+    "/manuals/lotr-duel-for-middle-earth_core.pdf": ROOT / "manuals" / "lotr-duel-for-middle-earth_core.pdf",
+    "/manuals/lotr-duel-for-middle-earth_player-aid.pdf": ROOT / "manuals" / "lotr-duel-for-middle-earth_player-aid.pdf",
 }
 
 
