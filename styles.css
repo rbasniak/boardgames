@@ -4655,3 +4655,105 @@ p {
     max-height: 320px;
   }
 }
+
+.theme-munchkin {
+  --ink: #1a1410;
+  --ink-soft: #3d3228;
+  --paper: #f2ebe0;
+  --paper-light: #faf6ef;
+  --paper-deep: #e0d4c4;
+  --line: #cfc0a8;
+  --muted: #6b5d4f;
+  --red: #b91c1c;
+  --red-dark: #991b1b;
+  --gold: #ca8a04;
+  --blue: #1e3a5f;
+  --green: #15803d;
+  --shadow: 0 18px 45px rgb(26 20 16 / 12%);
+  background:
+    radial-gradient(circle at 10% 0%, rgb(202 138 4 / 12%), transparent 22rem),
+    var(--paper);
+}
+
+.theme-munchkin .site-header {
+  background: #120f0c;
+}
+
+.theme-munchkin .game-hero {
+  background:
+    radial-gradient(ellipse at 88% 0%, rgb(185 28 28 / 38%), transparent 46%),
+    linear-gradient(118deg, #120f0c 0%, #2a2218 55%, #4a3010 100%);
+}
+
+.theme-munchkin .hero-map {
+  background: #f2ebe0;
+}
+
+.theme-munchkin .hero-map img {
+  height: auto;
+  max-height: 440px;
+  object-fit: contain;
+  background: #f2ebe0;
+  filter: none;
+}
+
+.theme-munchkin .hero-map figcaption {
+  position: static;
+  padding: 8px 12px;
+  background: #1a1410;
+  color: #f2ebe0;
+  font-size: 12px;
+}
+
+.theme-munchkin .section-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.theme-munchkin .setup-check-row label {
+  display: block;
+}
+
+.theme-munchkin .setup-check-row label > span {
+  display: grid;
+  gap: 4px;
+}
+
+.theme-munchkin .setup-substeps {
+  display: grid;
+  gap: 4px;
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.theme-munchkin .setup-substeps [role="listitem"] {
+  display: block;
+  padding-left: 12px;
+  text-indent: -12px;
+}
+
+.theme-munchkin .setup-substeps [role="listitem"]::before {
+  padding-right: 6px;
+  color: var(--gold);
+  content: "•";
+}
+
+.theme-munchkin .munchkin-note {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--gold);
+  background: #f8f0e2;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .theme-munchkin .hero-map img {
+    max-height: 320px;
+  }
+}

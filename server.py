@@ -32,6 +32,7 @@ MANUALS = {
     "/manuals/lotr-duel-for-middle-earth_core.pdf": ROOT / "manuals" / "lotr-duel-for-middle-earth_core.pdf",
     "/manuals/lotr-duel-for-middle-earth_player-aid.pdf": ROOT / "manuals" / "lotr-duel-for-middle-earth_player-aid.pdf",
     "/manuals/coup_core.pdf": ROOT / "manuals" / "coup_core.pdf",
+    "/manuals/munchkin_core.pdf": ROOT / "manuals" / "munchkin_core.pdf",
 }
 
 

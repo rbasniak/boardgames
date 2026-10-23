@@ -46,6 +46,9 @@
     if (hash.startsWith("#/coup")) {
       return "coup";
     }
+    if (hash.startsWith("#/munchkin")) {
+      return "munchkin";
+    }
     return "index";
   }
 
@@ -70,14 +73,14 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, and Coup.",
-        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth e Coup."
+        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, and Munchkin.",
+        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup e Munchkin."
       );
     }
     app.innerHTML = `
@@ -154,6 +157,10 @@
             <img class="game-cover coup-index-cover" src="assets/covers/coup.webp" alt="${t("First page of the Coup rulebook", "Primeira página do manual de Coup")}">
             <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Coup</h3><p>${t("Bluffing game of influence for 2–6 players. Choose the table size and, at two players, the printed variant; the guide scales the Court, the coins and the deal.", "Jogo de blefe e influência para 2 a 6 jogadores. Escolha o tamanho da mesa e, com dois jogadores, a variante impressa; o guia ajusta a Corte, as moedas e a distribuição.")}</p><a class="button-primary" href="#/coup">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
           </article>
+          <article class="game-card available">
+            <img class="game-cover" src="assets/covers/munchkin.webp" alt="${t("Munchkin core rulesheet", "Folha de regras base de Munchkin")}">
+            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Munchkin</h3><p>${t("Dungeon-crawling parody for 3–6 players. Choose the player count and the optional faster-play rules before setup.", "Paródia de masmorra para 3–6 jogadores. Escolha o número de jogadores e as regras opcionais de jogo mais rápido antes da preparação.")}</p><a class="button-primary" href="#/munchkin">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
+          </article>
           <article class="game-card coming-soon">
             <div class="game-cover-empty" aria-hidden="true"></div>
             <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
@@ -188,6 +195,13 @@
     }
     if (route !== "coup") {
       document.body.classList.remove("theme-coup");
+    }
+    if (route !== "munchkin") {
+      document.body.classList.remove("theme-munchkin");
+    }
+    if (route === "munchkin" && window.Munchkin) {
+      window.Munchkin.renderInto(app);
+      return;
     }
     if (route === "coup" && window.Coup) {
       window.Coup.renderInto(app);
@@ -282,6 +296,10 @@
       window.Coup.onClick(event);
       return;
     }
+    if (route === "munchkin" && window.Munchkin) {
+      window.Munchkin.onClick(event);
+      return;
+    }
     const button = event.target.closest("button");
     if (!button || !app.contains(button)) {
       return;
@@ -353,6 +371,9 @@
     }
     if (route === "coup" && window.Coup) {
       window.Coup.onChange(event);
+    }
+    if (route === "munchkin" && window.Munchkin) {
+      window.Munchkin.onChange(event);
     }
   }
 
