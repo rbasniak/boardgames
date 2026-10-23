@@ -379,6 +379,10 @@
     return `<button type="button" data-scroll="${id}">${label}</button>`;
   }
 
+  function lineList(items) {
+    return `<ul class="card-lines">${items.filter(Boolean).map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  }
+
   function storageNoticeText() {
     if (storageNotice === "read") {
       return t(
@@ -598,23 +602,71 @@
 
   function quickReference(index) {
     const m = match();
+    const turnLines = m.solo
+      ? [
+        t("<strong>1)</strong> Up to 4 actions with the character holding the solo token, plus 1 bonus action with Frodo & Sam before or after.", "<strong>1)</strong> Até 4 ações com o personagem que tem o marcador solo, mais 1 ação bônus com Frodo & Sam antes ou depois."),
+        t("<strong>2)</strong> Draw 2 player cards.", "<strong>2)</strong> Compre 2 cartas de jogador."),
+        t("<strong>3)</strong> Draw shadow cards equal to the threat rate.", "<strong>3)</strong> Compre cartas da Sombra igual à taxa de ameaça."),
+        t("Then move the solo token one character to the right.", "Depois mova o marcador solo um personagem para a direita.")
+      ]
+      : [
+        t("<strong>1)</strong> Up to 4 actions with one character and up to 1 with the other (finish one before starting the other).", "<strong>1)</strong> Até 4 ações com um personagem e até 1 com o outro (termine um antes de começar o outro)."),
+        t("<strong>2)</strong> Draw 2 player cards.", "<strong>2)</strong> Compre 2 cartas de jogador."),
+        t("<strong>3)</strong> Draw shadow cards equal to the threat rate.", "<strong>3)</strong> Compre cartas da Sombra igual à taxa de ameaça."),
+        t("Then the player on your left plays.", "Depois joga quem está à sua esquerda.")
+      ];
+    const actionLines = m.solo
+      ? [
+        t(`<strong>Travel:</strong> Frodo along — 1 ${icon("stealth")} or a search.`, `<strong>Travel:</strong> com Frodo — 1 ${icon("stealth")} ou uma busca.`),
+        t("<strong>Prepare:</strong> at a haven in the card’s region — discard a card to gain a token.", "<strong>Prepare:</strong> num refúgio da região da carta — descarte uma carta para ganhar uma ficha."),
+        t(`<strong>Muster:</strong> 1 ${icon("friendship")}.`, `<strong>Muster:</strong> 1 ${icon("friendship")}.`),
+        t("<strong>Attack:</strong> the Eye moves; roll 1–3 battle dice.", "<strong>Attack:</strong> o Olho se move; role 1–3 dados de batalha."),
+        t(`<strong>Capture:</strong> 3 ${icon("valor")}.`, `<strong>Capture:</strong> 3 ${icon("valor")}.`),
+        t("No Fellowship action in solo.", "Sem ação Fellowship no solo.")
+      ]
+      : [
+        t(`<strong>Travel:</strong> Frodo along — 1 ${icon("stealth")} or a search.`, `<strong>Travel:</strong> com Frodo — 1 ${icon("stealth")} ou uma busca.`),
+        t("<strong>Fellowship:</strong> give or take a player card of your region.", "<strong>Fellowship:</strong> dar ou pegar carta de jogador da sua região."),
+        t("<strong>Prepare:</strong> at a haven — discard a card to gain a token.", "<strong>Prepare:</strong> num refúgio — descarte uma carta para ganhar uma ficha."),
+        t(`<strong>Muster:</strong> 1 ${icon("friendship")}.`, `<strong>Muster:</strong> 1 ${icon("friendship")}.`),
+        t("<strong>Attack:</strong> the Eye moves; roll 1–3 battle dice.", "<strong>Attack:</strong> o Olho se move; role 1–3 dados de batalha."),
+        t(`<strong>Capture:</strong> 3 ${icon("valor")}.`, `<strong>Capture:</strong> 3 ${icon("valor")}.`)
+      ];
     const cards = [
-      [t("Your turn", "Seu turno"), m.solo
-        ? t("1) Up to 4 actions with the character holding the solo token, plus 1 bonus action with Frodo & Sam before or after. 2) Draw 2 player cards. 3) Draw shadow cards equal to the threat rate. Then move the solo token one character to the right.", "1) Até 4 ações com o personagem que tem o marcador solo, mais 1 ação bônus com Frodo & Sam antes ou depois. 2) Compre 2 cartas de jogador. 3) Compre cartas da Sombra igual à taxa de ameaça. Depois mova o marcador solo um personagem para a direita.")
-        : t("1) Up to 4 actions with one of your characters and up to 1 with the other (finish one before starting the other). 2) Draw 2 player cards. 3) Draw shadow cards equal to the threat rate. Then the player on your left plays.", "1) Até 4 ações com um dos seus personagens e até 1 com o outro (termine um antes de começar o outro). 2) Compre 2 cartas de jogador. 3) Compre cartas da Sombra igual à taxa de ameaça. Depois joga quem está à sua esquerda."), "turn"],
-      [t("Actions", "Ações"), m.solo
-        ? t(`Travel (Frodo along: 1 ${icon("stealth")} or a search) · Prepare (at a haven in the card’s region: card → token) · Muster (1 ${icon("friendship")}) · Attack (Eye moves; 1–3 battle dice) · Capture (3 ${icon("valor")}). No Fellowship in solo.`, `Travel (com Frodo: 1 ${icon("stealth")} ou uma busca) · Prepare (num refúgio da região da carta: carta → ficha) · Muster (1 ${icon("friendship")}) · Attack (o Olho se move; 1–3 dados de batalha) · Capture (3 ${icon("valor")}). Sem Fellowship no solo.`)
-        : t(`Travel (Frodo along: 1 ${icon("stealth")} or a search) · Fellowship (give/take a card of your region) · Prepare (at a haven: card → token) · Muster (1 ${icon("friendship")}) · Attack (Eye moves; 1–3 battle dice) · Capture (3 ${icon("valor")}).`, `Travel (com Frodo: 1 ${icon("stealth")} ou uma busca) · Fellowship (dar/pegar carta da sua região) · Prepare (num refúgio: carta → ficha) · Muster (1 ${icon("friendship")}) · Attack (o Olho se move; 1–3 dados de batalha) · Capture (3 ${icon("valor")}).`), "actions"],
-      [t("Skies Darken", "Skies Darken"), t("1) Threat rate +1. 2) Eye in Frodo’s region: lose 2 hope; otherwise move the Eye there. 3) Add 3 shadow troops to the location on the card (battle if friendly troops are there). 4) Shuffle the shadow discard pile and put it on top of the shadow deck. Remove the card from the game; no replacement draw.", "1) Taxa de ameaça +1. 2) Olho na região de Frodo: perca 2 de esperança; senão, mova o Olho para lá. 3) Coloque 3 tropas da Sombra no local da carta (batalha se houver tropas aliadas). 4) Embaralhe o descarte da Sombra e coloque-o no topo do baralho da Sombra. Remova a carta do jogo; não compre outra no lugar."), "player-cards"],
-      [t("Shadow cards", "Cartas da Sombra"), t("Flip one card per point of threat rate. Look at the back of the new top card: red flag → resolve the flipped card’s top half (Advance); black banner → its bottom half (Reinforce + special order).", "Vire uma carta por ponto da taxa de ameaça. Olhe o verso da nova carta do topo: bandeira vermelha → resolva a metade de cima da carta virada (Advance/Avançar); estandarte preto → a metade de baixo (Reinforce/Reforçar + ordem especial)."), "shadow"],
-      [t("Dice", "Dados"), t("Search: 1 search die per Nazgûl in Frodo’s region and per shadow troop in his location, max 7. Battle from Attack: 1 die per friendly troop (1–3); battle from a card: 1 die per shadow troop (max 3). Resistance rerolls; Valor removes shadow troops in battles.", "Busca: 1 dado de busca por Nazgûl na região de Frodo e por tropa da Sombra no local dele, máx. 7. Batalha por Attack: 1 dado por tropa aliada (1–3); batalha por carta: 1 dado por tropa da Sombra (máx. 3). Resistance rerrola; Valor remove tropas da Sombra em batalhas."), "dice"],
-      [t("Limits", "Limites"), t("Hand limit 7 player cards (discard or play events at once). Lose 1 hope per shadow troop you cannot place and per player card you cannot draw. Losing a haven costs 3 hope; capturing a stronghold gains 2.", "Limite de mão: 7 cartas de jogador (descarte ou jogue eventos na hora). Perca 1 de esperança por tropa da Sombra que não puder colocar e por carta de jogador que não puder comprar. Perder um refúgio custa 3 de esperança; capturar uma fortaleza dá 2."), "hope"],
-      [t("Win or lose", "Vitória ou derrota"), t("Win: complete every other objective, then Frodo destroys the One Ring at Mount Doom (5 Resistance + a final search) with at least 1 hope left. Lose: hope reaches 0.", "Vitória: cumpram todos os outros objetivos; então Frodo destrói o Um Anel na Montanha da Perdição (5 Resistance + uma busca final) com pelo menos 1 de esperança restante. Derrota: a esperança chega a 0."), "winning"]
+      [t("Your turn", "Seu turno"), turnLines, "turn"],
+      [t("Actions", "Ações"), actionLines, "actions"],
+      [t("Skies Darken", "Skies Darken"), [
+        t("<strong>1)</strong> Threat rate +1.", "<strong>1)</strong> Taxa de ameaça +1."),
+        t("<strong>2)</strong> Eye in Frodo’s region: lose 2 hope; otherwise move the Eye there.", "<strong>2)</strong> Olho na região de Frodo: perca 2 de esperança; senão, mova o Olho para lá."),
+        t("<strong>3)</strong> Add 3 shadow troops to the location on the card (battle if friendly troops are there).", "<strong>3)</strong> Coloque 3 tropas da Sombra no local da carta (batalha se houver tropas aliadas)."),
+        t("<strong>4)</strong> Shuffle the shadow discard pile onto the shadow deck. Remove the card from the game; no replacement draw.", "<strong>4)</strong> Embaralhe o descarte da Sombra sobre o baralho da Sombra. Remova a carta do jogo; não compre outra no lugar.")
+      ], "player-cards"],
+      [t("Shadow cards", "Cartas da Sombra"), [
+        t("Flip one card per point of threat rate.", "Vire uma carta por ponto da taxa de ameaça."),
+        t("Look at the back of the new top card.", "Olhe o verso da nova carta do topo."),
+        t("<strong>Red flag:</strong> resolve the flipped card’s top half (Advance).", "<strong>Bandeira vermelha:</strong> resolva a metade de cima da carta virada (Advance/Avançar)."),
+        t("<strong>Black banner:</strong> resolve its bottom half (Reinforce + special order).", "<strong>Estandarte preto:</strong> resolva a metade de baixo (Reinforce/Reforçar + ordem especial).")
+      ], "shadow"],
+      [t("Dice", "Dados"), [
+        t("<strong>Search:</strong> 1 search die per Nazgûl in Frodo’s region and per shadow troop in his location, max 7.", "<strong>Busca:</strong> 1 dado de busca por Nazgûl na região de Frodo e por tropa da Sombra no local dele, máx. 7."),
+        t("<strong>Battle from Attack:</strong> 1 die per friendly troop (1–3).", "<strong>Batalha por Attack:</strong> 1 dado por tropa aliada (1–3)."),
+        t("<strong>Battle from a card:</strong> 1 die per shadow troop (max 3).", "<strong>Batalha por carta:</strong> 1 dado por tropa da Sombra (máx. 3)."),
+        t("Resistance rerolls; Valor removes shadow troops in battles.", "Resistance rerrola; Valor remove tropas da Sombra em batalhas.")
+      ], "dice"],
+      [t("Limits", "Limites"), [
+        t("Hand limit 7 player cards (discard or play events at once).", "Limite de mão: 7 cartas de jogador (descarte ou jogue eventos na hora)."),
+        t("Lose 1 hope per shadow troop you cannot place and per player card you cannot draw.", "Perca 1 de esperança por tropa da Sombra que não puder colocar e por carta de jogador que não puder comprar."),
+        t("Losing a haven costs 3 hope; capturing a stronghold gains 2.", "Perder um refúgio custa 3 de esperança; capturar uma fortaleza dá 2.")
+      ], "hope"],
+      [t("Win or lose", "Vitória ou derrota"), [
+        t("<strong>Win:</strong> complete every other objective, then Frodo destroys the One Ring at Mount Doom (5 Resistance + a final search) with at least 1 hope left.", "<strong>Vitória:</strong> cumpram todos os outros objetivos; então Frodo destrói o Um Anel na Montanha da Perdição (5 Resistance + uma busca final) com pelo menos 1 de esperança restante."),
+        t("<strong>Lose:</strong> hope reaches 0.", "<strong>Derrota:</strong> a esperança chega a 0.")
+      ], "winning"]
     ];
     return `
       ${sectionHeading("quick", t("Quick reference", "Referência rápida"), index, refs(10, 24))}
-      <div class="quick-grid">${cards.map(([title, body, target]) => `
-        <article class="info-card"><h3>${title}</h3><p>${body}</p><p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>`;
+      <div class="quick-grid">${cards.map(([title, lines, target]) => `
+        <article class="info-card"><h3>${title}</h3>${lineList(lines)}<p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>`;
   }
 
   // --- Setup ---------------------------------------------------------------

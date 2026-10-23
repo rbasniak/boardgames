@@ -394,20 +394,55 @@
     return `<button type="button" data-scroll="${id}">${label}</button>`;
   }
 
+  function lineList(items) {
+    return `<ul class="card-lines">${items.filter(Boolean).map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  }
+
   function quickReference() {
     const cards = [
-      [t("Upkeep", "Upkeep"), t("Return all Action pawns. Resolve voluntary, then obligatory, Upkeep effects. The Hunter pays Upkeep for each Ally in play or discards it. Discard down to 7 cards.", "Devolva todos os peões de ação. Resolva efeitos voluntários e depois obrigatórios do Upkeep. O Hunter paga o Upkeep de cada Aliado em jogo ou o descarta. Descarte até 7 cartas."), "turns"],
-      [t("Action phase", "Fase de Ação"), t("Place 1 Action pawn at a time on a ready villager or on your player board, carrying out its effect each time, until all pawns are placed.", "Coloque 1 peão de ação de cada vez em um aldeão pronto ou no seu tabuleiro, resolvendo o efeito a cada colocação, até usar todos os peões."), "turns"],
-      [t("Visit (Hunter)", "Visitar (Hunter)"), t("Trigger Investigation → gain 1 Evidence if 3+ Clues already there → distribute Clues → use the villager's skill.", "Dispare a Investigação → ganhe 1 Evidência se já houver 3+ Pistas → distribua Pistas → use a habilidade do aldeão."), "cards"],
-      [t("Visit (Witch)", "Visitar (Witch)"), t("Trigger Investigation → convert 3 Secrets to 1 Favor (up to 2×) → distribute Secrets → use the villager's skill (2× with 2+ Favors) → Familiar action if using that pawn.", "Dispare a Investigação → converta 3 Segredos em 1 Favor (até 2×) → distribua Segredos → use a habilidade do aldeão (2× com 2+ Favores) → ação de Familiar, se usar esse peão."), "cards"],
-      [t("Hunter-only actions", "Ações exclusivas do Hunter"), t("Activate a ready Location · Raid a Villager (pay 3 like-colored Clues to strip 1 Favor or all Secrets) · Lift an Enchantment · Exonerate (pay 3, or 1 in the scenario, Evidence) · Eliminate a ready, 3-Clue villager with Clues on all others.", "Ativar uma Localização pronta · Saquear um Aldeão (pague 3 Pistas da mesma cor para remover 1 Favor ou todos os Segredos) · Remover um Encantamento · Exonerar (pague 3, ou 1 no cenário, Evidências) · Eliminar um aldeão pronto com 3 Pistas e Pistas em todos os outros."), "victory"],
-      [t("Witch-only actions", "Ações exclusivas da Witch"), t("Consume a completed Brew (free action) · Perform the Ritual on the ready, true-witch villager with 3+ Favors (2+ in the scenario) to win.", "Consumir uma Poção completa (ação gratuita) · Realizar o Ritual no aldeão pronto que é a verdadeira bruxa, com 3+ Favores (2+ no cenário), para vencer."), "victory"],
-      [t("Basic & common actions", "Ações básicas e comuns"), t("Either player: gain 2 Influence, draw 1 card, or play 1 card. Either player: Ready a Villager by paying 1 of your own Clues/Secrets on it to remove the opponent's pawn(s).", "Qualquer jogador: ganhe 2 de Influência, compre 1 carta ou jogue 1 carta. Qualquer jogador: Prepare um Aldeão pagando 1 de seus próprios Pistas/Segredos para remover o(s) peão(ões) do oponente."), "turns"]
+      [t("Upkeep", "Upkeep"), [
+        t("Return all Action pawns.", "Devolva todos os peões de ação."),
+        t("Resolve voluntary, then obligatory, Upkeep effects.", "Resolva efeitos voluntários e depois obrigatórios do Upkeep."),
+        t("The Hunter pays Upkeep for each Ally in play or discards it.", "O Hunter paga o Upkeep de cada Aliado em jogo ou o descarta."),
+        t("Discard down to 7 cards.", "Descarte até 7 cartas.")
+      ], "turns"],
+      [t("Action phase", "Fase de Ação"), [
+        t("Place 1 Action pawn at a time on a ready villager or on your player board.", "Coloque 1 peão de ação de cada vez em um aldeão pronto ou no seu tabuleiro."),
+        t("Carry out its effect each time, until all pawns are placed.", "Resolva o efeito a cada colocação, até usar todos os peões.")
+      ], "turns"],
+      [t("Visit (Hunter)", "Visitar (Hunter)"), [
+        t("Trigger Investigation.", "Dispare a Investigação."),
+        t("Gain 1 Evidence if 3+ Clues are already there.", "Ganhe 1 Evidência se já houver 3+ Pistas."),
+        t("Distribute Clues.", "Distribua Pistas."),
+        t("Use the villager's skill.", "Use a habilidade do aldeão.")
+      ], "cards"],
+      [t("Visit (Witch)", "Visitar (Witch)"), [
+        t("Trigger Investigation.", "Dispare a Investigação."),
+        t("Convert 3 Secrets to 1 Favor (up to 2×).", "Converta 3 Segredos em 1 Favor (até 2×)."),
+        t("Distribute Secrets.", "Distribua Segredos."),
+        t("Use the villager's skill (2× with 2+ Favors).", "Use a habilidade do aldeão (2× com 2+ Favores)."),
+        t("Familiar action if using that pawn.", "Ação de Familiar, se usar esse peão.")
+      ], "cards"],
+      [t("Hunter-only actions", "Ações exclusivas do Hunter"), [
+        t("<strong>Activate</strong> a ready Location.", "<strong>Ativar</strong> uma Localização pronta."),
+        t("<strong>Raid</strong> a Villager: pay 3 like-colored Clues to strip 1 Favor or all Secrets.", "<strong>Saquear</strong> um Aldeão: pague 3 Pistas da mesma cor para remover 1 Favor ou todos os Segredos."),
+        t("<strong>Lift</strong> an Enchantment.", "<strong>Remover</strong> um Encantamento."),
+        t("<strong>Exonerate:</strong> pay 3 Evidence (or 1 in the scenario).", "<strong>Exonerar:</strong> pague 3 Evidências (ou 1 no cenário)."),
+        t("<strong>Eliminate</strong> a ready villager with 3 Clues when every other villager also has Clues.", "<strong>Eliminar</strong> um aldeão pronto com 3 Pistas quando todos os outros também tiverem Pistas.")
+      ], "victory"],
+      [t("Witch-only actions", "Ações exclusivas da Witch"), [
+        t("<strong>Consume</strong> a completed Brew (free action).", "<strong>Consumir</strong> uma Poção completa (ação gratuita)."),
+        t("<strong>Perform the Ritual</strong> on the ready true-witch villager with 3+ Favors (2+ in the scenario) to win.", "<strong>Realizar o Ritual</strong> no aldeão pronto que é a verdadeira bruxa, com 3+ Favores (2+ no cenário), para vencer.")
+      ], "victory"],
+      [t("Basic & common actions", "Ações básicas e comuns"), [
+        t("Either player: gain 2 Influence, draw 1 card, or play 1 card.", "Qualquer jogador: ganhe 2 de Influência, compre 1 carta ou jogue 1 carta."),
+        t("Either player: Ready a Villager by paying 1 of your own Clues/Secrets on it to remove the opponent's pawn(s).", "Qualquer jogador: Prepare um Aldeão pagando 1 de seus próprios Pistas/Segredos para remover o(s) peão(ões) do oponente.")
+      ], "turns"]
     ];
     return `
       ${sectionHeading("quick-reference", t("Quick Reference", "Referência rápida"), "02", 6)}
-      <div class="quick-grid">${cards.map(([title, body, target]) => `
-        <article class="info-card"><h3>${title}</h3><p>${body}</p><p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>
+      <div class="quick-grid">${cards.map(([title, lines, target]) => `
+        <article class="info-card"><h3>${title}</h3>${lineList(lines)}<p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>
       <div class="callout">${t(
         "The Witch takes the first turn and, on that very first turn only, has 2 regular Action pawns (no Familiar pawn yet) and must visit villagers of their own faction.",
         "A Witch faz o primeiro turno e, só nesse primeiro turno, tem 2 peões de ação comuns (ainda sem o peão de Familiar) e deve visitar aldeões da própria facção."

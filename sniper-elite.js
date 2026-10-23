@@ -691,36 +691,76 @@
       </div>`;
   }
 
+  function lineList(items) {
+    return `<ul class="card-lines">${items.filter(Boolean).map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  }
+
   function quickReference() {
     const sniper = state.team === "sniper";
-    const defenderIntel = t(
-      "The officer must be in their own sector. Declare one sector; the sniper answers only whether they are there.",
-      "O oficial precisa estar no próprio setor. Declare um setor; o sniper responde apenas se está lá."
-    ) + (currentMap().id === "super-carrier"
-      ? t(
-          " On Super Carrier, you may instead check a level: the officer may be in any sector on that level. In one turn, check multiple sectors or multiple levels, but not both types.",
-          " No Super Carrier, você pode consultar um nível: o oficial pode estar em qualquer setor dele. Num turno, consulte vários setores ou vários níveis, mas não os dois tipos."
-        )
-      : "");
+    const gatherIntelLines = [
+      t("The officer must be in their own sector. Declare one sector; the sniper answers only whether they are there.", "O oficial precisa estar no próprio setor. Declare um setor; o sniper responde apenas se está lá.")
+    ];
+    if (currentMap().id === "super-carrier") {
+      gatherIntelLines.push(
+        t("On Super Carrier, you may instead check a level: the officer may be in any sector on that level.", "No Super Carrier, você pode consultar um nível: o oficial pode estar em qualquer setor dele."),
+        t("In one turn, check multiple sectors or multiple levels, but not both types.", "Num turno, consulte vários setores ou vários níveis, mas não os dois tipos.")
+      );
+    }
+    const sniperTurnLines = isSpecialOps()
+      ? [
+        t("Take at most one move and one extra action (Shoot, Loot, or Complete an Objective).", "Faça no máximo um movimento e uma ação extra (Atirar, Saquear ou Completar Objetivo)."),
+        t(`Normally use one loadout card.${edgeCount("sniper", "upgradedLoadout") > 0 ? " Follow the selected upgrade card's text if it changes this limit." : ""}`, `Normalmente use uma carta de equipamento.${edgeCount("sniper", "upgradedLoadout") > 0 ? " Siga o texto da carta melhorada escolhida se alterar esse limite." : ""}`),
+        t("Choose any order; skipping never lets you repeat an option.", "Escolha qualquer ordem; pular não permite repetir uma opção.")
+      ]
+      : [
+        t("Take at most one move, one loadout card, and one extra action (Shoot, Loot, or Complete an Objective), in any order.", "Faça no máximo um movimento, use uma carta de equipamento e execute uma ação extra (Atirar, Saquear ou Completar Objetivo), em qualquer ordem."),
+        t("You may skip an option, but skipping never lets you repeat another one.", "Pode pular uma opção, mas isso não permite repetir outra.")
+      ];
     const cards = sniper
       ? [
-          [t("Win condition", "Condição de vitória"), t("Complete both secret objectives before taking a second wound or timing out.", "Complete os dois objetivos secretos antes de receber a segunda ferida ou esgotar o tempo.")],
-          [t("On your turn", "No seu turno"), isSpecialOps()
-            ? t(`Take at most one move and one extra action (Shoot, Loot, or Complete an Objective). Normally use one loadout card.${edgeCount("sniper", "upgradedLoadout") > 0 ? " Follow the selected upgrade card's text if it changes this limit." : ""} Choose any order; skipping never lets you repeat an option.`, `Faça no máximo um movimento e uma ação extra (Atirar, Saquear ou Completar Objetivo). Normalmente use uma carta de equipamento.${edgeCount("sniper", "upgradedLoadout") > 0 ? " Siga o texto da carta melhorada escolhida se alterar esse limite." : ""} Escolha qualquer ordem; pular não permite repetir uma opção.`)
-            : t("Take at most one move, one loadout card, and one extra action (Shoot, Loot, or Complete an Objective), in any order. You may skip an option, but skipping never lets you repeat another one.", "Faça no máximo um movimento, use uma carta de equipamento e execute uma ação extra (Atirar, Saquear ou Completar Objetivo), em qualquer ordem. Pode pular uma opção, mas isso não permite repetir outra.")],
-          [t("Move quietly", "Movimento silencioso"), t("Move 0–1 spaces to stay hidden. Moving 2–3 alerts defenders adjacent to any space along your route, including start and end.", "Mova 0–1 espaços para permanecer oculto. Mover 2–3 alerta defensores adjacentes ao trajeto, incluindo início e fim.")],
-          [t("Make a shot", "Faça um disparo"), t("Need one aim per space on the shortest line (including the target); even a target in your own space needs one aim. Announce how many tokens you will draw, then show every token.", "Precisa de uma mira por espaço na menor linha (incluindo o alvo); mesmo no seu próprio espaço, precisa de uma mira. Anuncie quantas fichas vai comprar e depois mostre todas.")],
-          [t("Noise & misfire", "Ruído e falha"), t("Two net noise tokens reveal your space. Each suppression token drawn raises that reveal threshold by one. Five combined recoil + noise tokens misfire; suppression does not prevent a misfire.", "Duas fichas líquidas de ruído revelam sua posição. Cada supressão comprada aumenta esse limite em um. Cinco fichas de recuo + ruído causam falha; supressão não evita falha.")],
-          [t("Objectives & timer", "Objetivos e relógio"), t(`Reveal an objective only while on its numbered space. It adds noise and resets all defender countdown cubes${edgeCount("defenders", "callHunter") > 0 ? " (including the Hunter's)" : ""} to ${selectedAdvantage("acceleratedSchedule") ? "7" : "10"} for the next objective.`, `Revele um objetivo apenas no espaço numerado correspondente. Isso adiciona ruído e reinicia todos os cubos de contagem dos alemães${edgeCount("defenders", "callHunter") > 0 ? " (inclusive o do Hunter)" : ""} em ${selectedAdvantage("acceleratedSchedule") ? "7" : "10"} para o próximo objetivo.`)]
+          [t("Win condition", "Condição de vitória"), [t("Complete both secret objectives before taking a second wound or timing out.", "Complete os dois objetivos secretos antes de receber a segunda ferida ou esgotar o tempo.")]],
+          [t("On your turn", "No seu turno"), sniperTurnLines],
+          [t("Move quietly", "Movimento silencioso"), [
+            t("Move 0–1 spaces to stay hidden.", "Mova 0–1 espaços para permanecer oculto."),
+            t("Moving 2–3 alerts defenders adjacent to any space along your route, including start and end.", "Mover 2–3 alerta defensores adjacentes ao trajeto, incluindo início e fim.")
+          ]],
+          [t("Make a shot", "Faça um disparo"), [
+            t("Need one aim per space on the shortest line (including the target); even a target in your own space needs one aim.", "Precisa de uma mira por espaço na menor linha (incluindo o alvo); mesmo no seu próprio espaço, precisa de uma mira."),
+            t("Announce how many tokens you will draw, then show every token.", "Anuncie quantas fichas vai comprar e depois mostre todas.")
+          ]],
+          [t("Noise & misfire", "Ruído e falha"), [
+            t("Two net noise tokens reveal your space.", "Duas fichas líquidas de ruído revelam sua posição."),
+            t("Each suppression token drawn raises that reveal threshold by one.", "Cada supressão comprada aumenta esse limite em um."),
+            t("Five combined recoil + noise tokens misfire; suppression does not prevent a misfire.", "Cinco fichas de recuo + ruído causam falha; supressão não evita falha.")
+          ]],
+          [t("Objectives & timer", "Objetivos e relógio"), [
+            t("Reveal an objective only while on its numbered space.", "Revele um objetivo apenas no espaço numerado correspondente."),
+            t(`It adds noise and resets all defender countdown cubes${edgeCount("defenders", "callHunter") > 0 ? " (including the Hunter's)" : ""} to ${selectedAdvantage("acceleratedSchedule") ? "7" : "10"} for the next objective.`, `Isso adiciona ruído e reinicia todos os cubos de contagem dos alemães${edgeCount("defenders", "callHunter") > 0 ? " (inclusive o do Hunter)" : ""} em ${selectedAdvantage("acceleratedSchedule") ? "7" : "10"} para o próximo objetivo.`)
+          ]]
         ]
       : [
-          [t("Win condition", "Condição de vitória"), t(`Wound the Sniper twice, or have every defender countdown cube${edgeCount("defenders", "callHunter") > 0 ? " (including the Hunter's white cube)" : ""} on the final space at the start of the Defenders' turn.`, `Fira o Sniper duas vezes ou mantenha todos os cubos de contagem dos alemães${edgeCount("defenders", "callHunter") > 0 ? " (inclusive o cubo branco do Hunter)" : ""} no espaço final no início do turno dos Defensores.`)],
-          [t("Three squads", "Três esquadrões"), t("Black, red and yellow squads each have one officer and two soldiers. Each squad gathers intel or takes two unit actions.", "Os esquadrões preto, vermelho e amarelo têm um oficial e dois soldados. Cada esquadrão reúne informação ou faz duas ações de unidade.")],
-          [t("Attack", "Atacar"), t("Move a unit into a suspected space and attack that space. If the sniper is there, they take a wound.", "Mova uma unidade até um espaço suspeito e ataque esse espaço. Se o sniper estiver ali, recebe uma ferida.")],
-          [t("Spot or sweep", "Spot ou Sweep"), t("Spot checks one adjacent space. Sweep checks the unit's space plus two matching-adjacent spaces; the sniper only confirms if present.", "Spot verifica um espaço adjacente. Sweep verifica o espaço da unidade e dois adjacentes do mesmo tipo; o sniper só confirma se está ali.")],
-          [t("Gather intel", "Reunir informação"), defenderIntel],
-          [t("Unit action limit", "Limite por unidade"), t("A squad may repeat an action with different units, but an individual unit cannot take the same action twice in one turn.", "Um esquadrão pode repetir a ação com unidades diferentes, mas uma unidade não pode fazer a mesma ação duas vezes no turno.")],
-          [t("Track actions", "Marque as ações"), t("Advance one squad cube for each unit action; intel advances both cubes together. Passing also uses and marks an action.", "Avance um cubo do esquadrão por ação de unidade; reunir informação avança os dois juntos. Passar também consome e marca uma ação.")]
+          [t("Win condition", "Condição de vitória"), [t(`Wound the Sniper twice, or have every defender countdown cube${edgeCount("defenders", "callHunter") > 0 ? " (including the Hunter's white cube)" : ""} on the final space at the start of the Defenders' turn.`, `Fira o Sniper duas vezes ou mantenha todos os cubos de contagem dos alemães${edgeCount("defenders", "callHunter") > 0 ? " (inclusive o cubo branco do Hunter)" : ""} no espaço final no início do turno dos Defensores.`)]],
+          [t("Three squads", "Três esquadrões"), [
+            t("Black, red and yellow squads each have one officer and two soldiers.", "Os esquadrões preto, vermelho e amarelo têm um oficial e dois soldados."),
+            t("Each squad gathers intel or takes two unit actions.", "Cada esquadrão reúne informação ou faz duas ações de unidade.")
+          ]],
+          [t("Attack", "Atacar"), [
+            t("Move a unit into a suspected space and attack that space.", "Mova uma unidade até um espaço suspeito e ataque esse espaço."),
+            t("If the sniper is there, they take a wound.", "Se o sniper estiver ali, recebe uma ferida.")
+          ]],
+          [t("Spot or sweep", "Spot ou Sweep"), [
+            t("Spot checks one adjacent space.", "Spot verifica um espaço adjacente."),
+            t("Sweep checks the unit's space plus two matching-adjacent spaces; the sniper only confirms if present.", "Sweep verifica o espaço da unidade e dois adjacentes do mesmo tipo; o sniper só confirma se está ali.")
+          ]],
+          [t("Gather intel", "Reunir informação"), gatherIntelLines],
+          [t("Unit action limit", "Limite por unidade"), [
+            t("A squad may repeat an action with different units.", "Um esquadrão pode repetir a ação com unidades diferentes."),
+            t("An individual unit cannot take the same action twice in one turn.", "Uma unidade não pode fazer a mesma ação duas vezes no turno.")
+          ]],
+          [t("Track actions", "Marque as ações"), [
+            t("Advance one squad cube for each unit action; intel advances both cubes together.", "Avance um cubo do esquadrão por ação de unidade; reunir informação avança os dois juntos."),
+            t("Passing also uses and marks an action.", "Passar também consome e marca uma ação.")
+          ]]
         ];
 
     const addonCards = [];
@@ -728,7 +768,7 @@
       const extraCount = edgeCount("sniper", "extraLoadout");
       addonCards.push([
         t("Extra Loadout", "Extra Loadout"),
-        t(`Start with ${3 + extraCount} cards instead of three; this does not add a turn action.`, `Comece com ${3 + extraCount} cartas em vez de três; isso não acrescenta uma ação no turno.`)
+        [t(`Start with ${3 + extraCount} cards instead of three; this does not add a turn action.`, `Comece com ${3 + extraCount} cartas em vez de três; isso não acrescenta uma ação no turno.`)]
       ]);
     }
     if (sniper && edgeCount("sniper", "goodBoy") > 0) {
@@ -801,9 +841,9 @@
     return `
       ${sectionHeading("quick-reference", t("Quick Reference", "Referência rápida"), "02", "core", sniper ? 5 : 8)}
       <div class="panel-topline"><div><p class="eyebrow">${t("PLAYER AID", "AJUDA DE JOGO")}</p><p>${t("A compact checklist for the side you are playing.", "Resumo rápido para o lado que você está jogando.")}</p></div>${teamSwitch()}</div>
-      <div class="quick-grid">${cards.map(([title, body], index) => `
-        <article class="info-card"><span class="card-number">${String(index + 1).padStart(2, "0")}</span><h3>${title}</h3><p>${body}</p></article>`).join("")}
-        ${addonCards.map(([title, body]) => `<article class="info-card"><span class="card-number">+</span><h3>${title}</h3><p>${body}</p></article>`).join("")}
+      <div class="quick-grid">${cards.map(([title, lines], index) => `
+        <article class="info-card"><span class="card-number">${String(index + 1).padStart(2, "0")}</span><h3>${title}</h3>${lineList(lines)}</article>`).join("")}
+        ${addonCards.map(([title, lines]) => `<article class="info-card"><span class="card-number">+</span><h3>${title}</h3>${lineList(Array.isArray(lines) ? lines : [lines])}</article>`).join("")}
       </div>
       <div class="callout">${sniper
         ? t("<strong>Keep the secret:</strong> do not announce your position, objective, target, or the order of your actions unless a rule or card requires it.", "<strong>Mantenha o segredo:</strong> não revele posição, objetivo, alvo ou ordem das ações, exceto quando uma regra ou carta exigir.")

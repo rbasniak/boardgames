@@ -541,23 +541,55 @@
     return `<button type="button" data-scroll="${id}">${label}</button>`;
   }
 
+  function lineList(items) {
+    return `<ul class="card-lines">${items.filter(Boolean).map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  }
+
   function quickReference() {
     const cards = [
-      [t("The Round (6 phases)", "A Rodada (6 fases)"), t("1) Spawn new Volantes. 2) Choose 3 Action cards. 3) Play them, one at a time, starting from the Facão holder. 4) Resolve the current Event. 5) Activate the Volantes. 6) End of Round: pass the Facão, flip a new Volantes card.", "1) Surgem novos Volantes. 2) Escolha 3 cartas de Ação. 3) Jogue-as uma de cada vez, a partir de quem tem o Facão. 4) Resolva o Evento atual. 5) Ative os Volantes. 6) Fim da Rodada: passe o Facão, vire uma nova carta de Volantes."), "phases"],
-      [t("Playing a card", "Jogando uma carta"), t("Each Action card has an upper part (attack the Volantes with your Gang) and a lower part (a special action). Use either, both, or neither, in any order.", "Cada carta de Ação tem uma parte superior (atacar os Volantes com seu Bando) e uma parte inferior (uma ação especial). Use uma, as duas, ou nenhuma, em qualquer ordem."), "phases"],
-      [t("Attacking the Volantes", "Atacando os Volantes"), t("Align the card's Guns/Protection/Facão icons to your Player board. Shooting first (Guns vs. Protection both ways), then Melee if needed (Facão vs. Facão both ways). Wounds become dead Cangaceiros or Chief Wound cubes.", "Alinhe os ícones de Armas/Proteção/Facão da carta ao seu tabuleiro. Primeiro o Tiro (Armas vs. Proteção dos dois lados), depois o Corpo a Corpo se necessário (Facão vs. Facão dos dois lados). Ferimentos viram Cangaceiros mortos ou cubos de ferimento no Chefe."), "combat"],
-      [t("Fazendas & Cities", "Fazendas e Cidades"), t("Plunder activates the Fazenda/City in your Gang's space plus 1 more Fazenda where you have the largest Garrison, collecting any bonuses shown.", "A Pilhagem ativa a Fazenda/Cidade no espaço do seu Bando mais 1 Fazenda onde você tem a maior Guarnição, recolhendo os bônus mostrados."), "fazendas-cities"],
-      [t("Chiefs & Training", "Chefes e Treinamento"), t("Your Chief card hides 3 abilities/bonuses/wound spaces under Training markers; a Training action reveals one. If your Chief dies or retires, draft a new one.", "A carta de Chefe esconde 3 habilidades/bônus/espaços de ferimento sob marcadores de Treinamento; uma ação de Treinamento revela um. Se seu Chefe morre ou se aposenta, escolha um novo."), "chiefs"],
-      [t("Life Goals & victory", "Objetivos de Vida e vitória"), t("With a fully trained Chief, pay the cost on an available Life Goal card to retire with Fame Points based on your Chief's wounds. The game ends after Round 7 or when no Life Goals remain; most Fame wins.", "Com o Chefe totalmente treinado, pague o custo de uma carta de Objetivo de Vida disponível para se aposentar ganhando Pontos de Fama conforme os ferimentos do seu Chefe. O jogo termina após a Rodada 7 ou quando não restarem Objetivos de Vida; vence quem tiver mais Fama."), "victory"]
+      [t("The Round (6 phases)", "A Rodada (6 fases)"), [
+        t("<strong>1)</strong> Spawn new Volantes.", "<strong>1)</strong> Surgem novos Volantes."),
+        t("<strong>2)</strong> Choose 3 Action cards.", "<strong>2)</strong> Escolha 3 cartas de Ação."),
+        t("<strong>3)</strong> Play them one at a time, starting from the Facão holder.", "<strong>3)</strong> Jogue-as uma de cada vez, a partir de quem tem o Facão."),
+        t("<strong>4)</strong> Resolve the current Event.", "<strong>4)</strong> Resolva o Evento atual."),
+        t("<strong>5)</strong> Activate the Volantes.", "<strong>5)</strong> Ative os Volantes."),
+        t("<strong>6)</strong> End of Round: pass the Facão, flip a new Volantes card.", "<strong>6)</strong> Fim da Rodada: passe o Facão, vire uma nova carta de Volantes.")
+      ], "phases"],
+      [t("Playing a card", "Jogando uma carta"), [
+        t("<strong>Upper part:</strong> attack the Volantes with your Gang.", "<strong>Parte superior:</strong> atacar os Volantes com seu Bando."),
+        t("<strong>Lower part:</strong> a special action.", "<strong>Parte inferior:</strong> uma ação especial."),
+        t("Use either, both, or neither, in any order.", "Use uma, as duas, ou nenhuma, em qualquer ordem.")
+      ], "phases"],
+      [t("Attacking the Volantes", "Atacando os Volantes"), [
+        t("Align the card's Guns, Protection, and Facão icons to your Player board.", "Alinhe os ícones de Armas, Proteção e Facão da carta ao seu tabuleiro."),
+        t("<strong>Shooting first:</strong> Guns vs. Protection both ways.", "<strong>Tiro primeiro:</strong> Armas vs. Proteção dos dois lados."),
+        t("<strong>Melee if needed:</strong> Facão vs. Facão both ways.", "<strong>Corpo a corpo se necessário:</strong> Facão vs. Facão dos dois lados."),
+        t("Wounds become dead Cangaceiros or Chief Wound cubes.", "Ferimentos viram Cangaceiros mortos ou cubos de ferimento no Chefe.")
+      ], "combat"],
+      [t("Fazendas & Cities", "Fazendas e Cidades"), [
+        t("Plunder activates the Fazenda/City in your Gang's space.", "A Pilhagem ativa a Fazenda/Cidade no espaço do seu Bando."),
+        t("It also activates 1 more Fazenda where you have the largest Garrison, collecting any bonuses shown.", "Também ativa mais 1 Fazenda onde você tem a maior Guarnição, recolhendo os bônus mostrados.")
+      ], "fazendas-cities"],
+      [t("Chiefs & Training", "Chefes e Treinamento"), [
+        t("Your Chief card hides 3 abilities, bonuses, or wound spaces under Training markers.", "A carta de Chefe esconde 3 habilidades, bônus ou espaços de ferimento sob marcadores de Treinamento."),
+        t("A Training action reveals one.", "Uma ação de Treinamento revela um."),
+        t("If your Chief dies or retires, draft a new one.", "Se seu Chefe morre ou se aposenta, escolha um novo.")
+      ], "chiefs"],
+      [t("Life Goals & victory", "Objetivos de Vida e vitória"), [
+        t("With a fully trained Chief, pay the cost on an available Life Goal card to retire with Fame Points based on your Chief's wounds.", "Com o Chefe totalmente treinado, pague o custo de uma carta de Objetivo de Vida disponível para se aposentar ganhando Pontos de Fama conforme os ferimentos do seu Chefe."),
+        t("The game ends after Round 7 or when no Life Goals remain.", "O jogo termina após a Rodada 7 ou quando não restarem Objetivos de Vida."),
+        t("Most Fame wins.", "Vence quem tiver mais Fama.")
+      ], "victory"]
     ];
     return `
       ${sectionHeading("quick-reference", t("Quick Reference", "Referência rápida"), "02", 6)}
-      <div class="quick-grid">${cards.map(([title, body, target]) => `
-        <article class="info-card"><h3>${title}</h3><p>${body}</p><p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>
-      <div class="callout">${t(
-        "Caatinga spaces always inflict exactly 1 wound on your Gang the instant you enter them, as shown by their red border. Volantes attacks only ever target and wound ONE player per space, picking a Gang over a Garrison, and only ever wound the Chief (a Gang is never reduced to losing a Cangaceiro from the board from a Volantes attack).",
-        "Espaços de Caatinga sempre infligem exatamente 1 ferimento ao seu Bando no instante em que você entra, como indicado pela borda vermelha. Ataques de Volantes sempre visam e ferem APENAS UM jogador por espaço, preferindo um Bando a uma Guarnição, e sempre ferem só o Chefe (um Bando nunca perde um Cangaceiro do tabuleiro por causa de um ataque de Volantes)."
-      )}</div>`;
+      <div class="quick-grid">${cards.map(([title, lines, target]) => `
+        <article class="info-card"><h3>${title}</h3>${lineList(lines)}<p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>
+      <div class="callout">${lineList([
+        t("Caatinga spaces always inflict exactly 1 wound on your Gang the instant you enter them (red border).", "Espaços de Caatinga sempre infligem exatamente 1 ferimento ao seu Bando no instante em que você entra (borda vermelha)."),
+        t("Volantes attacks target and wound only ONE player per space, preferring a Gang over a Garrison.", "Ataques de Volantes visam e ferem apenas UM jogador por espaço, preferindo um Bando a uma Guarnição."),
+        t("Volantes attacks only wound the Chief; they never remove a Cangaceiro from the board.", "Ataques de Volantes só ferem o Chefe; nunca removem um Cangaceiro do tabuleiro.")
+      ])}</div>`;
   }
 
   // --- Setup -----------------------------------------------------------------

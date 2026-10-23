@@ -173,6 +173,10 @@
     return `<button type="button" data-scroll="${id}">${label}</button>`;
   }
 
+  function lineList(items) {
+    return `<ul class="card-lines">${items.filter(Boolean).map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  }
+
   function storageNoticeText() {
     if (storageNotice === "read") {
       return t(
@@ -682,34 +686,57 @@
   function quickReference() {
     const seasons = state.gameLength === "normal" ? 2 : 3;
     const battleSetting = state.battleMode === "standard"
-      ? t("Use Battle Plans, then draw Combat Cards up to the limit; exceeding it causes failure.", "Use Planos de Batalha e compre Cartas de Combate até o limite; ultrapassá-lo causa falha.")
-      : t("Do not draw Combat Cards: each Battle Plan receives its full strength limit, including +1 per Bonus Card.", "Não compre Cartas de Combate: cada Plano de Batalha recebe seu limite total de força, incluindo +1 por Carta Bônus.");
+      ? [
+        t("Use Battle Plans, then draw Combat Cards up to the limit.", "Use Planos de Batalha e compre Cartas de Combate até o limite."),
+        t("Exceeding the limit causes failure.", "Ultrapassar o limite causa falha.")
+      ]
+      : [
+        t("Do not draw Combat Cards.", "Não compre Cartas de Combate."),
+        t("Each Battle Plan receives its full strength limit, including +1 per Bonus Card.", "Cada Plano de Batalha recebe seu limite total de força, incluindo +1 por Carta Bônus.")
+      ];
     return `
       ${sectionHeading("quick-reference", t("Quick reference", "Referência rápida"), "02", 8)}
       <div class="quick-grid">
         <article class="info-card">
           <span class="card-number">01</span><h3>${t("Game and victory", "Partida e vitória")}</h3>
-          <p>${t(`Play ${seasons} seasons. The player with the most VPs after the final season wins. If tied, the Holy Grail bearer wins; if nobody tied bears it, all tied players win.`, `Jogue ${seasons} estações. Vence quem tiver mais VPs ao fim da última. No empate, vence quem carrega o Santo Graal; se nenhum empatado o carregar, todos os empatados vencem.`)}</p>
+          ${lineList([
+            t(`Play ${seasons} seasons.`, `Jogue ${seasons} estações.`),
+            t("The player with the most VPs after the final season wins.", "Vence quem tiver mais VPs ao fim da última."),
+            t("If tied, the Holy Grail bearer wins; if nobody tied bears it, all tied players win.", "No empate, vence quem carrega o Santo Graal; se nenhum empatado o carregar, todos os empatados vencem.")
+          ])}
           <p>${jump("victory", t("Scoring details", "Detalhes da pontuação"))}</p>
         </article>
         <article class="info-card">
           <span class="card-number">02</span><h3>${t("Season order", "Ordem da estação")}</h3>
-          <p>${t("Mist Phase → 3 Preparation rounds → War Phase. In each round, all players choose a card simultaneously; turns resolve from highest initiative to lowest.", "Fase de Névoa → 3 rodadas de Preparação → Fase de Guerra. Em cada rodada, todos escolhem uma carta simultaneamente; os turnos resolvem da maior para a menor iniciativa.")}</p>
+          ${lineList([
+            t("<strong>Mist Phase</strong> → 3 Preparation rounds → <strong>War Phase</strong>.", "<strong>Fase de Névoa</strong> → 3 rodadas de Preparação → <strong>Fase de Guerra</strong>."),
+            t("In each round, all players choose a card simultaneously.", "Em cada rodada, todos escolhem uma carta simultaneamente."),
+            t("Turns resolve from highest initiative to lowest.", "Os turnos resolvem da maior para a menor iniciativa.")
+          ])}
           <p>${jump("turns", t("Phase and turn rules", "Regras de fase e turno"))}</p>
         </article>
         <article class="info-card">
           <span class="card-number">03</span><h3>${t("Preparation turn", "Turno de Preparação")}</h3>
-          <p>${t("Resolve your card or take one standard action, then use eligible abilities. Discard the played card and its costs, draw 2 cards from any Main Decks, and enforce the 5-Unit region limit.", "Resolva sua carta ou faça uma ação padrão, depois use habilidades elegíveis. Descarte a carta e seus custos, compre 2 cartas de quaisquer baralhos principais e respeite o limite de 5 Unidades por região.")}</p>
+          ${lineList([
+            t("Resolve your card or take one standard action, then use eligible abilities.", "Resolva sua carta ou faça uma ação padrão, depois use habilidades elegíveis."),
+            t("Discard the played card and its costs.", "Descarte a carta e seus custos."),
+            t("Draw 2 cards from any Main Decks.", "Compre 2 cartas de quaisquer baralhos principais."),
+            t("Enforce the 5-Unit region limit.", "Respeite o limite de 5 Unidades por região.")
+          ])}
           <p>${jump("turns", t("Actions and movement", "Ações e movimento"))}</p>
         </article>
         <article class="info-card">
           <span class="card-number">04</span><h3>${t("Battle setting", "Modo de batalha")}</h3>
-          <p>${battleSetting}</p>
+          ${lineList(battleSetting)}
           <p>${jump("war", t("War Phase sequence", "Sequência da Fase de Guerra"))}</p>
         </article>
         <article class="info-card">
           <span class="card-number">05</span><h3>${t("Information and precedence", "Informação e precedência")}</h3>
-          <p>${t("Hands are unlimited and their card counts are public; cards and Mist Cards remain face down until their rules reveal them. When the rulebook conflicts with a card or faction board, follow the component.", "A mão não tem limite e sua quantidade de cartas é pública; cartas e cartas de Névoa ficam viradas para baixo até que as regras mandem revelá-las. Se o manual divergir de uma carta ou tabuleiro de facção, siga o componente.")}</p>
+          ${lineList([
+            t("Hands are unlimited and their card counts are public.", "A mão não tem limite e sua quantidade de cartas é pública."),
+            t("Cards and Mist Cards remain face down until their rules reveal them.", "Cartas e cartas de Névoa ficam viradas para baixo até que as regras mandem revelá-las."),
+            t("When the rulebook conflicts with a card or faction board, follow the component.", "Se o manual divergir de uma carta ou tabuleiro de facção, siga o componente.")
+          ])}
           <p>${referenceLink(8)} ${referenceLink(24)}</p>
         </article>
       </div>`;

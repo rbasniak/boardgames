@@ -126,6 +126,10 @@
     return `<button type="button" data-scroll="${id}">${label}</button>`;
   }
 
+  function lineList(items) {
+    return `<ul class="card-lines">${items.filter(Boolean).map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  }
+
   function storageNoticeText() {
     if (storageNotice === "read") {
       return t(
@@ -292,14 +296,46 @@
 
   function quickReference() {
     const cards = [
-      [t("Your turn", "Seu turno"), t("Sauron plays first; then alternate. On your turn do exactly one thing: take 1 available Chapter card (play it, paying its cost, or discard it for Coins) OR take 1 face-up Landmark tile (pay its cost, place its Fortress, use its effects). After a card, reveal any cards that became available; after a tile, do not reveal a new tile.", "Sauron joga primeiro; depois alternem. No seu turno faça exatamente uma coisa: pegue 1 carta de Capítulo disponível (jogue-a, pagando o custo, ou descarte-a por Moedas) OU pegue 1 tile de Marco virada para cima (pague o custo, coloque a Fortaleza, use os efeitos). Depois de uma carta, revele as cartas que ficaram disponíveis; depois de uma tile, não revele uma tile nova."), "chapters"],
-      [t("Paying for a card or tile", "Pagando uma carta ou tile"), t("Coin cost: pay it to the reserve. Skill cost: have the symbols on your Grey cards (each symbol once per turn) or pay 1 Coin per missing symbol, with no limit. Landmark tiles cost extra Coins equal to the Fortresses you already have on the board. From chapter 2, a matching chaining symbol in your play area makes a card free: no Skills and no Coins.", "Custo em Moedas: pague à reserva. Custo em Habilidades: tenha os símbolos nas suas cartas Cinza (cada símbolo uma vez por turno) ou pague 1 Moeda por símbolo faltante, sem limite. Tiles de Marco custam Moedas extras iguais às Fortalezas que você já tem no tabuleiro. A partir do capítulo 2, um símbolo de encadeamento igual na sua área torna uma carta gratuita: sem Habilidades e sem Moedas."), "costs"],
-      [t("Discarding for Coins", "Descartando por Moedas"), t("Put the card facedown in the discard and take Coins from the reserve equal to the current chapter: 1 in chapter 1, 2 in chapter 2, 3 in chapter 3.", "Coloque a carta virada para baixo no descarte e pegue da reserva Moedas iguais ao capítulo atual: 1 no capítulo 1, 2 no capítulo 2, 3 no capítulo 3."), "chapters"],
-      [t("Conflicts", "Conflitos"), t("Whenever your Units arrive in a region with enemy Units, both players remove 1 Unit at a time until one side has none left there. Fortresses never fight and never block placement.", "Sempre que suas Unidades chegam a uma região com Unidades inimigas, os dois jogadores removem 1 Unidade por vez até que um lado não tenha mais nenhuma ali. Fortalezas nunca lutam nem bloqueiam colocação."), "conquest"],
-      [t("Win immediately", "Vitória imediata"), t("Quest of the Ring: Frodo and Sam reach Mount Doom (Fellowship) or the Nazgûl catch Frodo and Sam (Sauron). Support of the Races: 6 different Race symbols on your Green cards (the Eagle token counts). Conquering Middle-earth: a Fortress and/or Unit of yours in all 7 regions.", "Demanda do Anel: Frodo e Sam chegam à Montanha da Perdição (Sociedade) ou o Nazgûl alcança Frodo e Sam (Sauron). Apoio das Raças: 6 símbolos de Raça diferentes nas suas cartas Verdes (a ficha da Águia conta). Conquista da Terra-média: uma Fortaleza e/ou Unidade sua em todas as 7 regiões."), "end"],
-      [t("End of chapter 3", "Fim do capítulo 3"), t("If nobody has won immediately when the last card of chapter 3 is taken, the player present in the most regions (Fortress and/or at least 1 Unit) wins. A tie is a shared victory.", "Se ninguém venceu imediatamente quando a última carta do capítulo 3 é pega, vence o jogador presente em mais regiões (Fortaleza e/ou pelo menos 1 Unidade). Empate é vitória compartilhada."), "end"],
-      [t("Alliances", "Alianças"), t("2 matching Race symbols: reveal the top 2 tokens of that Race, keep 1, return the other facedown on top. Once per game, 3 different Race symbols: reveal the top token of each of those 3 Races, keep 1, return the other 2. Tokens are public.", "2 símbolos de Raça iguais: revele as 2 fichas do topo dessa Raça, fique com 1, devolva a outra virada para baixo ao topo. Uma vez por partida, 3 símbolos de Raça diferentes: revele a ficha do topo de cada uma dessas 3 Raças, fique com 1, devolva as outras 2. As fichas são públicas."), "alliances"],
-      [t("Quest of the Ring track", "Trilha da Demanda do Anel"), t("Blue cards move your character 1 space per Ring symbol. Reaching or passing a Bonus space lets you use its effect once. The Nazgûl piece rides on top of the Frodo and Sam piece: when Frodo and Sam move, the Nazgûl are carried along and the gap stays the same; when the Nazgûl move, the gap shrinks.", "Cartas Azuis movem seu personagem 1 espaço por símbolo de Anel. Alcançar ou passar por um espaço bônus permite usar seu efeito uma vez. A peça do Nazgûl fica em cima da peça de Frodo e Sam: quando Frodo e Sam se movem, o Nazgûl é carregado junto e a distância fica igual; quando o Nazgûl se move, a distância diminui."), "quest"]
+      [t("Your turn", "Seu turno"), [
+        t("Sauron plays first; then alternate.", "Sauron joga primeiro; depois alternem."),
+        t("<strong>One action per turn:</strong> take 1 available Chapter card (play it for its cost, or discard it for Coins) OR take 1 face-up Landmark tile (pay, place its Fortress, use its effects).", "<strong>Uma ação por turno:</strong> pegue 1 carta de Capítulo disponível (jogue pagando o custo, ou descarte por Moedas) OU pegue 1 tile de Marco virada para cima (pague, coloque a Fortaleza, use os efeitos)."),
+        t("After a card, reveal any cards that became available.", "Depois de uma carta, revele as cartas que ficaram disponíveis."),
+        t("After a tile, do not reveal a new tile.", "Depois de uma tile, não revele uma tile nova.")
+      ], "chapters"],
+      [t("Paying for a card or tile", "Pagando uma carta ou tile"), [
+        t("<strong>Coin cost:</strong> pay it to the reserve.", "<strong>Custo em Moedas:</strong> pague à reserva."),
+        t("<strong>Skill cost:</strong> show the symbols on your Grey cards (each symbol once per turn) or pay 1 Coin per missing symbol, with no limit.", "<strong>Custo em Habilidades:</strong> mostre os símbolos nas suas cartas Cinza (cada símbolo uma vez por turno) ou pague 1 Moeda por símbolo faltante, sem limite."),
+        t("<strong>Landmark tiles:</strong> pay extra Coins equal to the Fortresses you already have on the board.", "<strong>Tiles de Marco:</strong> pague Moedas extras iguais às Fortalezas que você já tem no tabuleiro."),
+        t("From chapter 2, a matching chaining symbol in your play area makes a card free (no Skills and no Coins).", "A partir do capítulo 2, um símbolo de encadeamento igual na sua área torna uma carta gratuita (sem Habilidades e sem Moedas).")
+      ], "costs"],
+      [t("Discarding for Coins", "Descartando por Moedas"), [
+        t("Put the card facedown in the discard.", "Coloque a carta virada para baixo no descarte."),
+        t("Take Coins from the reserve equal to the current chapter: 1 in chapter 1, 2 in chapter 2, 3 in chapter 3.", "Pegue da reserva Moedas iguais ao capítulo atual: 1 no capítulo 1, 2 no capítulo 2, 3 no capítulo 3.")
+      ], "chapters"],
+      [t("Conflicts", "Conflitos"), [
+        t("When your Units arrive in a region with enemy Units, both players remove 1 Unit at a time until one side has none left there.", "Quando suas Unidades chegam a uma região com Unidades inimigas, os dois jogadores removem 1 Unidade por vez até que um lado não tenha mais nenhuma ali."),
+        t("Fortresses never fight and never block placement.", "Fortalezas nunca lutam nem bloqueiam colocação.")
+      ], "conquest"],
+      [t("Win immediately", "Vitória imediata"), [
+        t("<strong>Quest of the Ring:</strong> Frodo and Sam reach Mount Doom (Fellowship) or the Nazgûl catch Frodo and Sam (Sauron).", "<strong>Demanda do Anel:</strong> Frodo e Sam chegam à Montanha da Perdição (Sociedade) ou o Nazgûl alcança Frodo e Sam (Sauron)."),
+        t("<strong>Support of the Races:</strong> 6 different Race symbols on your Green cards (the Eagle token counts).", "<strong>Apoio das Raças:</strong> 6 símbolos de Raça diferentes nas suas cartas Verdes (a ficha da Águia conta)."),
+        t("<strong>Conquering Middle-earth:</strong> a Fortress and/or Unit of yours in all 7 regions.", "<strong>Conquista da Terra-média:</strong> uma Fortaleza e/ou Unidade sua em todas as 7 regiões.")
+      ], "end"],
+      [t("End of chapter 3", "Fim do capítulo 3"), [
+        t("If nobody has won immediately when the last card of chapter 3 is taken, the player present in the most regions (Fortress and/or at least 1 Unit) wins.", "Se ninguém venceu imediatamente quando a última carta do capítulo 3 é pega, vence o jogador presente em mais regiões (Fortaleza e/ou pelo menos 1 Unidade)."),
+        t("A tie is a shared victory.", "Empate é vitória compartilhada.")
+      ], "end"],
+      [t("Alliances", "Alianças"), [
+        t("<strong>2 matching Race symbols:</strong> reveal the top 2 tokens of that Race, keep 1, return the other facedown on top.", "<strong>2 símbolos de Raça iguais:</strong> revele as 2 fichas do topo dessa Raça, fique com 1, devolva a outra virada para baixo ao topo."),
+        t("<strong>Once per game, 3 different Race symbols:</strong> reveal the top token of each of those 3 Races, keep 1, return the other 2.", "<strong>Uma vez por partida, 3 símbolos de Raça diferentes:</strong> revele a ficha do topo de cada uma dessas 3 Raças, fique com 1, devolva as outras 2."),
+        t("Tokens are public.", "As fichas são públicas.")
+      ], "alliances"],
+      [t("Quest of the Ring track", "Trilha da Demanda do Anel"), [
+        t("Blue cards move your character 1 space per Ring symbol.", "Cartas Azuis movem seu personagem 1 espaço por símbolo de Anel."),
+        t("Reaching or passing a Bonus space lets you use its effect once.", "Alcançar ou passar por um espaço bônus permite usar seu efeito uma vez."),
+        t("The Nazgûl piece rides on top of the Frodo and Sam piece: when Frodo and Sam move, the Nazgûl are carried along and the gap stays the same.", "A peça do Nazgûl fica em cima da peça de Frodo e Sam: quando Frodo e Sam se movem, o Nazgûl é carregado junto e a distância fica igual."),
+        t("When the Nazgûl move, the gap shrinks.", "Quando o Nazgûl se move, a distância diminui.")
+      ], "quest"]
     ];
     const sides = [
       [t("Fellowship of the Ring", "Sociedade do Anel"), [
@@ -319,8 +355,8 @@
     ];
     return `
       ${sectionHeading("quick-reference", t("Quick Reference", "Referência rápida"), "01", refs(3, 8))}
-      <div class="quick-grid">${cards.map(([title, body, target]) => `
-        <article class="info-card"><h3>${title}</h3><p>${body}</p><p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>
+      <div class="quick-grid">${cards.map(([title, lines, target]) => `
+        <article class="info-card"><h3>${title}</h3>${lineList(lines)}<p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>
       <h3 class="subhead">${t("What differs between the two sides", "O que muda entre os dois lados")}</h3>
       <div class="quick-grid duel-sides">${sides.map(([title, lines]) => `
         <article class="info-card"><span class="component-label">${t("SIDE", "LADO")}</span><h3>${title}</h3><ul class="duel-list">${lines.map((line) => `<li>${line}</li>`).join("")}</ul>

@@ -254,28 +254,68 @@
     return `<button type="button" data-scroll="${id}">${label}</button>`;
   }
 
+  function lineList(items) {
+    return `<ul class="card-lines">${items.filter(Boolean).map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  }
+
   function quickReference() {
+    const winLines = state.teamGame
+      ? [
+        t("The last team still in the fight wins.", "A última equipe ainda na luta vence."),
+        t("A wizard is eliminated at 0 health, or with Too Much Mana when they cannot continue.", "Um mago é eliminado com 0 de vida, ou com Mana demais quando não consegue continuar.")
+      ]
+      : [
+        t("The last wizard on the battlefield wins.", "O último mago no campo vence."),
+        t("A wizard is eliminated at 0 health, or with Too Much Mana when they cannot continue.", "Um mago é eliminado com 0 de vida, ou com Mana demais quando não consegue continuar.")
+      ];
+    const startLines = state.teamGame
+      ? [
+        t("The eldest wizard starts.", "O mago mais velho começa."),
+        t("Opposing teams then take turns interchangeably.", "Em seguida, equipes opostas jogam de forma intercalada."),
+        t(`This match has ${state.players} wizards in ${state.teamCount} teams.`, `Esta partida tem ${state.players} magos em ${state.teamCount} equipes.`)
+      ]
+      : [
+        t("The eldest wizard starts.", "O mago mais velho começa."),
+        t("Then play passes clockwise.", "Depois, a vez segue no sentido horário.")
+      ];
     const cards = [
-      [t("Win", "Vitória"), state.teamGame
-        ? t("The last team still in the fight wins. A wizard is eliminated at 0 health, or with Too Much Mana when they cannot continue.", "A última equipe ainda na luta vence. Um mago é eliminado com 0 de vida, ou com Mana demais quando não consegue continuar.")
-        : t("The last wizard on the battlefield wins. A wizard is eliminated at 0 health, or with Too Much Mana when they cannot continue.", "O último mago no campo vence. Um mago é eliminado com 0 de vida, ou com Mana demais quando não consegue continuar."), "victory"],
-      [t("Start", "Início"), state.teamGame
-        ? t(`The eldest wizard starts. Opposing teams then take turns interchangeably. This match has ${state.players} wizards in ${state.teamCount} teams.`, `O mago mais velho começa. Em seguida, equipes opostas jogam de forma intercalada. Esta partida tem ${state.players} magos em ${state.teamCount} equipes.`)
-        : t("The eldest wizard starts. Then play passes clockwise.", "O mago mais velho começa. Depois, a vez segue no sentido horário."), "turns"],
-      [t("Your turn", "Seu turno"), t("Draw up to your hand limit, usually 5. Then play, discard, and/or exchange any number of cards, in any order. Announce the end of the turn.", "Compre até o limite da mão, em geral 5. Depois jogue, descarte e/ou troque qualquer quantidade de cartas, em qualquer ordem. Anuncie o fim do turno."), "turns"],
-      [t("Drink", "Beber"), t(`A ${drinkName()} may be used at any time, even outside your turn. It grants ${manaGainPhrase()}, unless the common pool has no mana crystals.`, `Uma ${drinkName()} pode ser usada a qualquer momento, mesmo fora do seu turno. Ela concede ${manaGainPhrase()}, salvo se a reserva comum não tiver cristais de mana.`), "turns"],
-      [t("Play a card", "Jogar uma carta"), t("Put it on the table, pay its cost, speak the incantation, indicate a target if it needs one, then apply the text on the card.", "Coloque-a na mesa, pague o custo, fale o encantamento, indique um alvo se ela exigir, e aplique o texto da carta."), "turns"],
-      [t("Defense", "Defesa"), t("A defensive spell may be cast outside your turn, in response to a spell cast by an opponent. It still uses the normal play steps.", "Um feitiço defensivo pode ser lançado fora do seu turno, em resposta a um feitiço de um oponente. Ele ainda segue os passos normais de jogo."), "turns"],
-      [t("Exchange", "Troca"), t("Discard the card, pay mana, and draw one card. The first exchange of a turn costs 1 mana. Each later exchange that turn costs 1 more than the previous one.", "Descarte a carta, pague mana e compre uma carta. A primeira troca do turno custa 1 de mana. Cada troca seguinte naquele turno custa 1 a mais que a anterior."), "turns"],
-      [t("Empty hand", "Mão vazia"), t("If a card tells you to discard a card and your hand is empty, you lose 1 mana point instead.", "Se uma carta manda descartar uma carta e sua mão está vazia, você perde 1 ponto de mana no lugar."), "turns"]
+      [t("Win", "Vitória"), winLines, "victory"],
+      [t("Start", "Início"), startLines, "turns"],
+      [t("Your turn", "Seu turno"), [
+        t("Draw up to your hand limit, usually 5.", "Compre até o limite da mão, em geral 5."),
+        t("Then play, discard, and/or exchange any number of cards, in any order.", "Depois jogue, descarte e/ou troque qualquer quantidade de cartas, em qualquer ordem."),
+        t("Announce the end of the turn.", "Anuncie o fim do turno.")
+      ], "turns"],
+      [t("Drink", "Beber"), [
+        t(`A ${drinkName()} may be used at any time, even outside your turn.`, `Uma ${drinkName()} pode ser usada a qualquer momento, mesmo fora do seu turno.`),
+        t(`It grants ${manaGainPhrase()}, unless the common pool has no mana crystals.`, `Ela concede ${manaGainPhrase()}, salvo se a reserva comum não tiver cristais de mana.`)
+      ], "turns"],
+      [t("Play a card", "Jogar uma carta"), [
+        t("Put it on the table, pay its cost, speak the incantation, indicate a target if it needs one, then apply the text on the card.", "Coloque-a na mesa, pague o custo, fale o encantamento, indique um alvo se ela exigir, e aplique o texto da carta.")
+      ], "turns"],
+      [t("Defense", "Defesa"), [
+        t("A defensive spell may be cast outside your turn, in response to a spell cast by an opponent.", "Um feitiço defensivo pode ser lançado fora do seu turno, em resposta a um feitiço de um oponente."),
+        t("It still uses the normal play steps.", "Ele ainda segue os passos normais de jogo.")
+      ], "turns"],
+      [t("Exchange", "Troca"), [
+        t("Discard the card, pay mana, and draw one card.", "Descarte a carta, pague mana e compre uma carta."),
+        t("The first exchange of a turn costs 1 mana.", "A primeira troca do turno custa 1 de mana."),
+        t("Each later exchange that turn costs 1 more than the previous one.", "Cada troca seguinte naquele turno custa 1 a mais que a anterior.")
+      ], "turns"],
+      [t("Empty hand", "Mão vazia"), [
+        t("If a card tells you to discard a card and your hand is empty, you lose 1 mana point instead.", "Se uma carta manda descartar uma carta e sua mão está vazia, você perde 1 ponto de mana no lugar.")
+      ], "turns"]
     ];
     if (state.astral) {
-      cards.push([t("Astral", "Astral"), t("A defeated wizard becomes an astral being and may drink to drain mana from the living wizards. One drink drains 1 mana point from all wizards.", "Um mago derrotado vira um ser astral e pode beber para drenar mana dos magos vivos. Uma dose drena 1 ponto de mana de todos os magos."), "victory"]);
+      cards.push([t("Astral", "Astral"), [
+        t("A defeated wizard becomes an astral being and may drink to drain mana from the living wizards.", "Um mago derrotado vira um ser astral e pode beber para drenar mana dos magos vivos."),
+        t("One drink drains 1 mana point from all wizards.", "Uma dose drena 1 ponto de mana de todos os magos.")
+      ], "victory"]);
     }
     return `
       ${sectionHeading("quick-reference", t("Quick Reference", "Referência rápida"), "02", 10)}
-      <div class="quick-grid">${cards.map(([title, body, target]) => `
-        <article class="info-card"><h3>${title}</h3><p>${body}</p><p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>
+      <div class="quick-grid">${cards.map(([title, lines, target]) => `
+        <article class="info-card"><h3>${title}</h3>${lineList(lines)}<p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>
       <div class="callout">${t(
         "The six quick-reference cards in the box are not transcribed in the booklet. Use the card in front of you for any reminder printed only there. There is no separate quick reference per team: every wizard uses the same turn, and the team rule only changes who plays next and who wins.",
         "As seis cartas de referência da caixa não estão transcritas no livreto. Use a carta à sua frente para qualquer lembrete impresso só nela. Não há uma referência separada por equipe: todos usam o mesmo turno, e a regra de equipes só muda quem joga em seguida e quem vence."

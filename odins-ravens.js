@@ -196,19 +196,40 @@
     return `<button type="button" data-scroll="${id}">${label}</button>`;
   }
 
+  function lineList(items) {
+    return `<ul class="card-lines">${items.filter(Boolean).map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  }
+
   function quickReference() {
     const cards = [
-      [t("Your turn", "Seu turno"), t("Play any number of Flight and/or Trickery cards, in any order, as long as you have the cards for it. Then draw 3 cards (any combination of your two piles) to end your turn.", "Jogue quantas cartas de Voo e/ou Trapaça quiser, em qualquer ordem, enquanto tiver cartas para isso. Depois compre 3 cartas (qualquer combinação dos seus dois baralhos) para encerrar o turno."), "flight"],
-      [t("Flight action", "Ação de Voo"), t("Play a flight card matching the land type of the next space(s) in front of your raven to move it there. No matching card? Any 2 flight cards of the same type as each other substitute for the type you need.", "Jogue uma carta de voo do mesmo tipo de terreno do(s) próximo(s) espaço(s) à frente do seu corvo para movê-lo até lá. Sem a carta certa? Quaisquer 2 cartas de voo iguais entre si substituem o tipo que você precisa."), "flight"],
-      [t("Trickery action", "Ação de Trapaça"), t("Play a Loki card and choose one of its two printed actions. The card is removed from the game after use — you have at most 8 Trickery actions all game.", "Jogue uma carta Loki e escolha uma de suas duas ações impressas. A carta é removida do jogo depois de usada — você tem no máximo 8 ações de Trapaça no jogo todo."), "trickery"],
-      [t("Hand limit", "Limite de mão"), t("If you have more than 7 cards after drawing, discard down to 7 before taking any more actions. Flight cards go to your discard pile; Loki cards are removed from the game.", "Se tiver mais de 7 cartas depois de comprar, descarte até ficar com 7 antes de agir de novo. Cartas de voo vão para o descarte; cartas Loki são removidas do jogo."), "ending"],
-      [t("Winning", "Vitória"), t("First raven to reach the final space on the opponent's side wins — unless that player went first, in which case the opponent gets one last turn to tie the finish.", "O primeiro corvo a chegar ao espaço final do lado do oponente vence — a menos que esse jogador tenha sido o primeiro a jogar, caso em que o oponente tem mais um turno para empatar a chegada."), "ending"],
-      [t("No matching Loki target", "Sem alvo para a Trapaça"), t("Any action that moves or rotates a land card cannot target a card that currently has a raven on it.", "Qualquer ação que mova ou rotacione uma carta de terreno não pode mirar uma carta que tenha um corvo em cima dela no momento."), "trickery"]
+      [t("Your turn", "Seu turno"), [
+        t("Play any number of Flight and/or Trickery cards, in any order, as long as you have the cards.", "Jogue quantas cartas de Voo e/ou Trapaça quiser, em qualquer ordem, enquanto tiver cartas."),
+        t("Then draw 3 cards (any combination of your two piles) to end your turn.", "Depois compre 3 cartas (qualquer combinação dos seus dois baralhos) para encerrar o turno.")
+      ], "flight"],
+      [t("Flight action", "Ação de Voo"), [
+        t("Play a flight card matching the land type of the next space(s) in front of your raven to move it there.", "Jogue uma carta de voo do mesmo tipo de terreno do(s) próximo(s) espaço(s) à frente do seu corvo para movê-lo até lá."),
+        t("No matching card? Any 2 flight cards of the same type as each other substitute for the type you need.", "Sem a carta certa? Quaisquer 2 cartas de voo iguais entre si substituem o tipo que você precisa.")
+      ], "flight"],
+      [t("Trickery action", "Ação de Trapaça"), [
+        t("Play a Loki card and choose one of its two printed actions.", "Jogue uma carta Loki e escolha uma de suas duas ações impressas."),
+        t("The card is removed from the game after use — at most 8 Trickery actions all game.", "A carta é removida do jogo depois de usada — no máximo 8 ações de Trapaça no jogo todo.")
+      ], "trickery"],
+      [t("Hand limit", "Limite de mão"), [
+        t("If you have more than 7 cards after drawing, discard down to 7 before taking any more actions.", "Se tiver mais de 7 cartas depois de comprar, descarte até ficar com 7 antes de agir de novo."),
+        t("Flight cards go to your discard pile; Loki cards are removed from the game.", "Cartas de voo vão para o descarte; cartas Loki são removidas do jogo.")
+      ], "ending"],
+      [t("Winning", "Vitória"), [
+        t("First raven to reach the final space on the opponent's side wins.", "O primeiro corvo a chegar ao espaço final do lado do oponente vence."),
+        t("If that player went first, the opponent gets one last turn to tie the finish.", "Se esse jogador foi o primeiro a jogar, o oponente tem mais um turno para empatar a chegada.")
+      ], "ending"],
+      [t("No matching Loki target", "Sem alvo para a Trapaça"), [
+        t("Any action that moves or rotates a land card cannot target a card that currently has a raven on it.", "Qualquer ação que mova ou rotacione uma carta de terreno não pode mirar uma carta que tenha um corvo em cima dela no momento.")
+      ], "trickery"]
     ];
     return `
       ${sectionHeading("quick-reference", t("Quick Reference", "Referência rápida"), "01", 1)}
-      <div class="quick-grid">${cards.map(([title, body, target]) => `
-        <article class="info-card"><h3>${title}</h3><p>${body}</p><p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>`;
+      <div class="quick-grid">${cards.map(([title, lines, target]) => `
+        <article class="info-card"><h3>${title}</h3>${lineList(lines)}<p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>`;
   }
 
   // --- Setup --------------------------------------------------------------

@@ -477,6 +477,10 @@
     return `<button type="button" data-scroll="${id}">${label}</button>`;
   }
 
+  function lineList(items) {
+    return `<ul class="card-lines">${items.filter(Boolean).map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  }
+
   function orderLine(order, available) {
     return order.filter((name) => name === "the Wild Hunt" || available.includes(name))
       .map((name) => (name === "the Wild Hunt" ? t("the Wild Hunt", "a Wild Hunt") : name))
@@ -828,34 +832,86 @@
   function quickReference(index) {
     const m = match();
     const draft = m.isLM
-      ? t("In Initiative order, take a pair of cards from a spot (or 2 from the deck at the top spot). After each player drafts, the Monster activates. Bottom spot: +1 Experience.", "Na ordem de Iniciativa, pegue um par de um espaço (ou 2 do baralho no espaço de cima). Depois de cada jogador escolher, o Monstro ativa. Espaço de baixo: +1 Experiência.")
-      : t("Discard the topmost pair (not in the first Turn), slide the pairs up and refill. In Initiative order, take a pair from a spot, or 2 cards from the deck at the top spot (shared). Bottom spot: +1 Experience (some Tales change this).", "Descarte o par mais alto (não no primeiro Turno), suba os pares e reponha. Na ordem de Iniciativa, pegue um par de um espaço, ou 2 cartas do baralho no espaço de cima (compartilhado). Espaço de baixo: +1 Experiência (alguns Contos mudam isso).");
-    const play = t("Everyone picks 2 cards face down, reveals them at once and adds them to their Timeline, resolving effects left to right, to the maximum extent possible.", "Todos escolhem 2 cartas viradas para baixo, revelam juntos e as colocam na Linha do Tempo, resolvendo os efeitos da esquerda para a direita, o máximo possível.");
+      ? [
+        t("In Initiative order, take a pair of cards from a spot (or 2 from the deck at the top spot).", "Na ordem de Iniciativa, pegue um par de um espaço (ou 2 do baralho no espaço de cima)."),
+        t("After each player drafts, the Monster activates.", "Depois de cada jogador escolher, o Monstro ativa."),
+        t("Bottom spot: +1 Experience.", "Espaço de baixo: +1 Experiência.")
+      ]
+      : [
+        t("Discard the topmost pair (not in the first Turn), slide the pairs up and refill.", "Descarte o par mais alto (não no primeiro Turno), suba os pares e reponha."),
+        t("In Initiative order, take a pair from a spot, or 2 cards from the deck at the top spot (shared).", "Na ordem de Iniciativa, pegue um par de um espaço, ou 2 cartas do baralho no espaço de cima (compartilhado)."),
+        t("Bottom spot: +1 Experience (some Tales change this).", "Espaço de baixo: +1 Experiência (alguns Contos mudam isso).")
+      ];
+    const play = [
+      t("Everyone picks 2 cards face down and reveals them at once.", "Todos escolhem 2 cartas viradas para baixo e revelam juntos."),
+      t("Add them to your Timeline, resolving effects left to right, to the maximum extent possible.", "Coloque-as na Linha do Tempo, resolvendo os efeitos da esquerda para a direita, o máximo possível.")
+    ];
     let destiny;
     if (m.isLM) {
-      destiny = t("Put the next Destiny token on the Monster card to mark the end of the Turn; the 3rd one ends the Chapter.", "Coloque a próxima ficha de Destino na carta do Monstro para marcar o fim do Turno; a 3ª encerra o Capítulo.");
+      destiny = [
+        t("Put the next Destiny token on the Monster card to mark the end of the Turn.", "Coloque a próxima ficha de Destino na carta do Monstro para marcar o fim do Turno."),
+        t("The 3rd token ends the Chapter.", "A 3ª ficha encerra o Capítulo.")
+      ];
     } else if (m.isWH) {
-      destiny = t("After the Wild Hunt Step (Strategic Withdrawal, then Advancement), the Destiny token goes to the Active Symbol the Wild Hunt has more of; a tie sets it aside.", "Depois da Etapa da Wild Hunt (Retirada Estratégica e depois Avanço), a ficha de Destino vai para o Símbolo Ativo que a Wild Hunt tem mais; empate a deixa de lado.");
+      destiny = [
+        t("After the Wild Hunt Step (Strategic Withdrawal, then Advancement), compare Active Symbols.", "Depois da Etapa da Wild Hunt (Retirada Estratégica e depois Avanço), compare Símbolos Ativos."),
+        t("The Destiny token goes to the Active Symbol the Wild Hunt has more of; a tie sets it aside.", "A ficha de Destino vai para o Símbolo Ativo que a Wild Hunt tem mais; empate a deixa de lado.")
+      ];
     } else if (m.solo) {
-      destiny = t("Flip the Solo Mode Destiny token: that Active Symbol is added to the Automa’s pool. The Destiny token goes to the Active Symbol the Automa has more of; a tie sets it aside.", "Jogue a ficha de Destino do Modo Solo: esse Símbolo Ativo vai para a reserva do Automa. A ficha de Destino vai para o Símbolo Ativo que o Automa tem mais; empate a deixa de lado.");
+      destiny = [
+        t("Flip the Solo Mode Destiny token: that Active Symbol is added to the Automa’s pool.", "Jogue a ficha de Destino do Modo Solo: esse Símbolo Ativo vai para a reserva do Automa."),
+        t("The Destiny token goes to the Active Symbol the Automa has more of; a tie sets it aside.", "A ficha de Destino vai para o Símbolo Ativo que o Automa tem mais; empate a deixa de lado.")
+      ];
     } else {
-      destiny = t(`Each player announces which Active Symbol they have more of (or a tie). The Destiny token goes to the Path the majority of players announced; a tie between players sets it aside.${m.players === 2 ? " 2 players: the face-up cards left on the playmat vote as a 3rd player." : ""}`, `Cada jogador anuncia de qual Símbolo Ativo tem mais (ou empate). A ficha de Destino vai para o Caminho que a maioria dos jogadores anunciou; empate entre jogadores a deixa de lado.${m.players === 2 ? " 2 jogadores: as cartas viradas para cima que sobraram no tapete votam como 3º jogador." : ""}`);
+      destiny = [
+        t("Each player announces which Active Symbol they have more of (or a tie).", "Cada jogador anuncia de qual Símbolo Ativo tem mais (ou empate)."),
+        t("The Destiny token goes to the Path the majority announced; a tie between players sets it aside.", "A ficha de Destino vai para o Caminho que a maioria anunciou; empate entre jogadores a deixa de lado."),
+        m.players === 2 ? t("With 2 players, face-up cards left on the playmat vote as a 3rd player.", "Com 2 jogadores, cartas viradas para cima que sobraram no tapete votam como 3º jogador.") : ""
+      ];
     }
     let chapter;
     if (m.isLM) {
-      chapter = t("Trail card: meet it for +3 Experience, or roll the Monster die. Gain Experience for the Non-Active Symbols shown on it. Total all Fight Symbols as damage. Keep 1 card (after Chapter 1) or 2 (after Chapter 2).", "Carta de Trilha: cumpra para +3 Experiência, ou role o dado do Monstro. Ganhe Experiência pelos Símbolos Não Ativos mostrados nela. Some todos os Símbolos de Luta como dano. Guarde 1 carta (após o Capítulo 1) ou 2 (após o Capítulo 2).");
+      chapter = [
+        t("Trail card: meet it for +3 Experience, or roll the Monster die.", "Carta de Trilha: cumpra para +3 Experiência, ou role o dado do Monstro."),
+        t("Gain Experience for the Non-Active Symbols shown on it.", "Ganhe Experiência pelos Símbolos Não Ativos mostrados nela."),
+        t("Total all Fight Symbols as damage.", "Some todos os Símbolos de Luta como dano."),
+        t("Keep 1 card (after Chapter 1) or 2 (after Chapter 2).", "Guarde 1 carta (após o Capítulo 1) ou 2 (após o Capítulo 2).")
+      ];
     } else if (m.isWH) {
-      chapter = t("Dominating Symbol by Destiny tokens. Heroes score the Dominating Symbols of their best and worst Hero; the Wild Hunt scores its own plus a bonus per Hero with fewer. Everyone gains Experience for Non-Dominating Symbols. Keep 1 card / 2 cards.", "Símbolo Dominante pelas fichas de Destino. Os Heróis marcam os Símbolos Dominantes do melhor e do pior Herói; a Wild Hunt marca os seus mais um bônus por Herói com menos. Todos ganham Experiência pelos Não Dominantes. Guarde 1 carta / 2 cartas.");
+      chapter = [
+        t("Dominating Symbol is decided by Destiny tokens.", "Símbolo Dominante é decidido pelas fichas de Destino."),
+        t("Heroes score Dominating Symbols of their best and worst Hero; the Wild Hunt scores its own plus a bonus per Hero with fewer.", "Heróis marcam Símbolos Dominantes do melhor e do pior Herói; a Wild Hunt marca os seus mais bônus por Herói com menos."),
+        t("Everyone gains Experience for Non-Dominating Symbols.", "Todos ganham Experiência pelos Não Dominantes."),
+        t("Keep 1 card / 2 cards.", "Guarde 1 carta / 2 cartas.")
+      ];
     } else {
-      chapter = t("Dominating Symbol = more Destiny tokens (tie: higher-numbered token). +1 Victory Point per Dominating Symbol, +1 Experience per Non-Dominating. Path tokens to the most Left and most Right Symbols. Discard tokens; keep 1 card (after Chapter 1) or 2 (after Chapter 2). Read the Tale card the Dominating Symbol points to.", "Símbolo Dominante = mais fichas de Destino (empate: ficha de número maior). +1 Ponto de Vitória por Símbolo Dominante, +1 Experiência por Não Dominante. Fichas de Caminho para quem tem mais Símbolos da Esquerda e da Direita. Descarte fichas; guarde 1 carta (após o Capítulo 1) ou 2 (após o Capítulo 2). Leia a carta de Conto indicada pelo Símbolo Dominante.");
+      chapter = [
+        t("Dominating Symbol = more Destiny tokens (tie: higher-numbered token).", "Símbolo Dominante = mais fichas de Destino (empate: ficha de número maior)."),
+        t("+1 Victory Point per Dominating Symbol, +1 Experience per Non-Dominating.", "+1 Ponto de Vitória por Símbolo Dominante, +1 Experiência por Não Dominante."),
+        t("Path tokens to the most Left and most Right Symbols.", "Fichas de Caminho para quem tem mais Símbolos da Esquerda e da Direita."),
+        t("Discard tokens; keep 1 card (after Chapter 1) or 2 (after Chapter 2).", "Descarte fichas; guarde 1 carta (após o Capítulo 1) ou 2 (após o Capítulo 2)."),
+        t("Read the Tale card the Dominating Symbol points to.", "Leia a carta de Conto indicada pelo Símbolo Dominante.")
+      ];
     }
     let end;
     if (m.isLM) {
-      end = t("After Chapter 3, the Golden Experience marker deals its Victory Point value as damage. Monster at 0 or less: you win. Otherwise, or if anyone loses their last Health Point at any time, you lose.", "Depois do Capítulo 3, o marcador Dourado de Experiência causa como dano o seu valor em Pontos de Vitória. Monstro em 0 ou menos: vocês vencem. Caso contrário, ou se alguém perder o último Ponto de Saúde a qualquer momento, vocês perdem.");
+      end = [
+        t("After Chapter 3, the Golden Experience marker deals its Victory Point value as damage.", "Depois do Capítulo 3, o marcador Dourado de Experiência causa como dano o seu valor em Pontos de Vitória."),
+        t("Monster at 0 or less: you win.", "Monstro em 0 ou menos: vocês vencem."),
+        t("Otherwise, or if anyone loses their last Health Point at any time, you lose.", "Caso contrário, ou se alguém perder o último Ponto de Saúde a qualquer momento, vocês perdem.")
+      ];
     } else if (m.isWH) {
-      end = t("One Hero (the one with the most Experience) scores the Golden Experience bonus for the Heroes; the Wild Hunt scores its own. Both sides score their Side Quests.", "Um Herói (o de mais Experiência) marca o bônus de Experiência Dourada pelos Heróis; a Wild Hunt marca o dela. Os dois lados marcam suas Missões Secundárias.");
+      end = [
+        t("One Hero (most Experience) scores the Golden Experience bonus for the Heroes; the Wild Hunt scores its own.", "Um Herói (mais Experiência) marca o bônus de Experiência Dourada pelos Heróis; a Wild Hunt marca o dela."),
+        t("Both sides score their Side Quests.", "Os dois lados marcam suas Missões Secundárias.")
+      ];
     } else {
-      end = t(`Chapter 3 scoring, then ${m.sideQuests ? "Side Quests, " : ""}Golden Experience bonus (needs at least 20 Experience) and the Tale’s own scoring. Most Victory Points wins; ties go to the player higher on the Initiative track.`, `Pontuação do Capítulo 3, depois ${m.sideQuests ? "Missões Secundárias, " : ""}bônus de Experiência Dourada (exige pelo menos 20 de Experiência) e a pontuação própria do Conto. Vence quem tiver mais Pontos de Vitória; empate vai para quem está mais alto na trilha de Iniciativa.`);
+      end = [
+        t("Chapter 3 scoring.", "Pontuação do Capítulo 3."),
+        m.sideQuests ? t("Side Quests.", "Missões Secundárias.") : "",
+        t("Golden Experience bonus (needs at least 20 Experience) and the Tale’s own scoring.", "Bônus de Experiência Dourada (exige pelo menos 20 de Experiência) e a pontuação própria do Conto."),
+        t("Most Victory Points wins; ties go to the player higher on the Initiative track.", "Vence quem tiver mais Pontos de Vitória; empate vai para quem está mais alto na trilha de Iniciativa.")
+      ];
     }
     const cards = [
       [t("1 · Drafting cards", "1 · Escolher cartas"), draft, "turn"],
@@ -869,8 +925,8 @@
       <p class="section-lead">${m.isLM
         ? t("3 Chapters × 3 Turns × 3 Steps. There are no Tale cards in this mode: the Legendary Monster card and the Trail cards take their place.", "3 Capítulos × 3 Turnos × 3 Etapas. Não há cartas de Conto neste modo: a carta do Monstro Lendário e as cartas de Trilha ocupam o lugar delas.")
         : t("3 Chapters × 3 Turns × 3 Steps. Tale cards are read before the first Chapter, between Chapters and at the end.", "3 Capítulos × 3 Turnos × 3 Etapas. As cartas de Conto são lidas antes do primeiro Capítulo, entre Capítulos e no fim.")}</p>
-      <div class="quick-grid">${cards.map(([title, body, target]) => `
-        <article class="info-card"><h3>${title}</h3><p>${body}</p><p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>`;
+      <div class="quick-grid">${cards.map(([title, lines, target]) => `
+        <article class="info-card"><h3>${title}</h3>${lineList(lines)}<p>${jump(target, t("Open the full rule", "Abrir a regra completa"))}</p></article>`).join("")}</div>`;
   }
 
   // --- Setup -------------------------------------------------------------------
