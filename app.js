@@ -49,6 +49,9 @@
     if (hash.startsWith("#/munchkin")) {
       return "munchkin";
     }
+    if (hash.startsWith("#/pandemic")) {
+      return "pandemic";
+    }
     return "index";
   }
 
@@ -73,14 +76,14 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, and Munchkin.",
-        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup e Munchkin."
+        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin, and Pandemic.",
+        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin e Pandemic."
       );
     }
     app.innerHTML = `
@@ -161,6 +164,10 @@
             <img class="game-cover" src="assets/covers/munchkin.webp" alt="${t("Munchkin core rulesheet", "Folha de regras base de Munchkin")}">
             <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Munchkin</h3><p>${t("Dungeon-crawling parody for 3–6 players. Choose the player count and the optional faster-play rules before setup.", "Paródia de masmorra para 3–6 jogadores. Escolha o número de jogadores e as regras opcionais de jogo mais rápido antes da preparação.")}</p><a class="button-primary" href="#/munchkin">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
           </article>
+          <article class="game-card available">
+            <img class="game-cover" src="assets/covers/pandemic.webp" alt="${t("Cover of the Pandemic rulebook", "Capa do manual de Pandemic")}">
+            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Pandemic</h3><p>${t("Cooperative race against four diseases for 2–5 players, with On the Brink, In the Lab and State of Emergency. Pick your boxes, player count, difficulty and challenges, and the guide builds that exact match.", "Corrida cooperativa contra quatro doenças para 2 a 5 jogadores, com On the Brink, In the Lab e State of Emergency. Escolha as caixas, o número de jogadores, a dificuldade e os desafios, e o guia monta exatamente essa partida.")}</p><a class="button-primary" href="#/pandemic">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
+          </article>
           <article class="game-card coming-soon">
             <div class="game-cover-empty" aria-hidden="true"></div>
             <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
@@ -198,6 +205,13 @@
     }
     if (route !== "munchkin") {
       document.body.classList.remove("theme-munchkin");
+    }
+    if (route !== "pandemic") {
+      document.body.classList.remove("theme-pandemic");
+    }
+    if (route === "pandemic" && window.Pandemic) {
+      window.Pandemic.renderInto(app);
+      return;
     }
     if (route === "munchkin" && window.Munchkin) {
       window.Munchkin.renderInto(app);
@@ -300,6 +314,10 @@
       window.Munchkin.onClick(event);
       return;
     }
+    if (route === "pandemic" && window.Pandemic) {
+      window.Pandemic.onClick(event);
+      return;
+    }
     const button = event.target.closest("button");
     if (!button || !app.contains(button)) {
       return;
@@ -374,6 +392,9 @@
     }
     if (route === "munchkin" && window.Munchkin) {
       window.Munchkin.onChange(event);
+    }
+    if (route === "pandemic" && window.Pandemic) {
+      window.Pandemic.onChange(event);
     }
   }
 

@@ -33,6 +33,10 @@ MANUALS = {
     "/manuals/lotr-duel-for-middle-earth_player-aid.pdf": ROOT / "manuals" / "lotr-duel-for-middle-earth_player-aid.pdf",
     "/manuals/coup_core.pdf": ROOT / "manuals" / "coup_core.pdf",
     "/manuals/munchkin_core.pdf": ROOT / "manuals" / "munchkin_core.pdf",
+    "/manuals/pandemic_core.pdf": ROOT / "manuals" / "pandemic_core.pdf",
+    "/manuals/pandemic_on-the-brink.pdf": ROOT / "manuals" / "pandemic_on-the-brink.pdf",
+    "/manuals/pandemic_in-the-lab.pdf": ROOT / "manuals" / "pandemic_in-the-lab.pdf",
+    "/manuals/pandemic_state-of-emergency.pdf": ROOT / "manuals" / "pandemic_state-of-emergency.pdf",
 }
 
 
