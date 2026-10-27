@@ -5326,3 +5326,310 @@ p {
     max-height: 320px;
   }
 }
+
+.theme-kelp {
+  --ink: #10373c;
+  --ink-soft: #21494c;
+  --paper: #e7f0e9;
+  --paper-light: #f5f8ee;
+  --paper-deep: #ccdfd2;
+  --line: #a7c7bd;
+  --muted: #587574;
+  --red: #d84468;
+  --red-dark: #9c274c;
+  --gold: #e9b64d;
+  --blue: #137f92;
+  --green: #237b72;
+  --shadow: 0 18px 45px rgb(9 52 59 / 14%);
+  background:
+    radial-gradient(circle at 12% 7%, rgb(21 148 154 / 11%), transparent 24rem),
+    var(--paper);
+}
+
+.theme-kelp .site-header {
+  background: #063e46;
+}
+
+.theme-kelp .game-hero {
+  background:
+    radial-gradient(ellipse at 86% 0%, rgb(31 170 166 / 35%), transparent 42%),
+    linear-gradient(118deg, #06343e 0%, #087079 58%, #315c55 100%);
+}
+
+.theme-kelp .hero-map {
+  background: #07333d;
+}
+
+.theme-kelp .hero-map img {
+  height: 360px;
+  object-fit: contain;
+  background: #07333d;
+  filter: none;
+}
+
+.theme-kelp .hero-map figcaption {
+  color: #d2e8de;
+}
+
+.theme-kelp .manual-icon-frame {
+  background: #e9f4e8;
+}
+
+.theme-kelp .setup-phase-header {
+  background: #d9eae1;
+}
+
+.kelp-page {
+  padding-top: 30px;
+}
+
+.kelp-config {
+  margin-bottom: 30px;
+}
+
+.kelp-config .panel-topline {
+  align-items: start;
+}
+
+.kelp-side-picker {
+  display: grid;
+  justify-items: end;
+  gap: 7px;
+}
+
+.kelp-side-picker > span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.kelp-choice-group {
+  min-width: 0;
+  margin: 0;
+  padding: 18px clamp(14px, 2vw, 25px) 20px;
+  border: 1px solid var(--line);
+  background: rgb(245 248 238 / 65%);
+}
+
+.kelp-choice-group legend {
+  padding: 0 7px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.kelp-choice-group legend span {
+  color: var(--green);
+}
+
+.kelp-choice-intro {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.kelp-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.kelp-choice-card {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  min-height: 88px;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.kelp-choice-card:hover {
+  border-color: var(--green);
+}
+
+.kelp-choice-card.is-selected {
+  border: 2px solid var(--green);
+  padding: 14px 15px;
+  box-shadow: 0 0 0 1px rgb(35 123 114 / 12%);
+}
+
+.kelp-choice-card input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+
+.kelp-choice-card input[type="radio"]:focus-visible,
+.kelp-setup-check > input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.kelp-choice-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.kelp-choice-copy strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.kelp-choice-copy small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.kelp-section-references {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 5px;
+}
+
+.kelp-section-references .source-link {
+  min-height: 30px;
+  padding: 5px 8px;
+  font-size: 9px;
+}
+
+.kelp-reference-side {
+  margin: -7px 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.kelp-reference-side strong {
+  color: var(--green);
+}
+
+.kelp-setup-check {
+  display: grid;
+  grid-template-columns: 19px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 14px 17px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.kelp-setup-check > input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--green);
+}
+
+.kelp-setup-copy {
+  display: grid;
+  gap: 5px;
+}
+
+.kelp-setup-copy > strong {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.kelp-setup-substeps {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.kelp-inline-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.kelp-inline-icons img {
+  width: auto;
+  height: 1.7em;
+  max-width: 2em;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.kelp-page .icon-card p {
+  margin: 4px 0 6px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.kelp-page .icon-card .source-link {
+  min-height: 28px;
+  padding: 4px 7px;
+  font-size: 9px;
+}
+
+.theme-kelp .victory-card.octopus {
+  border-top: 4px solid #d84468;
+}
+
+.theme-kelp .victory-card.shark {
+  border-top: 4px solid #137f92;
+}
+
+.theme-kelp .victory-card.is-current-side {
+  box-shadow: inset 0 0 0 2px var(--green);
+}
+
+.theme-kelp .setup-progress-controls progress::-webkit-progress-value,
+.theme-kelp .setup-progress-controls progress::-moz-progress-bar {
+  background: var(--green);
+}
+
+@media (max-width: 720px) {
+  .kelp-page {
+    padding-top: 18px;
+  }
+
+  .theme-kelp .kelp-page [id] {
+    scroll-margin-top: 20px;
+  }
+
+  .kelp-config .panel-topline {
+    flex-direction: column;
+  }
+
+  .kelp-side-picker {
+    justify-items: start;
+  }
+
+  .kelp-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kelp-choice-group {
+    padding: 15px 12px 18px;
+  }
+
+  .kelp-section-references {
+    justify-content: start;
+  }
+
+  .theme-kelp .hero-map img {
+    height: 300px;
+  }
+}

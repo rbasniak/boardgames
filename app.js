@@ -52,6 +52,9 @@
     if (hash.startsWith("#/pandemic")) {
       return "pandemic";
     }
+    if (hash.startsWith("#/kelp")) {
+      return "kelp";
+    }
     return "index";
   }
 
@@ -76,14 +79,14 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin, and Pandemic.",
-        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin e Pandemic."
+        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin, Pandemic, and Kelp.",
+        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin, Pandemic e Kelp."
       );
     }
     app.innerHTML = `
@@ -168,6 +171,10 @@
             <img class="game-cover" src="assets/covers/pandemic.webp" alt="${t("Cover of the Pandemic rulebook", "Capa do manual de Pandemic")}">
             <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Pandemic</h3><p>${t("Cooperative race against four diseases for 2–5 players, with On the Brink, In the Lab and State of Emergency. Pick your boxes, player count, difficulty and challenges, and the guide builds that exact match.", "Corrida cooperativa contra quatro doenças para 2 a 5 jogadores, com On the Brink, In the Lab e State of Emergency. Escolha as caixas, o número de jogadores, a dificuldade e os desafios, e o guia monta exatamente essa partida.")}</p><a class="button-primary" href="#/pandemic">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
           </article>
+          <article class="game-card available">
+            <img class="game-cover" src="assets/covers/kelp.webp" alt="${t("Cover of the Kelp: Shark vs. Octopus rulebook", "Capa do manual de Kelp: Shark vs. Octopus")}">
+            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Kelp</h3><p>${t("Asymmetric two-player hunt: switch between Shark and Octopus, choose the day or night board, and follow a side-specific quick reference and turn guide.", "Caçada assimétrica para duas pessoas: alterne entre Tubarão e Polvo, escolha o tabuleiro diurno ou noturno e consulte referências rápidas e regras específicas de cada lado.")}</p><a class="button-primary" href="#/kelp">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
+          </article>
           <article class="game-card coming-soon">
             <div class="game-cover-empty" aria-hidden="true"></div>
             <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
@@ -208,6 +215,13 @@
     }
     if (route !== "pandemic") {
       document.body.classList.remove("theme-pandemic");
+    }
+    if (route !== "kelp") {
+      document.body.classList.remove("theme-kelp");
+    }
+    if (route === "kelp" && window.Kelp) {
+      window.Kelp.renderInto(app);
+      return;
     }
     if (route === "pandemic" && window.Pandemic) {
       window.Pandemic.renderInto(app);
@@ -266,6 +280,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "kelp" && window.Kelp) {
+      window.Kelp.onClick(event);
+      return;
+    }
     if (route === "sniper-elite" && window.SniperElite) {
       window.SniperElite.onClick(event);
       return;
@@ -355,6 +373,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "kelp" && window.Kelp) {
+      window.Kelp.onChange(event);
+      return;
+    }
     if (route === "sniper-elite" && window.SniperElite) {
       window.SniperElite.onChange(event);
       return;
