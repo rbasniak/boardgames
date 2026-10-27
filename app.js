@@ -11,6 +11,113 @@
     return document.documentElement.lang === "en-US" ? en : pt;
   }
 
+  const META_ICON_PLAYERS = `<svg class="game-meta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>`;
+  const META_ICON_CLOCK = `<svg class="game-meta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>`;
+
+  function sortIndexCatalog(catalog) {
+    const live = [];
+    const planned = [];
+    for (const game of catalog) {
+      if (game.rulebook === "planned") {
+        planned.push(game);
+      } else {
+        live.push(game);
+      }
+    }
+    const byTitle = (a, b) => {
+      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+    };
+    live.sort(byTitle);
+    planned.sort(byTitle);
+    return live.concat(planned);
+  }
+
+  function renderGameBoxArt(game) {
+    const boxFile = game.boxFile || `${game.slug}.webp`;
+    const path = `assets/boxes/${boxFile}`;
+    const planned = game.rulebook === "planned";
+    const frameClass = planned ? "game-box-frame game-box-frame--planned" : "game-box-frame";
+    const overlay = planned ? '<span class="game-box-overlay" aria-hidden="true"></span>' : "";
+    const missingEn = `Add a box photo to <code>${path}</code>.`;
+    const missingPt = `Adicione a foto da caixa em <code>${path}</code>.`;
+    return `
+            <div class="${frameClass}">
+              <img class="game-box-photo" src="${path}" alt="${t(game.boxAltEn, game.boxAltPt)}" decoding="async" onerror="this.style.display='none';var missing=this.parentElement.querySelector('.game-box-missing');if(missing){missing.hidden=false;}console.warn('Missing box photo: ${path}');">
+              ${overlay}
+              <p class="game-box-missing" hidden>${t(missingEn, missingPt)}</p>
+            </div>`;
+  }
+
+  function renderGameMeta(game) {
+    const { players, minutes, bgg } = game;
+    const playerCount =
+      players.min === players.max ? String(players.min) : `${players.min}–${players.max}`;
+    const durationMin =
+      minutes.min === minutes.max ? `${minutes.min}` : `${minutes.min}–${minutes.max}`;
+    const complexityLevel = Math.min(5, Math.max(1, Math.round(bgg.weight)));
+    const complexityDots = Array.from({ length: 5 }, (_, index) => {
+      const filled = index < complexityLevel;
+      return `<span class="complexity-dot${filled ? " is-filled" : ""}"></span>`;
+    }).join("");
+    const bggUrl = `https://boardgamegeek.com/boardgame/${bgg.id}`;
+    const playersAria = t(
+      `Players: ${playerCount}`,
+      `Jogadores: ${playerCount}`
+    );
+    const timeAria = t(
+      `Playing time: ${durationMin} minutes`,
+      `Tempo de jogo: ${durationMin} min`
+    );
+    const complexityAria = t(
+      `Complexity ${complexityLevel} out of 5 (BGG weight ${bgg.weight.toFixed(2)})`,
+      `Complexidade ${complexityLevel} de 5 (peso BGG ${bgg.weight.toFixed(2)})`
+    );
+    return `
+            <div class="game-card-meta" aria-label="${t("BoardGameGeek stats", "Dados do BoardGameGeek")}">
+              <div class="game-meta-row game-meta-players" title="${playersAria}">
+                ${META_ICON_PLAYERS}
+                <span class="game-meta-value">${playerCount}</span>
+              </div>
+              <div class="game-meta-row game-meta-time" title="${timeAria}">
+                ${META_ICON_CLOCK}
+                <span class="game-meta-value">${durationMin} ${t("min", "min")}</span>
+              </div>
+              <a class="game-meta-bgg" href="${bggUrl}" target="_blank" rel="noopener noreferrer" title="${t("View on BoardGameGeek", "Ver no BoardGameGeek")}">
+                <span class="game-meta-bgg-label">BGG</span>
+                <span class="game-meta-bgg-rating">${bgg.rating.toFixed(1)}</span>
+              </a>
+              <div class="game-meta-complexity" title="${complexityAria}" aria-label="${complexityAria}">
+                <span class="game-meta-complexity-label">${t("Weight", "Peso")}</span>
+                <span class="complexity-scale" aria-hidden="true">${complexityDots}</span>
+              </div>
+            </div>`;
+  }
+
+  function renderIndexGameCard(game) {
+    const isPlanned = game.rulebook === "planned";
+    const cardClass = isPlanned ? "game-card planned" : "game-card available";
+    const kicker = isPlanned
+      ? t("Interactive rulebook · coming soon", "Livro interativo · em breve")
+      : t("Interactive rulebook · available", "Livro interativo · disponível");
+    const openLabel = isPlanned
+      ? t("Coming soon", "Em breve")
+      : t("Open index", "Abrir índice");
+    const action = isPlanned
+      ? `<button type="button" class="button-primary" disabled aria-disabled="true">${openLabel}</button>`
+      : `<a class="button-primary" href="#/${game.route}">${openLabel} <span aria-hidden="true">→</span></a>`;
+    return `
+          <article class="${cardClass}">
+            ${renderGameBoxArt(game)}
+            <div class="game-card-body">
+              <span class="card-kicker">${kicker}</span>
+              <h3>${game.title}</h3>
+              ${renderGameMeta(game)}
+              <p>${t(game.summaryEn, game.summaryPt)}</p>
+              ${action}
+            </div>
+          </article>`;
+  }
+
   function currentRoute() {
     const hash = window.location.hash;
     if (hash.startsWith("#/sniper-elite")) {
@@ -88,8 +195,8 @@
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin, Pandemic, Kelp, and Mind MGMT.",
-        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin, Pandemic, Kelp e Mind MGMT."
+        "Interactive board-game rulebooks for dozens of titles — available guides with match setup and manual references; more games coming soon.",
+        "Livros de regras interativos para dezenas de jogos — guias disponíveis com configuração de partida e referência aos manuais; mais títulos em breve."
       );
     }
     app.innerHTML = `
@@ -120,72 +227,13 @@
         </section>
         <div class="section-intro"><div><p class="eyebrow">${t("Game index", "Índice de jogos")}</p><h2>${t("Choose your battlefield", "Escolha seu campo de batalha")}</h2></div>
           <p>${t("Each game keeps its own saved match. Opening Not Enough Mana does not change the Sniper Elite setup.", "Cada jogo guarda a própria partida. Abrir Not Enough Mana não altera a configuração de Sniper Elite.")}</p>
+          <p class="section-intro-note">${t(
+            "Player counts, playing time, BGG rating and complexity weight come from BoardGameGeek (rounded for the 1–5 scale).",
+            "Jogadores, tempo, nota e peso vêm do BoardGameGeek (escala 1–5 arredondada a partir do peso)."
+          )}</p>
         </div>
         <div class="game-grid">
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/sniper-elite.webp" alt="${t("Cover of the Sniper Elite main rules manual", "Capa do manual principal de Sniper Elite")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Sniper Elite</h3><p>${t("Core game plus Eagle's Nest, Operation Kraken and Escalation. Choose your modules, map and playing side.", "Jogo base e expansões Eagle's Nest, Operation Kraken e Escalation. Escolha módulos, mapa e lado.")}</p><a class="button-primary" href="#/sniper-elite">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/not-enough-mana.webp" alt="${t("Cover of the Not Enough Mana booklet", "Capa do livreto de Not Enough Mana")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Not Enough Mana</h3><p>${t("Potion-drinking card duel for 3–6 wizards. Choose the table size, potion mana, and the printed variants before setup.", "Duelo de cartas com poções para 3–6 magos. Escolha o tamanho da mesa, a mana da poção e as variantes impressas antes da preparação.")}</p><a class="button-primary" href="#/not-enough-mana">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/avalon-the-riven-veil.webp" alt="${t("Cover of the Avalon: The Riven Veil Retail Edition rulebook", "Capa do manual Retail de Avalon: The Riven Veil")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Avalon: The Riven Veil</h3><p>${t("Core retail rules for 2–4 players. Configure the factions, seasons, battle system, and catch-up rules before setup.", "Regras Retail base para 2–4 jogadores. Configure as facções, estações, sistema de batalha e recuperação antes da preparação.")}</p><a class="button-primary" href="#/avalon-the-riven-veil">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/pagan-fate-of-roanoke.webp" alt="${t("Cover of the Pagan: The Fate of Roanoke rulebook", "Capa do manual de Pagan: The Fate of Roanoke")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Pagan: The Fate of Roanoke</h3><p>${t("Asymmetric Witch vs. Witch Hunter card duel. Choose the starter-deck scenario or build your own standard decks before setup.", "Duelo de cartas assimétrico Witch vs. Witch Hunter. Escolha o cenário de decks iniciais ou monte seus próprios decks padrão antes da preparação.")}</p><a class="button-primary" href="#/pagan">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/odins-ravens.webp" alt="${t("Cover of the Odin's Ravens rulebook", "Capa do manual de Odin's Ravens")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Odin's Ravens</h3><p>${t("A mythical 2-player race game. Fly your raven along the path with Flight cards, and use Loki's Trickery cards to help yourself or hinder your opponent.", "Um jogo de corrida mítica para 2 jogadores. Voe pela rota com cartas de Voo e use as cartas de Trapaça de Loki para se ajudar ou atrapalhar o oponente.")}</p><a class="button-primary" href="#/odins-ravens">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/western-legends.webp" alt="${t("Cover of the Western Legends rulebook", "Capa do livro de regras de Western Legends")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Western Legends</h3><p>${t("Wild West sandbox for 2–6 players with Ante Up, Blood Money, the small expansions, the five game modes and the official FAQ folded in. Pick a mode first; the guide filters every option, setup step and rule.", "Sandbox do Velho Oeste para 2–6 jogadores com Ante Up, Blood Money, as expansões pequenas, os cinco modos de jogo e o FAQ oficial incorporado. Escolha o modo primeiro; o guia filtra cada opção, passo de preparação e regra.")}</p><a class="button-primary" href="#/western-legends">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/lotr-fate-of-the-fellowship.webp" alt="${t("Cover of The Lord of the Rings: Fate of the Fellowship rulebook", "Capa do manual de The Lord of the Rings: Fate of the Fellowship")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>The Lord of the Rings: Fate of the Fellowship</h3><p>${t("Cooperative Pandemic System journey for 1–5 players. Choose the player count (including solo), difficulty level, objectives and first-game characters; the guide filters setup and rules.", "Jornada cooperativa do Pandemic System para 1–5 jogadores. Escolha o número de jogadores (inclusive solo), a dificuldade, os objetivos e os personagens da primeira partida; o guia filtra preparação e regras.")}</p><a class="button-primary" href="#/lotr-fate-of-the-fellowship">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/witcher-path-of-destiny.webp" alt="${t("Cover of The Witcher: Path of Destiny rulebook", "Capa do manual de The Witcher: Path of Destiny")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>The Witcher: Path of Destiny</h3><p>${t("Tableau-building card game for 1–5 players with Stretch Goals, A Grain of Truth, Wild Hunt, Legendary Monsters, Naglfar and Geralt on Roach. Mark your boxes and pick a mode — competitive Tale, Wild Hunt one-against-many or Legendary Monsters co-op; the guide filters every option, setup step and rule.", "Jogo de cartas de tableau para 1–5 jogadores com Stretch Goals, A Grain of Truth, Wild Hunt, Legendary Monsters, Naglfar e Geralt on Roach. Marque suas caixas e escolha o modo — Conto competitivo, Wild Hunt um contra todos ou Legendary Monsters cooperativo; o guia filtra cada opção, passo de preparação e regra.")}</p><a class="button-primary" href="#/witcher-path-of-destiny">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/cangaceiros.webp" alt="${t("Cover of the Cangaceiros rulebook", "Capa do manual de Cangaceiros")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Cangaceiros</h3><p>${t("Every-gang-for-itself race for 2–5 players across Brazil's Sertão. Choose your player count; the guide scales the Setup inventory and card counts for you.", "Corrida sem cooperação para 2–5 jogadores pelo Sertão nordestino. Escolha o número de jogadores; o guia ajusta o inventário de Preparação e as quantidades de cartas automaticamente.")}</p><a class="button-primary" href="#/cangaceiros">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/lotr-duel-for-middle-earth.webp" alt="${t("Front page of The Lord of the Rings: Duel for Middle-earth rulebook", "Primeira página do manual de The Lord of the Rings: Duel for Middle-earth")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>The Lord of the Rings: Duel for Middle-earth</h3><p>${t("Two-player card-drafting duel: Fellowship vs. Sauron over 3 chapters, with three ways to win. The core box has no expansions or options, so the guide opens straight into Setup, with the Player Aid effects transcribed.", "Duelo de recrutamento de cartas para 2 jogadores: Sociedade vs. Sauron ao longo de 3 capítulos, com três formas de vencer. A caixa base não tem expansões nem opções, então o guia abre direto na Preparação, com os efeitos da Ajuda de jogo transcritos.")}</p><a class="button-primary" href="#/lotr-duel-for-middle-earth">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover coup-index-cover" src="assets/covers/coup.webp" alt="${t("First page of the Coup rulebook", "Primeira página do manual de Coup")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Coup</h3><p>${t("Bluffing game of influence for 2–6 players. Choose the table size and, at two players, the printed variant; the guide scales the Court, the coins and the deal.", "Jogo de blefe e influência para 2 a 6 jogadores. Escolha o tamanho da mesa e, com dois jogadores, a variante impressa; o guia ajusta a Corte, as moedas e a distribuição.")}</p><a class="button-primary" href="#/coup">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/munchkin.webp" alt="${t("Munchkin core rulesheet", "Folha de regras base de Munchkin")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Munchkin</h3><p>${t("Dungeon-crawling parody for 3–6 players. Choose the player count and the optional faster-play rules before setup.", "Paródia de masmorra para 3–6 jogadores. Escolha o número de jogadores e as regras opcionais de jogo mais rápido antes da preparação.")}</p><a class="button-primary" href="#/munchkin">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/pandemic.webp" alt="${t("Cover of the Pandemic rulebook", "Capa do manual de Pandemic")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Pandemic</h3><p>${t("Cooperative race against four diseases for 2–5 players, with On the Brink, In the Lab and State of Emergency. Pick your boxes, player count, difficulty and challenges, and the guide builds that exact match.", "Corrida cooperativa contra quatro doenças para 2 a 5 jogadores, com On the Brink, In the Lab e State of Emergency. Escolha as caixas, o número de jogadores, a dificuldade e os desafios, e o guia monta exatamente essa partida.")}</p><a class="button-primary" href="#/pandemic">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/kelp.webp" alt="${t("Cover of the Kelp: Shark vs. Octopus rulebook", "Capa do manual de Kelp: Shark vs. Octopus")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Kelp</h3><p>${t("Asymmetric two-player hunt: switch between Shark and Octopus, choose the day or night board, and follow a side-specific quick reference and turn guide.", "Caçada assimétrica para duas pessoas: alterne entre Tubarão e Polvo, escolha o tabuleiro diurno ou noturno e consulte referências rápidas e regras específicas de cada lado.")}</p><a class="button-primary" href="#/kelp">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card available">
-            <img class="game-cover" src="assets/covers/mind-mgmt.webp" alt="${t("Cover of the Mind MGMT rulebook", "Capa do manual de Mind MGMT")}">
-            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Mind MGMT</h3><p>${t("Asymmetric hidden-movement deduction for 2–5 players. Choose Training or Full Game, read as the Recruiter or Rogue Agents, and configure opened SHIFT modules.", "Dedução assimétrica com movimento oculto para 2–5 jogadores. Escolha Treinamento ou Partida completa, leia como Recruiter ou Rogue Agents e configure módulos SHIFT abertos.")}</p><a class="button-primary" href="#/mind-mgmt">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
-          </article>
-          <article class="game-card coming-soon">
-            <div class="game-cover-empty" aria-hidden="true"></div>
-            <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
-          </article>
+          ${sortIndexCatalog(window.FieldManualIndexCatalog || []).map((game) => renderIndexGameCard(game)).join("")}
         </div>
       </main>
       <footer class="site-footer"><p><strong>Field Manual</strong> · ${t(
