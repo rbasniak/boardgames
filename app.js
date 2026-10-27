@@ -55,6 +55,9 @@
     if (hash.startsWith("#/kelp")) {
       return "kelp";
     }
+    if (hash.startsWith("#/mind-mgmt")) {
+      return "mind-mgmt";
+    }
     return "index";
   }
 
@@ -79,14 +82,14 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.content = t(
-        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin, Pandemic, and Kelp.",
-        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin, Pandemic e Kelp."
+        "Interactive board-game rulebooks for Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin, Pandemic, Kelp, and Mind MGMT.",
+        "Livros de regras interativos de Sniper Elite, Not Enough Mana, Avalon: The Riven Veil, Pagan: The Fate of Roanoke, Odin's Ravens, Western Legends, The Lord of the Rings: Fate of the Fellowship, The Witcher: Path of Destiny, Cangaceiros, The Lord of the Rings: Duel for Middle-earth, Coup, Munchkin, Pandemic, Kelp e Mind MGMT."
       );
     }
     app.innerHTML = `
@@ -175,6 +178,10 @@
             <img class="game-cover" src="assets/covers/kelp.webp" alt="${t("Cover of the Kelp: Shark vs. Octopus rulebook", "Capa do manual de Kelp: Shark vs. Octopus")}">
             <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Kelp</h3><p>${t("Asymmetric two-player hunt: switch between Shark and Octopus, choose the day or night board, and follow a side-specific quick reference and turn guide.", "Caçada assimétrica para duas pessoas: alterne entre Tubarão e Polvo, escolha o tabuleiro diurno ou noturno e consulte referências rápidas e regras específicas de cada lado.")}</p><a class="button-primary" href="#/kelp">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
           </article>
+          <article class="game-card available">
+            <img class="game-cover" src="assets/covers/mind-mgmt.webp" alt="${t("Cover of the Mind MGMT rulebook", "Capa do manual de Mind MGMT")}">
+            <div class="game-card-body"><span class="card-kicker">${t("Interactive rulebook · available", "Livro interativo · disponível")}</span><h3>Mind MGMT</h3><p>${t("Asymmetric hidden-movement deduction for 2–5 players. Choose Training or Full Game, read as the Recruiter or Rogue Agents, and configure opened SHIFT modules.", "Dedução assimétrica com movimento oculto para 2–5 jogadores. Escolha Treinamento ou Partida completa, leia como Recruiter ou Rogue Agents e configure módulos SHIFT abertos.")}</p><a class="button-primary" href="#/mind-mgmt">${t("Open index", "Abrir índice")} <span aria-hidden="true">→</span></a></div>
+          </article>
           <article class="game-card coming-soon">
             <div class="game-cover-empty" aria-hidden="true"></div>
             <div class="game-card-body"><span class="card-kicker">${t("Future volume", "Próximo volume")}</span><h3>${t("More campaigns", "Mais campanhas")}</h3><p>${t("The general index can hold additional games and expansions.", "O índice geral pode receber outros jogos e expansões.")}</p></div>
@@ -218,6 +225,13 @@
     }
     if (route !== "kelp") {
       document.body.classList.remove("theme-kelp");
+    }
+    if (route !== "mind-mgmt") {
+      document.body.classList.remove("theme-mind-mgmt");
+    }
+    if (route === "mind-mgmt" && window.MindMgmt) {
+      window.MindMgmt.renderInto(app);
+      return;
     }
     if (route === "kelp" && window.Kelp) {
       window.Kelp.renderInto(app);
@@ -282,6 +296,10 @@
     const route = currentRoute();
     if (route === "kelp" && window.Kelp) {
       window.Kelp.onClick(event);
+      return;
+    }
+    if (route === "mind-mgmt" && window.MindMgmt) {
+      window.MindMgmt.onClick(event);
       return;
     }
     if (route === "sniper-elite" && window.SniperElite) {
@@ -375,6 +393,10 @@
     const route = currentRoute();
     if (route === "kelp" && window.Kelp) {
       window.Kelp.onChange(event);
+      return;
+    }
+    if (route === "mind-mgmt" && window.MindMgmt) {
+      window.MindMgmt.onChange(event);
       return;
     }
     if (route === "sniper-elite" && window.SniperElite) {

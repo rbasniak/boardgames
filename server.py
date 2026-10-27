@@ -38,6 +38,9 @@ MANUALS = {
     "/manuals/pandemic_in-the-lab.pdf": ROOT / "manuals" / "pandemic_in-the-lab.pdf",
     "/manuals/pandemic_state-of-emergency.pdf": ROOT / "manuals" / "pandemic_state-of-emergency.pdf",
     "/manuals/kelp_core.pdf": ROOT / "manuals" / "kelp_core.pdf",
+    "/manuals/mind-mgmt_core.pdf": ROOT / "manuals" / "mind-mgmt_core.pdf",
+    "/manuals/mind-mgmt_shift.pdf": ROOT / "manuals" / "mind-mgmt_shift.pdf",
+    "/manuals/mind-mgmt_extra.pdf": ROOT / "manuals" / "mind-mgmt_extra.pdf",
 }
 
 

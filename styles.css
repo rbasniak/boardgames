@@ -5633,3 +5633,459 @@ p {
     height: 300px;
   }
 }
+
+.theme-mind-mgmt {
+  --ink: #2a2520;
+  --ink-soft: #4b4035;
+  --paper: #f0e4ce;
+  --paper-light: #fff7e8;
+  --paper-deep: #e2cfad;
+  --line: #c4a97b;
+  --muted: #75634e;
+  --red: #d8392e;
+  --red-dark: #9c2a24;
+  --gold: #efc51d;
+  --blue: #109dbd;
+  --green: #60865b;
+  --shadow: 0 18px 45px rgb(46 33 16 / 17%);
+  background:
+    radial-gradient(circle at 12% 7%, rgb(239 197 29 / 14%), transparent 24rem),
+    var(--paper);
+}
+
+.theme-mind-mgmt .site-header {
+  background: #171d22;
+}
+
+.theme-mind-mgmt .game-hero {
+  background:
+    radial-gradient(ellipse at 86% 0%, rgb(239 197 29 / 25%), transparent 42%),
+    linear-gradient(118deg, #1a2024 0%, #243d43 58%, #0c8ba8 100%);
+}
+
+.theme-mind-mgmt .hero-map {
+  margin: 0;
+  background: #181e22;
+  border: 1px solid rgb(239 197 29 / 45%);
+}
+
+.theme-mind-mgmt .hero-map img {
+  height: 390px;
+  object-fit: contain;
+  background: #f3ead8;
+  filter: none;
+}
+
+.theme-mind-mgmt .hero-map figcaption {
+  color: #f5e7cc;
+}
+
+.theme-mind-mgmt .manual-icon-frame {
+  background: #fff7e7;
+  border-color: #c6a977;
+}
+
+.theme-mind-mgmt .setup-phase-header {
+  background: #ead9b9;
+}
+
+.theme-mind-mgmt .callout {
+  border-left-color: var(--gold);
+  background: #f5ead1;
+  color: var(--ink-soft);
+}
+
+.mind-page {
+  padding-top: 30px;
+}
+
+.mind-config {
+  margin-bottom: 30px;
+}
+
+.mind-config .panel-topline {
+  align-items: start;
+}
+
+.mind-reading-picker {
+  display: grid;
+  justify-items: end;
+  gap: 7px;
+}
+
+.mind-reading-picker > span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mind-choice-group,
+.mind-module-choice {
+  min-width: 0;
+  margin: 18px 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper-light);
+  box-shadow: var(--shadow);
+}
+
+.mind-choice-group legend,
+.mind-module-choice legend {
+  max-width: 100%;
+  padding: 0 8px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.mind-choice-group legend span {
+  color: var(--blue);
+}
+
+.mind-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.mind-choice-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fffaf0;
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease, box-shadow 120ms ease;
+}
+
+.mind-choice-card:hover {
+  border-color: var(--blue);
+}
+
+.mind-choice-card:has(input:checked) {
+  border-color: var(--blue);
+  background: #e8f5f4;
+  box-shadow: inset 0 0 0 1px var(--blue);
+}
+
+.mind-choice-card:has(input:focus-visible) {
+  outline: 3px solid rgb(16 157 189 / 35%);
+  outline-offset: 2px;
+}
+
+.mind-choice-card.is-disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.mind-choice-card input[type="radio"] {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--blue);
+}
+
+.mind-choice-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.mind-choice-copy strong {
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.mind-choice-copy small,
+.mind-config-note,
+.mind-extra-origin {
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.mind-module-setup {
+  margin: 8px 0 20px;
+  padding: 12px;
+  border-left: 4px solid var(--blue);
+  background: #e6f0e9;
+}
+
+.mind-module-group {
+  margin: 16px 0;
+}
+
+.mind-module-group h3 {
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--gold);
+}
+
+.mind-module-choice {
+  margin: 10px 0;
+  padding: 14px;
+  box-shadow: none;
+}
+
+.mind-module-choice legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.mind-module-choice legend small {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.mind-module-icon {
+  display: inline-flex;
+  flex: 0 0 34px;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff9e9;
+}
+
+.mind-module-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.mind-module-references {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.mind-extra-list {
+  margin: 12px 0 22px;
+  padding: 12px;
+  border: 1px dashed var(--red);
+  border-radius: 12px;
+  background: #fff0e2;
+}
+
+.mind-spoiler-note {
+  margin: 0 0 12px;
+  color: #762c25;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.mind-config-error {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid var(--red-dark);
+  border-left: 5px solid var(--red);
+  border-radius: 8px;
+  background: #fff0ec;
+  color: #77251f;
+}
+
+.mind-config-error .card-lines {
+  margin-bottom: 0;
+}
+
+.mind-reading-side {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.mind-reading-side strong {
+  color: var(--ink);
+}
+
+.mind-section-references {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.mind-inventory-grid,
+.mind-content-grid,
+.mind-example-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.mind-inventory-item,
+.mind-content-card,
+.mind-example-card {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-light);
+  box-shadow: var(--shadow);
+}
+
+.mind-inventory-item strong,
+.mind-content-card h3,
+.mind-example-card h3 {
+  color: var(--ink);
+}
+
+.mind-inventory-item p,
+.mind-content-card p,
+.mind-example-card p {
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.mind-content-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mind-content-heading h3 {
+  margin: 2px 0;
+}
+
+.mind-board-notes {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.5fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.mind-board-notes .map-note {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-light);
+}
+
+.mind-board-notes .map-note h3 {
+  margin-top: 0;
+}
+
+.mind-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mind-page .icon-card p {
+  margin: 4px 0 6px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.mind-setup-check {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fffaf0;
+}
+
+.mind-setup-check input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--blue);
+}
+
+.mind-setup-check > span {
+  min-width: 0;
+}
+
+.mind-setup-check > span > strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.mind-setup-substeps {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.theme-mind-mgmt .setup-phase-header {
+  border-left: 4px solid var(--blue);
+}
+
+.theme-mind-mgmt .setup-progress-controls progress::-webkit-progress-value,
+.theme-mind-mgmt .setup-progress-controls progress::-moz-progress-bar {
+  background: var(--gold);
+}
+
+.mind-page [id] {
+  scroll-margin-top: 84px;
+}
+
+@media (max-width: 720px) {
+  .mind-page {
+    padding-top: 18px;
+  }
+
+  .theme-mind-mgmt .game-hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-mind-mgmt .hero-map img {
+    height: 300px;
+  }
+
+  .mind-config .panel-topline {
+    flex-direction: column;
+  }
+
+  .mind-reading-picker {
+    justify-items: start;
+  }
+
+  .mind-choice-grid,
+  .mind-inventory-grid,
+  .mind-content-grid,
+  .mind-example-grid,
+  .mind-board-notes,
+  .mind-icon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mind-choice-group,
+  .mind-module-choice {
+    padding: 14px 10px;
+  }
+
+  .mind-module-choice legend {
+    flex-wrap: wrap;
+  }
+
+  .mind-module-choice legend small {
+    width: 100%;
+    margin-left: 42px;
+  }
+
+  .mind-section-references {
+    justify-content: flex-start;
+  }
+}
