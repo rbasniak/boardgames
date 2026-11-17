@@ -7192,3 +7192,367 @@ p {
     height: 300px;
   }
 }
+
+.theme-love-letter {
+  --ink: #2a1418;
+  --ink-soft: #46262b;
+  --paper: #f1e4c4;
+  --paper-light: #fbf3df;
+  --paper-deep: #e3cf9f;
+  --line: #c9a86a;
+  --muted: #6e4f45;
+  --red: #a3192b;
+  --red-dark: #6d0f1c;
+  --gold: #b88a2e;
+  --blue: #4c5f73;
+  --green: #8c1526;
+  --shadow: 0 18px 45px rgb(42 20 24 / 18%);
+  background:
+    radial-gradient(circle at 10% 6%, rgb(163 25 43 / 9%), transparent 24rem),
+    var(--paper);
+}
+
+.theme-love-letter .site-header {
+  background: #2b0b12;
+}
+
+.theme-love-letter .game-hero {
+  background:
+    radial-gradient(ellipse at 84% 0%, rgb(184 138 46 / 28%), transparent 44%),
+    linear-gradient(118deg, #22070d 0%, #4d0f1b 55%, #8c1526 100%);
+}
+
+.theme-love-letter .hero-map {
+  background: #22070d;
+}
+
+.theme-love-letter .hero-map img {
+  height: 340px;
+  object-fit: contain;
+  background: #22070d;
+  filter: none;
+}
+
+.theme-love-letter .hero-map figcaption {
+  color: #f0d9b5;
+}
+
+.theme-love-letter .manual-icon-frame {
+  background: #f8edd4;
+}
+
+.theme-love-letter .setup-phase-header {
+  background: #ead6ac;
+}
+
+.theme-love-letter .victory-card {
+  border-top: 4px solid var(--gold);
+}
+
+.theme-love-letter .setup-progress-controls progress::-webkit-progress-value,
+.theme-love-letter .setup-progress-controls progress::-moz-progress-bar {
+  background: var(--green);
+}
+
+.ll-page {
+  padding-top: 30px;
+}
+
+.ll-config {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.ll-choice-group {
+  min-width: 0;
+  margin: 0;
+  padding: 18px clamp(14px, 2vw, 25px) 20px;
+  border: 1px solid var(--line);
+  background: rgb(251 243 223 / 65%);
+}
+
+.ll-choice-group legend {
+  padding: 0 7px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ll-choice-group legend span {
+  color: var(--green);
+}
+
+.ll-choice-intro {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.ll-choice-intro .source-link,
+.ll-section-references .source-link {
+  min-height: 30px;
+  padding: 5px 8px;
+  font-size: 9px;
+}
+
+.ll-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.ll-choice-card {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  min-height: 88px;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.ll-choice-card:hover {
+  border-color: var(--green);
+}
+
+.ll-choice-card.is-selected {
+  border: 2px solid var(--green);
+  padding: 14px 15px;
+  box-shadow: 0 0 0 1px rgb(140 21 38 / 14%);
+}
+
+.ll-choice-card input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--green);
+  cursor: inherit;
+}
+
+.ll-choice-card input[type="radio"]:focus-visible,
+.ll-setup-check > input:focus-visible,
+.ll-inline-link:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.ll-choice-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.ll-choice-copy strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.ll-choice-copy small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.ll-section-references {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 5px;
+}
+
+.ll-interpretation {
+  display: inline-block;
+  margin-right: 4px;
+  padding: 1px 6px;
+  border: 1px solid var(--gold);
+  background: rgb(184 138 46 / 18%);
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ll-setup-check {
+  display: grid;
+  grid-template-columns: 19px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 14px 17px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ll-setup-check > input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--green);
+}
+
+.ll-setup-copy {
+  display: grid;
+  gap: 5px;
+}
+
+.ll-setup-copy > strong {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.ll-setup-substeps {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.ll-page .icon-card p {
+  margin: 4px 0 6px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.ll-page .icon-card .source-link {
+  min-height: 28px;
+  padding: 4px 7px;
+  font-size: 9px;
+}
+
+.ll-card-list {
+  margin-top: 4px;
+}
+
+.ll-copies {
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+.ll-inline-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--green);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ll-art-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin: 0 0 22px;
+}
+
+.ll-art-strip figure {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: 170px;
+  margin: 0;
+}
+
+.ll-art-strip img {
+  width: auto;
+  height: 220px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.ll-art-strip figcaption {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.ll-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.ll-person-head {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.ll-person-head h3 {
+  margin: 0 0 2px;
+}
+
+.ll-value {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+  background: #3a1a12;
+  color: #f2d48b;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .ll-choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .ll-page {
+    padding-top: 18px;
+  }
+
+  .theme-love-letter .ll-page [id] {
+    scroll-margin-top: 20px;
+  }
+
+  .ll-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ll-choice-group {
+    padding: 15px 12px 18px;
+  }
+
+  .ll-section-references {
+    justify-content: start;
+  }
+
+  .ll-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ll-art-strip figure {
+    width: 130px;
+  }
+
+  .ll-art-strip img {
+    height: 170px;
+  }
+
+  .theme-love-letter .hero-map img {
+    height: 240px;
+  }
+}
