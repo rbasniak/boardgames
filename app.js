@@ -171,6 +171,9 @@
     if (hash.startsWith("#/heat")) {
       return "heat";
     }
+    if (hash.startsWith("#/bristol-1350")) {
+      return "bristol-1350";
+    }
     return "index";
   }
 
@@ -195,7 +198,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -289,6 +292,13 @@
     if (route !== "heat") {
       document.body.classList.remove("theme-heat");
     }
+    if (route !== "bristol-1350") {
+      document.body.classList.remove("theme-bristol");
+    }
+    if (route === "bristol-1350" && window.Bristol1350) {
+      window.Bristol1350.renderInto(app);
+      return;
+    }
     if (route === "heat" && window.Heat) {
       window.Heat.renderInto(app);
       return;
@@ -362,6 +372,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "bristol-1350" && window.Bristol1350) {
+      window.Bristol1350.onClick(event);
+      return;
+    }
     if (route === "heat" && window.Heat) {
       window.Heat.onClick(event);
       return;
@@ -467,6 +481,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "bristol-1350" && window.Bristol1350) {
+      window.Bristol1350.onChange(event);
+      return;
+    }
     if (route === "heat" && window.Heat) {
       window.Heat.onChange(event);
       return;
