@@ -46,6 +46,7 @@ MANUALS = {
     "/manuals/heat_advanced.pdf": ROOT / "manuals" / "heat_advanced.pdf",
     "/manuals/bristol-1350_core.pdf": ROOT / "manuals" / "bristol-1350_core.pdf",
     "/manuals/love-letters_core.pdf": ROOT / "manuals" / "love-letters_core.pdf",
+    "/manuals/sky-team_core.pdf": ROOT / "manuals" / "sky-team_core.pdf",
 }
 
 

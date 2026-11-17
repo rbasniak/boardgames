@@ -177,6 +177,9 @@
     if (hash.startsWith("#/love-letter")) {
       return "love-letter";
     }
+    if (hash.startsWith("#/sky-team")) {
+      return "sky-team";
+    }
     return "index";
   }
 
@@ -201,7 +204,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -301,6 +304,13 @@
     if (route !== "love-letter") {
       document.body.classList.remove("theme-love-letter");
     }
+    if (route !== "sky-team") {
+      document.body.classList.remove("theme-sky-team");
+    }
+    if (route === "sky-team" && window.SkyTeam) {
+      window.SkyTeam.renderInto(app);
+      return;
+    }
     if (route === "love-letter" && window.LoveLetter) {
       window.LoveLetter.renderInto(app);
       return;
@@ -382,6 +392,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "sky-team" && window.SkyTeam) {
+      window.SkyTeam.onClick(event);
+      return;
+    }
     if (route === "love-letter" && window.LoveLetter) {
       window.LoveLetter.onClick(event);
       return;
@@ -495,6 +509,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "sky-team" && window.SkyTeam) {
+      window.SkyTeam.onChange(event);
+      return;
+    }
     if (route === "love-letter" && window.LoveLetter) {
       window.LoveLetter.onChange(event);
       return;
