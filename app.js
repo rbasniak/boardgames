@@ -165,6 +165,9 @@
     if (hash.startsWith("#/mind-mgmt")) {
       return "mind-mgmt";
     }
+    if (hash.startsWith("#/galileo-galilei")) {
+      return "galileo-galilei";
+    }
     return "index";
   }
 
@@ -189,7 +192,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -277,6 +280,13 @@
     if (route !== "mind-mgmt") {
       document.body.classList.remove("theme-mind-mgmt");
     }
+    if (route !== "galileo-galilei") {
+      document.body.classList.remove("theme-galileo");
+    }
+    if (route === "galileo-galilei" && window.GalileoGalilei) {
+      window.GalileoGalilei.renderInto(app);
+      return;
+    }
     if (route === "mind-mgmt" && window.MindMgmt) {
       window.MindMgmt.renderInto(app);
       return;
@@ -342,6 +352,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "galileo-galilei" && window.GalileoGalilei) {
+      window.GalileoGalilei.onClick(event);
+      return;
+    }
     if (route === "kelp" && window.Kelp) {
       window.Kelp.onClick(event);
       return;
@@ -439,6 +453,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "galileo-galilei" && window.GalileoGalilei) {
+      window.GalileoGalilei.onChange(event);
+      return;
+    }
     if (route === "kelp" && window.Kelp) {
       window.Kelp.onChange(event);
       return;
