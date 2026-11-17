@@ -168,6 +168,9 @@
     if (hash.startsWith("#/galileo-galilei")) {
       return "galileo-galilei";
     }
+    if (hash.startsWith("#/heat")) {
+      return "heat";
+    }
     return "index";
   }
 
@@ -192,7 +195,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -283,6 +286,13 @@
     if (route !== "galileo-galilei") {
       document.body.classList.remove("theme-galileo");
     }
+    if (route !== "heat") {
+      document.body.classList.remove("theme-heat");
+    }
+    if (route === "heat" && window.Heat) {
+      window.Heat.renderInto(app);
+      return;
+    }
     if (route === "galileo-galilei" && window.GalileoGalilei) {
       window.GalileoGalilei.renderInto(app);
       return;
@@ -352,6 +362,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "heat" && window.Heat) {
+      window.Heat.onClick(event);
+      return;
+    }
     if (route === "galileo-galilei" && window.GalileoGalilei) {
       window.GalileoGalilei.onClick(event);
       return;
@@ -453,6 +467,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "heat" && window.Heat) {
+      window.Heat.onChange(event);
+      return;
+    }
     if (route === "galileo-galilei" && window.GalileoGalilei) {
       window.GalileoGalilei.onChange(event);
       return;

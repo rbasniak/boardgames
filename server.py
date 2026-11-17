@@ -42,6 +42,8 @@ MANUALS = {
     "/manuals/mind-mgmt_shift.pdf": ROOT / "manuals" / "mind-mgmt_shift.pdf",
     "/manuals/mind-mgmt_extra.pdf": ROOT / "manuals" / "mind-mgmt_extra.pdf",
     "/manuals/galileo-galilei_core.pdf": ROOT / "manuals" / "galileo-galilei_core.pdf",
+    "/manuals/heat_core.pdf": ROOT / "manuals" / "heat_core.pdf",
+    "/manuals/heat_advanced.pdf": ROOT / "manuals" / "heat_advanced.pdf",
 }
 
 
