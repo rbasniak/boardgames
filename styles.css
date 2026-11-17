@@ -7936,3 +7936,451 @@ p {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- Deadwood 1876 ---------- */
+
+.theme-deadwood {
+  --ink: #2b1a10;
+  --ink-soft: #4a3020;
+  --paper: #efe3cc;
+  --paper-light: #faf3e4;
+  --paper-deep: #e0cfae;
+  --line: #bfa47c;
+  --muted: #6b513a;
+  --red: #8e2a1c;
+  --red-dark: #5f1a10;
+  --gold: #c48c2c;
+  --blue: #7a2e1b;
+  --green: #7a2e1b;
+  --shadow: 0 18px 45px rgb(43 26 16 / 18%);
+  background:
+    radial-gradient(circle at 92% 4%, rgb(196 140 44 / 14%), transparent 22rem),
+    radial-gradient(circle at 6% 10%, rgb(122 46 27 / 10%), transparent 26rem),
+    var(--paper);
+}
+
+.theme-deadwood .site-header {
+  background: #24140b;
+}
+
+.theme-deadwood .game-hero {
+  background:
+    radial-gradient(ellipse at 80% 0%, rgb(196 140 44 / 32%), transparent 48%),
+    linear-gradient(120deg, #24140b 0%, #4f2a17 55%, #7a2e1b 100%);
+}
+
+.theme-deadwood .hero-map {
+  background: #24140b;
+}
+
+.theme-deadwood .hero-map img {
+  height: 360px;
+  object-fit: contain;
+  background: #24140b;
+  filter: none;
+}
+
+.theme-deadwood .hero-map figcaption {
+  color: #ecd9b8;
+}
+
+.theme-deadwood .manual-icon-frame {
+  background: #f6ecd8;
+}
+
+.theme-deadwood .setup-phase-header {
+  background: #e6d3b0;
+}
+
+.theme-deadwood .victory-card {
+  border-top: 4px solid var(--gold);
+}
+
+.theme-deadwood .setup-progress-controls progress::-webkit-progress-value,
+.theme-deadwood .setup-progress-controls progress::-moz-progress-bar {
+  background: var(--red);
+}
+
+.dw-page {
+  padding-top: 30px;
+}
+
+.dw-config {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.dw-choice-group {
+  min-width: 0;
+  margin: 0;
+  padding: 18px clamp(14px, 2vw, 25px) 20px;
+  border: 1px solid var(--line);
+  background: rgb(255 255 255 / 70%);
+}
+
+.dw-choice-group legend {
+  padding: 0 7px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.dw-choice-group legend span {
+  color: var(--green);
+}
+
+.dw-choice-intro {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.dw-choice-intro .source-link,
+.dw-section-references .source-link {
+  min-height: 30px;
+  padding: 5px 8px;
+  font-size: 9px;
+}
+
+.dw-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dw-choice-card {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  min-height: 88px;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.dw-choice-card:hover {
+  border-color: var(--green);
+}
+
+.dw-choice-card.is-selected {
+  border: 2px solid var(--green);
+  padding: 14px 15px;
+  box-shadow: 0 0 0 1px rgb(122 46 27 / 18%);
+}
+
+.dw-choice-card input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--green);
+  cursor: inherit;
+}
+
+.dw-choice-card input[type="radio"]:focus-visible,
+.dw-setup-check > input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.dw-choice-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.dw-choice-copy strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.dw-choice-copy small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.dw-section-references {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 5px;
+}
+
+.dw-interpretation {
+  display: inline-block;
+  margin-right: 4px;
+  padding: 1px 6px;
+  border: 1px solid var(--gold);
+  background: rgb(196 140 44 / 18%);
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dw-setup-check {
+  display: grid;
+  grid-template-columns: 19px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 14px 17px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.dw-setup-check > input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--green);
+}
+
+.dw-setup-copy {
+  display: grid;
+  gap: 5px;
+}
+
+.dw-setup-copy > strong {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.dw-setup-substeps {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.dw-page .icon-card p {
+  margin: 4px 0 6px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.dw-page .icon-card .source-link {
+  min-height: 28px;
+  padding: 4px 7px;
+  font-size: 9px;
+}
+
+@media (max-width: 720px) {
+  .dw-page {
+    padding-top: 18px;
+  }
+
+  .theme-deadwood .dw-page [id] {
+    scroll-margin-top: 20px;
+  }
+
+  .dw-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dw-choice-group {
+    padding: 15px 12px 18px;
+  }
+
+  .dw-section-references {
+    justify-content: start;
+  }
+
+  .theme-deadwood .hero-map img {
+    height: 240px;
+  }
+}
+
+.dw-choice-note {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--gold);
+  background: rgb(196 140 44 / 10%);
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+
+
+.dw-inline-icon {
+  display: inline-block;
+  width: auto;
+  height: 1.6em;
+  max-width: 3em;
+  margin: 0 2px;
+  vertical-align: middle;
+  object-fit: contain;
+}
+
+.dw-action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.dw-action-head {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.dw-action-head img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.dw-action-head h3 {
+  margin: 2px 0 0;
+}
+
+
+
+
+.dw-advice {
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+}
+
+.dw-advice summary {
+  color: var(--ink);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dw-advice[open] summary {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 720px) {
+  .dw-action-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dw-choice-grid-players {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dw-choice-grid-players .dw-choice-card {
+  min-height: 0;
+}
+
+.dw-flow {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding-left: 22px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dw-badge-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 18px;
+}
+
+.dw-badge-row figure {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 10px 6px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+  color: var(--ink);
+  font-weight: 800;
+  text-align: center;
+}
+
+.dw-badge-row img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.dw-badge-row figcaption {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dw-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 18px;
+}
+
+.dw-odds {
+  width: 100%;
+  min-width: 460px;
+  border-collapse: collapse;
+  background: var(--paper-light);
+  font-size: 13px;
+}
+
+.dw-odds caption {
+  padding: 0 0 8px;
+  color: var(--ink);
+  font-weight: 800;
+  text-align: left;
+}
+
+.dw-odds th,
+.dw-odds td {
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  text-align: center;
+}
+
+.dw-odds th {
+  color: var(--ink);
+  font-size: 11px;
+}
+
+.dw-odds th span {
+  display: block;
+}
+
+.dw-odds td {
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .dw-choice-grid-players {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dw-badge-row {
+    gap: 6px;
+  }
+
+  .dw-badge-row img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .theme-deadwood .hero-map img {
+    height: 260px;
+  }
+}

@@ -180,6 +180,9 @@
     if (hash.startsWith("#/sky-team")) {
       return "sky-team";
     }
+    if (hash.startsWith("#/deadwood-1876")) {
+      return "deadwood-1876";
+    }
     return "index";
   }
 
@@ -204,7 +207,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -307,6 +310,13 @@
     if (route !== "sky-team") {
       document.body.classList.remove("theme-sky-team");
     }
+    if (route !== "deadwood-1876") {
+      document.body.classList.remove("theme-deadwood");
+    }
+    if (route === "deadwood-1876" && window.Deadwood1876) {
+      window.Deadwood1876.renderInto(app);
+      return;
+    }
     if (route === "sky-team" && window.SkyTeam) {
       window.SkyTeam.renderInto(app);
       return;
@@ -392,6 +402,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "deadwood-1876" && window.Deadwood1876) {
+      window.Deadwood1876.onClick(event);
+      return;
+    }
     if (route === "sky-team" && window.SkyTeam) {
       window.SkyTeam.onClick(event);
       return;
@@ -509,6 +523,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "deadwood-1876" && window.Deadwood1876) {
+      window.Deadwood1876.onChange(event);
+      return;
+    }
     if (route === "sky-team" && window.SkyTeam) {
       window.SkyTeam.onChange(event);
       return;
