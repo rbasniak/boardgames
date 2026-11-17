@@ -186,6 +186,9 @@
     if (hash.startsWith("#/bang")) {
       return "bang";
     }
+    if (hash.startsWith("#/7-wonders")) {
+      return "7-wonders";
+    }
     return "index";
   }
 
@@ -210,7 +213,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -319,6 +322,13 @@
     if (route !== "bang") {
       document.body.classList.remove("theme-bang");
     }
+    if (route !== "7-wonders") {
+      document.body.classList.remove("theme-seven-wonders");
+    }
+    if (route === "7-wonders" && window.SevenWonders) {
+      window.SevenWonders.renderInto(app);
+      return;
+    }
     if (route === "bang" && window.Bang) {
       window.Bang.renderInto(app);
       return;
@@ -412,6 +422,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "7-wonders" && window.SevenWonders) {
+      window.SevenWonders.onClick(event);
+      return;
+    }
     if (route === "bang" && window.Bang) {
       window.Bang.onClick(event);
       return;
@@ -537,6 +551,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "7-wonders" && window.SevenWonders) {
+      window.SevenWonders.onChange(event);
+      return;
+    }
     if (route === "bang" && window.Bang) {
       window.Bang.onChange(event);
       return;

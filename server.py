@@ -49,6 +49,8 @@ MANUALS = {
     "/manuals/sky-team_core.pdf": ROOT / "manuals" / "sky-team_core.pdf",
     "/manuals/deadwood-1876_core.pdf": ROOT / "manuals" / "deadwood-1876_core.pdf",
     "/manuals/bang_core.pdf": ROOT / "manuals" / "bang_core.pdf",
+    "/manuals/7-wonders_core.pdf": ROOT / "manuals" / "7-wonders_core.pdf",
+    "/manuals/7-wonders_leaders.pdf": ROOT / "manuals" / "7-wonders_leaders.pdf",
 }
 
 
