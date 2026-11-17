@@ -48,6 +48,7 @@ MANUALS = {
     "/manuals/love-letters_core.pdf": ROOT / "manuals" / "love-letters_core.pdf",
     "/manuals/sky-team_core.pdf": ROOT / "manuals" / "sky-team_core.pdf",
     "/manuals/deadwood-1876_core.pdf": ROOT / "manuals" / "deadwood-1876_core.pdf",
+    "/manuals/bang_core.pdf": ROOT / "manuals" / "bang_core.pdf",
 }
 
 

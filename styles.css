@@ -8384,3 +8384,491 @@ p {
     height: 260px;
   }
 }
+
+/* ---------- BANG! ---------- */
+
+.theme-bang {
+  --ink: #2b1a10;
+  --ink-soft: #4a3020;
+  --paper: #f0dfb8;
+  --paper-light: #faf0d6;
+  --paper-deep: #e2c891;
+  --line: #c39a5c;
+  --muted: #6b4a33;
+  --red: #b3201b;
+  --red-dark: #7a120f;
+  --gold: #c8892b;
+  --blue: #3f5f86;
+  --green: #b3201b;
+  --shadow: 0 18px 45px rgb(43 26 16 / 18%);
+  background:
+    radial-gradient(circle at 12% 4%, rgb(200 137 43 / 14%), transparent 26rem),
+    var(--paper);
+}
+
+.theme-bang .site-header {
+  background: #2a140a;
+}
+
+.theme-bang .game-hero {
+  background:
+    radial-gradient(ellipse at 86% 0%, rgb(232 176 74 / 30%), transparent 46%),
+    linear-gradient(118deg, #2a140a 0%, #5a2410 52%, #a6361a 100%);
+}
+
+.theme-bang .hero-map {
+  background: #2a140a;
+}
+
+.theme-bang .hero-map img {
+  height: 340px;
+  object-fit: contain;
+  background: #2a140a;
+  filter: none;
+}
+
+.theme-bang .hero-map figcaption {
+  color: #f3dcae;
+}
+
+.theme-bang .manual-icon-frame {
+  background: #f6e7c4;
+}
+
+.theme-bang .setup-phase-header {
+  background: #e8cf9b;
+}
+
+.theme-bang .victory-card {
+  border-top: 4px solid var(--red);
+}
+
+.theme-bang .setup-progress-controls progress::-webkit-progress-value,
+.theme-bang .setup-progress-controls progress::-moz-progress-bar {
+  background: var(--red);
+}
+
+.bg-page {
+  padding-top: 30px;
+}
+
+.bg-config {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.bg-choice-group {
+  min-width: 0;
+  margin: 0;
+  padding: 18px clamp(14px, 2vw, 25px) 20px;
+  border: 1px solid var(--line);
+  background: rgb(250 240 214 / 65%);
+}
+
+.bg-choice-group legend {
+  padding: 0 7px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.bg-choice-group legend span {
+  color: var(--red);
+}
+
+.bg-choice-intro {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.bg-choice-intro .source-link,
+.bg-section-references .source-link {
+  min-height: 30px;
+  padding: 5px 8px;
+  font-size: 9px;
+}
+
+.bg-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.bg-choice-grid.bg-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.bg-choice-card {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  min-height: 88px;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.bg-choice-card:hover {
+  border-color: var(--red);
+}
+
+.bg-choice-card.is-selected {
+  border: 2px solid var(--red);
+  padding: 14px 15px;
+  box-shadow: 0 0 0 1px rgb(179 32 27 / 14%);
+}
+
+.bg-choice-card input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--red);
+  cursor: inherit;
+}
+
+.bg-choice-card input[type="radio"]:focus-visible,
+.bg-setup-check > input:focus-visible,
+.bg-inline-link:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.bg-choice-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.bg-choice-copy strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.bg-choice-copy small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.bg-section-references {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 5px;
+}
+
+.bg-interpretation {
+  display: inline-block;
+  margin-right: 4px;
+  padding: 1px 6px;
+  border: 1px solid var(--gold);
+  background: rgb(200 137 43 / 18%);
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bg-setup-check {
+  display: grid;
+  grid-template-columns: 19px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 14px 17px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.bg-setup-check > input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--red);
+}
+
+.bg-setup-copy {
+  display: grid;
+  gap: 5px;
+}
+
+.bg-setup-copy > strong {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.bg-setup-substeps {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.bg-page .icon-card p {
+  margin: 4px 0 6px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.bg-page .icon-card .source-link {
+  min-height: 28px;
+  padding: 4px 7px;
+  font-size: 9px;
+}
+
+.bg-inline-icon {
+  display: inline-block;
+  width: auto;
+  height: 22px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.bg-inline-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--red);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.bg-card-list {
+  margin-top: 4px;
+}
+
+.bg-kind {
+  display: inline-block;
+  padding: 0 5px;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+}
+
+.bg-kind-brown {
+  background: #8a5a2b;
+}
+
+.bg-kind-blue,
+.bg-kind-weapon {
+  background: var(--blue);
+}
+
+.bg-tip {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px dashed var(--line);
+  background: var(--paper-light);
+}
+
+.bg-tip img {
+  width: 96px;
+  height: auto;
+}
+
+.bg-tip p {
+  margin: 4px 0 8px;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.bg-distance {
+  display: grid;
+  gap: 18px;
+}
+
+.bg-distance figure {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.bg-distance img {
+  width: min(100%, 340px);
+  height: auto;
+}
+
+.bg-distance figcaption {
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.bg-card-grid,
+.bg-character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.bg-card {
+  border-left: 5px solid #8a5a2b;
+}
+
+.bg-card-blue,
+.bg-card-weapon {
+  border-left-color: var(--blue);
+}
+
+.bg-card-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.bg-card-head h3 {
+  margin: 0 0 2px;
+}
+
+.bg-card-symbols {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 4px;
+  padding: 4px;
+  background: #f6e7c4;
+}
+
+.bg-card-symbols .bg-inline-icon {
+  height: 26px;
+  margin: 0;
+}
+
+.bg-italian {
+  margin: 4px 0 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.bg-character-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.bg-character-head h3 {
+  margin: 0;
+}
+
+.bg-life {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-width: 46px;
+  height: 46px;
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+  background: #3a1a0c;
+  color: #f2d48b;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.bg-life small {
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bg-character p {
+  margin: 8px 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.bg-character .bg-sheriff-life {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.bg-role-head {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.bg-role-head h3 {
+  margin: 0 0 2px;
+}
+
+.bg-role.is-absent {
+  opacity: 0.6;
+}
+
+@media (max-width: 960px) {
+  .bg-choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .bg-page {
+    padding-top: 18px;
+  }
+
+  .theme-bang .bg-page [id] {
+    scroll-margin-top: 20px;
+  }
+
+  .bg-choice-grid,
+  .bg-choice-grid.bg-two {
+    grid-template-columns: 1fr;
+  }
+
+  .bg-choice-group {
+    padding: 15px 12px 18px;
+  }
+
+  .bg-section-references {
+    justify-content: start;
+  }
+
+  .bg-card-grid,
+  .bg-character-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bg-tip {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+
+  .bg-tip img {
+    width: 64px;
+  }
+
+  .theme-bang .hero-map img {
+    height: 240px;
+  }
+}

@@ -183,6 +183,9 @@
     if (hash.startsWith("#/deadwood-1876")) {
       return "deadwood-1876";
     }
+    if (hash.startsWith("#/bang")) {
+      return "bang";
+    }
     return "index";
   }
 
@@ -207,7 +210,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -313,6 +316,13 @@
     if (route !== "deadwood-1876") {
       document.body.classList.remove("theme-deadwood");
     }
+    if (route !== "bang") {
+      document.body.classList.remove("theme-bang");
+    }
+    if (route === "bang" && window.Bang) {
+      window.Bang.renderInto(app);
+      return;
+    }
     if (route === "deadwood-1876" && window.Deadwood1876) {
       window.Deadwood1876.renderInto(app);
       return;
@@ -402,6 +412,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "bang" && window.Bang) {
+      window.Bang.onClick(event);
+      return;
+    }
     if (route === "deadwood-1876" && window.Deadwood1876) {
       window.Deadwood1876.onClick(event);
       return;
@@ -523,6 +537,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "bang" && window.Bang) {
+      window.Bang.onChange(event);
+      return;
+    }
     if (route === "deadwood-1876" && window.Deadwood1876) {
       window.Deadwood1876.onChange(event);
       return;
