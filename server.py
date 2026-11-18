@@ -72,6 +72,8 @@ MANUALS = {
     "/manuals/point-galaxy_core.pdf": ROOT / "manuals" / "point-galaxy_core.pdf",
     "/manuals/rebel-princess_core.pdf": ROOT / "manuals" / "rebel-princess_core.pdf",
     "/manuals/salem-1692_core.pdf": ROOT / "manuals" / "salem-1692_core.pdf",
+    "/manuals/marvel-dice-throne_core.pdf": ROOT / "manuals" / "marvel-dice-throne_core.pdf",
+    "/manuals/marvel-dice-throne_missions.pdf": ROOT / "manuals" / "marvel-dice-throne_missions.pdf",
 }
 
 
