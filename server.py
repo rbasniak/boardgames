@@ -55,6 +55,12 @@ MANUALS = {
     "/manuals/azul_core.pdf": ROOT / "manuals" / "azul_core.pdf",
     "/manuals/azul-queens-garden_core.pdf": ROOT / "manuals" / "azul-queens-garden_core.pdf",
     "/manuals/betrayal-at-house-on-the-hill_core.pdf": ROOT / "manuals" / "betrayal-at-house-on-the-hill_core.pdf",
+    "/manuals/carcassonne_core.pdf": ROOT / "manuals" / "carcassonne_core.pdf",
+    "/manuals/carcassonne_inns_and_cathedrals.pdf": ROOT / "manuals" / "carcassonne_inns_and_cathedrals.pdf",
+    "/manuals/carcassonne_dragon_and_fairy.pdf": ROOT / "manuals" / "carcassonne_dragon_and_fairy.pdf",
+    "/manuals/carcassonne_festival.pdf": ROOT / "manuals" / "carcassonne_festival.pdf",
+    "/manuals/carcassonne_drawbridges.pdf": ROOT / "manuals" / "carcassonne_drawbridges.pdf",
+    "/manuals/carcassonne_german-cathedrals.pdf": ROOT / "manuals" / "carcassonne_german-cathedrals.pdf",
 }
 
 
