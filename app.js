@@ -233,6 +233,10 @@
     if (/^#\/patchwork(?:$|[/?])/.test(hash)) {
       return "patchwork";
     }
+    // Exact match so "#/point-galaxy" never captures a longer route.
+    if (/^#\/point-galaxy(?:$|[/?])/.test(hash)) {
+      return "point-galaxy";
+    }
     // Exact match so "#/knitting-circle" never captures a longer route.
     if (/^#\/knitting-circle(?:$|[/?])/.test(hash)) {
       return "knitting-circle";
@@ -261,7 +265,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks", "theme-patchwork");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks", "theme-patchwork", "theme-point-galaxy");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -412,6 +416,13 @@
     if (route !== "patchwork") {
       document.body.classList.remove("theme-patchwork");
     }
+    if (route !== "point-galaxy") {
+      document.body.classList.remove("theme-point-galaxy");
+    }
+    if (route === "point-galaxy" && window.PointGalaxy) {
+      window.PointGalaxy.renderInto(app);
+      return;
+    }
     if (route === "patchwork" && window.Patchwork) {
       window.Patchwork.renderInto(app);
       return;
@@ -561,6 +572,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "point-galaxy" && window.PointGalaxy) {
+      window.PointGalaxy.onClick(event);
+      return;
+    }
     if (route === "patchwork" && window.Patchwork) {
       window.Patchwork.onClick(event);
       return;
@@ -742,6 +757,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "point-galaxy" && window.PointGalaxy) {
+      window.PointGalaxy.onChange(event);
+      return;
+    }
     if (route === "patchwork" && window.Patchwork) {
       window.Patchwork.onChange(event);
       return;
