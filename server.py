@@ -68,6 +68,7 @@ MANUALS = {
     "/manuals/knitting-circle_core.pdf": ROOT / "manuals" / "knitting-circle_core.pdf",
     "/manuals/mysterium_core.pdf": ROOT / "manuals" / "mysterium_core.pdf",
     "/manuals/parks_core.pdf": ROOT / "manuals" / "parks_core.pdf",
+    "/manuals/patchwork_core.pdf": ROOT / "manuals" / "patchwork_core.pdf",
 }
 
 

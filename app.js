@@ -229,6 +229,10 @@
     if (/^#\/parks(?:$|[/?])/.test(hash)) {
       return "parks";
     }
+    // Exact match so "#/patchwork" never captures a longer route.
+    if (/^#\/patchwork(?:$|[/?])/.test(hash)) {
+      return "patchwork";
+    }
     // Exact match so "#/knitting-circle" never captures a longer route.
     if (/^#\/knitting-circle(?:$|[/?])/.test(hash)) {
       return "knitting-circle";
@@ -257,7 +261,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks", "theme-patchwork");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -405,6 +409,13 @@
     if (route !== "parks") {
       document.body.classList.remove("theme-parks");
     }
+    if (route !== "patchwork") {
+      document.body.classList.remove("theme-patchwork");
+    }
+    if (route === "patchwork" && window.Patchwork) {
+      window.Patchwork.renderInto(app);
+      return;
+    }
     if (route === "parks" && window.Parks) {
       window.Parks.renderInto(app);
       return;
@@ -550,6 +561,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "patchwork" && window.Patchwork) {
+      window.Patchwork.onClick(event);
+      return;
+    }
     if (route === "parks" && window.Parks) {
       window.Parks.onClick(event);
       return;
@@ -727,6 +742,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "patchwork" && window.Patchwork) {
+      window.Patchwork.onChange(event);
+      return;
+    }
     if (route === "parks" && window.Parks) {
       window.Parks.onChange(event);
       return;
