@@ -225,6 +225,10 @@
     if (/^#\/mysterium(?:$|[/?])/.test(hash)) {
       return "mysterium";
     }
+    // Exact match so "#/parks" never captures a longer route.
+    if (/^#\/parks(?:$|[/?])/.test(hash)) {
+      return "parks";
+    }
     // Exact match so "#/knitting-circle" never captures a longer route.
     if (/^#\/knitting-circle(?:$|[/?])/.test(hash)) {
       return "knitting-circle";
@@ -253,7 +257,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -398,6 +402,13 @@
     if (route !== "mysterium") {
       document.body.classList.remove("theme-mysterium");
     }
+    if (route !== "parks") {
+      document.body.classList.remove("theme-parks");
+    }
+    if (route === "parks" && window.Parks) {
+      window.Parks.renderInto(app);
+      return;
+    }
     if (route === "mysterium" && window.Mysterium) {
       window.Mysterium.renderInto(app);
       return;
@@ -539,6 +550,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "parks" && window.Parks) {
+      window.Parks.onClick(event);
+      return;
+    }
     if (route === "mysterium" && window.Mysterium) {
       window.Mysterium.onClick(event);
       return;
@@ -712,6 +727,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "parks" && window.Parks) {
+      window.Parks.onChange(event);
+      return;
+    }
     if (route === "mysterium" && window.Mysterium) {
       window.Mysterium.onChange(event);
       return;
