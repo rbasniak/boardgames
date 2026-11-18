@@ -205,6 +205,10 @@
     if (hash.startsWith("#/carcassonne")) {
       return "carcassonne";
     }
+    // Exact match so "#/cascadia" never captures a longer route.
+    if (/^#\/cascadia(?:$|[/?])/.test(hash)) {
+      return "cascadia";
+    }
     return "index";
   }
 
@@ -229,7 +233,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -356,6 +360,13 @@
     if (route !== "carcassonne") {
       document.body.classList.remove("theme-carcassonne");
     }
+    if (route !== "cascadia") {
+      document.body.classList.remove("theme-cascadia");
+    }
+    if (route === "cascadia" && window.Cascadia) {
+      window.Cascadia.renderInto(app);
+      return;
+    }
     if (route === "carcassonne" && window.Carcassonne) {
       window.Carcassonne.renderInto(app);
       return;
@@ -473,6 +484,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "cascadia" && window.Cascadia) {
+      window.Cascadia.onClick(event);
+      return;
+    }
     if (route === "carcassonne" && window.Carcassonne) {
       window.Carcassonne.onClick(event);
       return;
@@ -622,6 +637,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "cascadia" && window.Cascadia) {
+      window.Cascadia.onChange(event);
+      return;
+    }
     if (route === "carcassonne" && window.Carcassonne) {
       window.Carcassonne.onChange(event);
       return;
