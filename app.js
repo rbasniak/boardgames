@@ -217,6 +217,10 @@
     if (/^#\/fit-to-print(?:$|[/?])/.test(hash)) {
       return "fit-to-print";
     }
+    // Exact match so "#/harry-potter-defense-against-the-dark-arts" never captures a longer route.
+    if (/^#\/harry-potter-defense-against-the-dark-arts(?:$|[/?])/.test(hash)) {
+      return "harry-potter-defense-against-the-dark-arts";
+    }
     return "index";
   }
 
@@ -241,7 +245,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -377,6 +381,13 @@
     if (route !== "fit-to-print") {
       document.body.classList.remove("theme-fit-to-print");
     }
+    if (route !== "harry-potter-defense-against-the-dark-arts") {
+      document.body.classList.remove("theme-hp-dada");
+    }
+    if (route === "harry-potter-defense-against-the-dark-arts" && window.HarryPotterDada) {
+      window.HarryPotterDada.renderInto(app);
+      return;
+    }
     if (route === "fit-to-print" && window.FitToPrint) {
       window.FitToPrint.renderInto(app);
       return;
@@ -506,6 +517,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "harry-potter-defense-against-the-dark-arts" && window.HarryPotterDada) {
+      window.HarryPotterDada.onClick(event);
+      return;
+    }
     if (route === "fit-to-print" && window.FitToPrint) {
       window.FitToPrint.onClick(event);
       return;
@@ -667,6 +682,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "harry-potter-defense-against-the-dark-arts" && window.HarryPotterDada) {
+      window.HarryPotterDada.onChange(event);
+      return;
+    }
     if (route === "fit-to-print" && window.FitToPrint) {
       window.FitToPrint.onChange(event);
       return;
