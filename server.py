@@ -63,6 +63,7 @@ MANUALS = {
     "/manuals/carcassonne_german-cathedrals.pdf": ROOT / "manuals" / "carcassonne_german-cathedrals.pdf",
     "/manuals/cascadia_core.pdf": ROOT / "manuals" / "cascadia_core.pdf",
     "/manuals/dixit_core.pdf": ROOT / "manuals" / "dixit_core.pdf",
+    "/manuals/fit-to-print_core.pdf": ROOT / "manuals" / "fit-to-print_core.pdf",
 }
 
 

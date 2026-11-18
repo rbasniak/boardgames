@@ -213,6 +213,10 @@
     if (/^#\/dixit(?:$|[/?])/.test(hash)) {
       return "dixit";
     }
+    // Exact match so "#/fit-to-print" never captures a longer route.
+    if (/^#\/fit-to-print(?:$|[/?])/.test(hash)) {
+      return "fit-to-print";
+    }
     return "index";
   }
 
@@ -237,7 +241,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -370,6 +374,13 @@
     if (route !== "dixit") {
       document.body.classList.remove("theme-dixit");
     }
+    if (route !== "fit-to-print") {
+      document.body.classList.remove("theme-fit-to-print");
+    }
+    if (route === "fit-to-print" && window.FitToPrint) {
+      window.FitToPrint.renderInto(app);
+      return;
+    }
     if (route === "dixit" && window.Dixit) {
       window.Dixit.renderInto(app);
       return;
@@ -495,6 +506,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "fit-to-print" && window.FitToPrint) {
+      window.FitToPrint.onClick(event);
+      return;
+    }
     if (route === "dixit" && window.Dixit) {
       window.Dixit.onClick(event);
       return;
@@ -652,6 +667,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "fit-to-print" && window.FitToPrint) {
+      window.FitToPrint.onChange(event);
+      return;
+    }
     if (route === "dixit" && window.Dixit) {
       window.Dixit.onChange(event);
       return;

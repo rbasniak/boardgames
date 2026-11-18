@@ -12590,3 +12590,338 @@ p {
     height: 240px;
   }
 }
+
+.theme-fit-to-print {
+  --ink: #2a2119;
+  --ink-soft: #43362a;
+  --paper: #efe6d2;
+  --paper-light: #faf5ea;
+  --paper-deep: #e2d5bb;
+  --line: #c9b896;
+  --muted: #5d5040;
+  --red: #b5432a;
+  --red-dark: #82301c;
+  --gold: #d08a2c;
+  --blue: #4f7fa8;
+  --green: #2f7d4f;
+  --shadow: 0 18px 45px rgb(42 33 25 / 16%);
+  background:
+    radial-gradient(circle at 8% 4%, rgb(181 67 42 / 8%), transparent 24rem),
+    radial-gradient(circle at 94% 18%, rgb(47 125 79 / 9%), transparent 26rem),
+    var(--paper);
+}
+
+.theme-fit-to-print .site-header {
+  background: #7e2c1b;
+}
+
+.theme-fit-to-print .game-hero {
+  background:
+    radial-gradient(ellipse at 86% 0%, rgb(242 214 160 / 22%), transparent 46%),
+    linear-gradient(118deg, #3a2a1c 0%, #6e3a22 50%, #b5432a 100%);
+}
+
+.theme-fit-to-print .hero-map {
+  background: #3a2a1c;
+}
+
+.theme-fit-to-print .hero-map img {
+  height: 340px;
+  object-fit: contain;
+  background: #3a2a1c;
+  filter: none;
+}
+
+.theme-fit-to-print .hero-map figcaption {
+  color: #f3e3c0;
+}
+
+.theme-fit-to-print .manual-icon-frame {
+  background: #faf5ea;
+}
+
+.theme-fit-to-print .setup-phase-header {
+  background: #e8dcc0;
+}
+
+.theme-fit-to-print .victory-card {
+  border-top: 4px solid var(--gold);
+}
+
+.theme-fit-to-print .setup-progress-controls progress::-webkit-progress-value,
+.theme-fit-to-print .setup-progress-controls progress::-moz-progress-bar {
+  background: var(--green);
+}
+
+.ftp-page {
+  padding-top: 30px;
+}
+
+.ftp-config {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.ftp-choice-group {
+  min-width: 0;
+  margin: 0;
+  padding: 18px clamp(14px, 2vw, 25px) 20px;
+  border: 1px solid var(--line);
+  background: rgb(250 245 234 / 70%);
+}
+
+.ftp-choice-group legend {
+  padding: 0 7px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ftp-choice-group legend span {
+  color: var(--green);
+}
+
+.ftp-choice-intro {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.ftp-choice-intro .source-link,
+.ftp-section-references .source-link {
+  min-height: 30px;
+  padding: 5px 8px;
+  font-size: 9px;
+}
+
+.ftp-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.ftp-choice-card {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  min-height: 88px;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.ftp-choice-card:hover {
+  border-color: var(--green);
+}
+
+.ftp-choice-card.is-selected {
+  border: 2px solid var(--green);
+  padding: 14px 15px;
+  box-shadow: 0 0 0 1px rgb(47 125 79 / 14%);
+}
+
+.ftp-choice-card input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--green);
+  cursor: inherit;
+}
+
+.ftp-choice-card input[type="radio"]:focus-visible,
+.ftp-setup-check > input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.ftp-choice-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.ftp-choice-copy strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.ftp-choice-copy small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.ftp-section-references {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 5px;
+}
+
+.ftp-interpretation {
+  display: inline-block;
+  margin-right: 4px;
+  padding: 1px 6px;
+  border: 1px solid var(--gold);
+  background: rgb(208 138 44 / 18%);
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ftp-setup-check {
+  display: grid;
+  grid-template-columns: 19px minmax(0, 1fr);
+  align-items: start;
+  gap: 11px;
+  padding: 14px 17px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ftp-setup-check > input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--green);
+}
+
+.ftp-setup-copy {
+  display: grid;
+  gap: 5px;
+}
+
+.ftp-setup-copy > strong {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.ftp-setup-substeps {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.ftp-page .icon-card {
+  grid-template-columns: 80px minmax(0, 1fr);
+}
+
+.ftp-page .icon-card .manual-icon-frame {
+  width: 80px;
+  height: 80px;
+}
+
+.ftp-page .icon-card.ftp-icon-wide {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.ftp-page .icon-card.ftp-icon-wide .manual-icon-frame {
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  padding: 6px;
+}
+
+.ftp-page .icon-card.ftp-icon-wide .manual-icon {
+  height: auto;
+  max-height: 166px;
+}
+
+.ftp-page .icon-card p {
+  margin: 4px 0 6px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.ftp-page .icon-card .source-link {
+  min-height: 28px;
+  padding: 4px 7px;
+  font-size: 9px;
+}
+
+.ftp-example-art {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+
+.ftp-example-art img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.ftp-example-art figcaption {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .ftp-choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 720px) {
+  .ftp-page {
+    padding-top: 18px;
+  }
+
+  .theme-fit-to-print .ftp-page [id] {
+    scroll-margin-top: 20px;
+  }
+
+  .ftp-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ftp-choice-group {
+    padding: 15px 12px 18px;
+  }
+
+  .ftp-section-references {
+    justify-content: start;
+  }
+
+  .ftp-page .icon-card {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+
+  .ftp-page .icon-card .manual-icon-frame {
+    width: 64px;
+    height: 64px;
+  }
+
+  .theme-fit-to-print .hero-map img {
+    height: 240px;
+  }
+}
+
+.ftp-example-art img {
+  max-height: 360px;
+}
+
+.theme-fit-to-print .ftp-config .ftp-choice-group + .ftp-choice-group {
+  margin-top: 4px;
+}
