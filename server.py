@@ -70,6 +70,7 @@ MANUALS = {
     "/manuals/parks_core.pdf": ROOT / "manuals" / "parks_core.pdf",
     "/manuals/patchwork_core.pdf": ROOT / "manuals" / "patchwork_core.pdf",
     "/manuals/point-galaxy_core.pdf": ROOT / "manuals" / "point-galaxy_core.pdf",
+    "/manuals/rebel-princess_core.pdf": ROOT / "manuals" / "rebel-princess_core.pdf",
 }
 
 
