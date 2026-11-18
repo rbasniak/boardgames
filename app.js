@@ -241,6 +241,10 @@
     if (/^#\/secret-hitler(?:$|[/?])/.test(hash)) {
       return "secret-hitler";
     }
+    // Exact match so "#/the-quacks-of-quedlinburg" never captures a longer route.
+    if (/^#\/the-quacks-of-quedlinburg(?:$|[/?])/.test(hash)) {
+      return "the-quacks-of-quedlinburg";
+    }
     // Exact match so "#/marvel-dice-throne" never captures a longer route.
     if (/^#\/marvel-dice-throne(?:$|[/?])/.test(hash)) {
       return "marvel-dice-throne";
@@ -281,7 +285,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks", "theme-patchwork", "theme-point-galaxy", "theme-rebel-princess", "theme-salem", "theme-mdt", "theme-sh");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks", "theme-patchwork", "theme-point-galaxy", "theme-rebel-princess", "theme-salem", "theme-mdt", "theme-sh", "theme-quacks");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -441,6 +445,9 @@
     if (route !== "secret-hitler") {
       document.body.classList.remove("theme-sh");
     }
+    if (route !== "the-quacks-of-quedlinburg") {
+      document.body.classList.remove("theme-quacks");
+    }
     if (route !== "marvel-dice-throne") {
       document.body.classList.remove("theme-mdt");
     }
@@ -449,6 +456,10 @@
     }
     if (route === "secret-hitler" && window.SecretHitler) {
       window.SecretHitler.renderInto(app);
+      return;
+    }
+    if (route === "the-quacks-of-quedlinburg" && window.QuacksOfQuedlinburg) {
+      window.QuacksOfQuedlinburg.renderInto(app);
       return;
     }
     if (route === "marvel-dice-throne" && window.MarvelDiceThrone) {
@@ -618,6 +629,10 @@
     const route = currentRoute();
     if (route === "secret-hitler" && window.SecretHitler) {
       window.SecretHitler.onClick(event);
+      return;
+    }
+    if (route === "the-quacks-of-quedlinburg" && window.QuacksOfQuedlinburg) {
+      window.QuacksOfQuedlinburg.onClick(event);
       return;
     }
     if (route === "marvel-dice-throne" && window.MarvelDiceThrone) {
@@ -819,6 +834,10 @@
     const route = currentRoute();
     if (route === "secret-hitler" && window.SecretHitler) {
       window.SecretHitler.onChange(event);
+      return;
+    }
+    if (route === "the-quacks-of-quedlinburg" && window.QuacksOfQuedlinburg) {
+      window.QuacksOfQuedlinburg.onChange(event);
       return;
     }
     if (route === "marvel-dice-throne" && window.MarvelDiceThrone) {

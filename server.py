@@ -75,6 +75,8 @@ MANUALS = {
     "/manuals/marvel-dice-throne_core.pdf": ROOT / "manuals" / "marvel-dice-throne_core.pdf",
     "/manuals/marvel-dice-throne_missions.pdf": ROOT / "manuals" / "marvel-dice-throne_missions.pdf",
     "/manuals/secret-hitler_core.pdf": ROOT / "manuals" / "secret-hitler_core.pdf",
+    "/manuals/the-quacks-of-quedlinburg_core.pdf": ROOT / "manuals" / "the-quacks-of-quedlinburg_core.pdf",
+    "/manuals/the-quacks-of-quedlinburg_herb-witches.pdf": ROOT / "manuals" / "the-quacks-of-quedlinburg_herb-witches.pdf",
 }
 
 
