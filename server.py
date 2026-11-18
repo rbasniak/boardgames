@@ -62,6 +62,7 @@ MANUALS = {
     "/manuals/carcassonne_drawbridges.pdf": ROOT / "manuals" / "carcassonne_drawbridges.pdf",
     "/manuals/carcassonne_german-cathedrals.pdf": ROOT / "manuals" / "carcassonne_german-cathedrals.pdf",
     "/manuals/cascadia_core.pdf": ROOT / "manuals" / "cascadia_core.pdf",
+    "/manuals/dixit_core.pdf": ROOT / "manuals" / "dixit_core.pdf",
 }
 
 

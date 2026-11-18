@@ -209,6 +209,10 @@
     if (/^#\/cascadia(?:$|[/?])/.test(hash)) {
       return "cascadia";
     }
+    // Exact match so "#/dixit" never captures a longer route.
+    if (/^#\/dixit(?:$|[/?])/.test(hash)) {
+      return "dixit";
+    }
     return "index";
   }
 
@@ -233,7 +237,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -363,6 +367,13 @@
     if (route !== "cascadia") {
       document.body.classList.remove("theme-cascadia");
     }
+    if (route !== "dixit") {
+      document.body.classList.remove("theme-dixit");
+    }
+    if (route === "dixit" && window.Dixit) {
+      window.Dixit.renderInto(app);
+      return;
+    }
     if (route === "cascadia" && window.Cascadia) {
       window.Cascadia.renderInto(app);
       return;
@@ -484,6 +495,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "dixit" && window.Dixit) {
+      window.Dixit.onClick(event);
+      return;
+    }
     if (route === "cascadia" && window.Cascadia) {
       window.Cascadia.onClick(event);
       return;
@@ -637,6 +652,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "dixit" && window.Dixit) {
+      window.Dixit.onChange(event);
+      return;
+    }
     if (route === "cascadia" && window.Cascadia) {
       window.Cascadia.onChange(event);
       return;
