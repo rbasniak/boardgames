@@ -189,6 +189,9 @@
     if (hash.startsWith("#/7-wonders")) {
       return "7-wonders";
     }
+    if (hash.startsWith("#/art-society")) {
+      return "art-society";
+    }
     return "index";
   }
 
@@ -213,7 +216,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -325,6 +328,13 @@
     if (route !== "7-wonders") {
       document.body.classList.remove("theme-seven-wonders");
     }
+    if (route !== "art-society") {
+      document.body.classList.remove("theme-art-society");
+    }
+    if (route === "art-society" && window.ArtSociety) {
+      window.ArtSociety.renderInto(app);
+      return;
+    }
     if (route === "7-wonders" && window.SevenWonders) {
       window.SevenWonders.renderInto(app);
       return;
@@ -422,6 +432,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "art-society" && window.ArtSociety) {
+      window.ArtSociety.onClick(event);
+      return;
+    }
     if (route === "7-wonders" && window.SevenWonders) {
       window.SevenWonders.onClick(event);
       return;
@@ -551,6 +565,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "art-society" && window.ArtSociety) {
+      window.ArtSociety.onChange(event);
+      return;
+    }
     if (route === "7-wonders" && window.SevenWonders) {
       window.SevenWonders.onChange(event);
       return;
