@@ -52,6 +52,7 @@ MANUALS = {
     "/manuals/7-wonders_core.pdf": ROOT / "manuals" / "7-wonders_core.pdf",
     "/manuals/7-wonders_leaders.pdf": ROOT / "manuals" / "7-wonders_leaders.pdf",
     "/manuals/art-society_core.pdf": ROOT / "manuals" / "art-society_core.pdf",
+    "/manuals/azul_core.pdf": ROOT / "manuals" / "azul_core.pdf",
 }
 
 

@@ -192,6 +192,10 @@
     if (hash.startsWith("#/art-society")) {
       return "art-society";
     }
+    // Exact match so "#/azul" never captures a longer route such as "#/azul-queens-garden".
+    if (/^#\/azul(?:$|[/?])/.test(hash)) {
+      return "azul";
+    }
     return "index";
   }
 
@@ -216,7 +220,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -331,6 +335,13 @@
     if (route !== "art-society") {
       document.body.classList.remove("theme-art-society");
     }
+    if (route !== "azul") {
+      document.body.classList.remove("theme-azul");
+    }
+    if (route === "azul" && window.Azul) {
+      window.Azul.renderInto(app);
+      return;
+    }
     if (route === "art-society" && window.ArtSociety) {
       window.ArtSociety.renderInto(app);
       return;
@@ -432,6 +443,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "azul" && window.Azul) {
+      window.Azul.onClick(event);
+      return;
+    }
     if (route === "art-society" && window.ArtSociety) {
       window.ArtSociety.onClick(event);
       return;
@@ -565,6 +580,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "azul" && window.Azul) {
+      window.Azul.onChange(event);
+      return;
+    }
     if (route === "art-society" && window.ArtSociety) {
       window.ArtSociety.onChange(event);
       return;
