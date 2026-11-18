@@ -199,6 +199,9 @@
     if (hash.startsWith("#/azul-queens-garden")) {
       return "azul-queens-garden";
     }
+    if (hash.startsWith("#/betrayal-at-house-on-the-hill")) {
+      return "betrayal-at-house-on-the-hill";
+    }
     return "index";
   }
 
@@ -223,7 +226,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -344,6 +347,13 @@
     if (route !== "azul-queens-garden") {
       document.body.classList.remove("theme-azul-queens-garden");
     }
+    if (route !== "betrayal-at-house-on-the-hill") {
+      document.body.classList.remove("theme-betrayal");
+    }
+    if (route === "betrayal-at-house-on-the-hill" && window.BetrayalAtHouseOnTheHill) {
+      window.BetrayalAtHouseOnTheHill.renderInto(app);
+      return;
+    }
     if (route === "azul-queens-garden" && window.AzulQueensGarden) {
       window.AzulQueensGarden.renderInto(app);
       return;
@@ -453,6 +463,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "betrayal-at-house-on-the-hill" && window.BetrayalAtHouseOnTheHill) {
+      window.BetrayalAtHouseOnTheHill.onClick(event);
+      return;
+    }
     if (route === "azul-queens-garden" && window.AzulQueensGarden) {
       window.AzulQueensGarden.onClick(event);
       return;
@@ -594,6 +608,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "betrayal-at-house-on-the-hill" && window.BetrayalAtHouseOnTheHill) {
+      window.BetrayalAtHouseOnTheHill.onChange(event);
+      return;
+    }
     if (route === "azul-queens-garden" && window.AzulQueensGarden) {
       window.AzulQueensGarden.onChange(event);
       return;

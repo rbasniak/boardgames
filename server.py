@@ -54,6 +54,7 @@ MANUALS = {
     "/manuals/art-society_core.pdf": ROOT / "manuals" / "art-society_core.pdf",
     "/manuals/azul_core.pdf": ROOT / "manuals" / "azul_core.pdf",
     "/manuals/azul-queens-garden_core.pdf": ROOT / "manuals" / "azul-queens-garden_core.pdf",
+    "/manuals/betrayal-at-house-on-the-hill_core.pdf": ROOT / "manuals" / "betrayal-at-house-on-the-hill_core.pdf",
 }
 
 
