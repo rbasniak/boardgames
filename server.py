@@ -66,6 +66,7 @@ MANUALS = {
     "/manuals/fit-to-print_core.pdf": ROOT / "manuals" / "fit-to-print_core.pdf",
     "/manuals/harry-potter-defense-against-the-dark-arts_core.pdf": ROOT / "manuals" / "harry-potter-defense-against-the-dark-arts_core.pdf",
     "/manuals/knitting-circle_core.pdf": ROOT / "manuals" / "knitting-circle_core.pdf",
+    "/manuals/mysterium_core.pdf": ROOT / "manuals" / "mysterium_core.pdf",
 }
 
 
