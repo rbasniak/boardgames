@@ -249,6 +249,10 @@
     if (/^#\/little-soldiers(?:$|[/?])/.test(hash)) {
       return "little-soldiers";
     }
+    // Exact match so "#/small-world-of-warcraft" never captures a longer route.
+    if (/^#\/small-world-of-warcraft(?:$|[/?])/.test(hash)) {
+      return "small-world-of-warcraft";
+    }
     // Exact match so "#/wyrmspan" never captures a longer route.
     if (/^#\/wyrmspan(?:$|[/?])/.test(hash)) {
       return "wyrmspan";
@@ -494,6 +498,10 @@
       window.LittleSoldiers.renderInto(app);
       return;
     }
+    if (route === "small-world-of-warcraft" && window.SmallWorldOfWarcraft) {
+      window.SmallWorldOfWarcraft.renderInto(app);
+      return;
+    }
     if (route === "wyrmspan" && window.Wyrmspan) {
       window.Wyrmspan.renderInto(app);
       return;
@@ -685,6 +693,10 @@
     }
     if (route === "little-soldiers" && window.LittleSoldiers) {
       window.LittleSoldiers.onClick(event);
+      return;
+    }
+    if (route === "small-world-of-warcraft" && window.SmallWorldOfWarcraft) {
+      window.SmallWorldOfWarcraft.onClick(event);
       return;
     }
     if (route === "wyrmspan" && window.Wyrmspan) {
@@ -910,6 +922,10 @@
     }
     if (route === "little-soldiers" && window.LittleSoldiers) {
       window.LittleSoldiers.onChange(event);
+      return;
+    }
+    if (route === "small-world-of-warcraft" && window.SmallWorldOfWarcraft) {
+      window.SmallWorldOfWarcraft.onChange(event);
       return;
     }
     if (route === "wyrmspan" && window.Wyrmspan) {

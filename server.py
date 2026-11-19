@@ -88,6 +88,7 @@ MANUALS = {
     "/manuals/little-soldiers_core.pdf": ROOT / "manuals" / "little-soldiers_core.pdf",
     "/manuals/little-soldiers_missions.pdf": ROOT / "manuals" / "little-soldiers_missions.pdf",
     "/manuals/little-soldiers_modules.pdf": ROOT / "manuals" / "little-soldiers_modules.pdf",
+    "/manuals/small-world-of-warcraft_core.pdf": ROOT / "manuals" / "small-world-of-warcraft_core.pdf",
 }
 
 

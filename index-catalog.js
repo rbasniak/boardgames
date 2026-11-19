@@ -590,7 +590,7 @@
     },
     {
       slug: "small-world-of-warcraft",
-      rulebook: "planned",
+      rulebook: "live",
       route: "small-world-of-warcraft",
       title: "Small World of Warcraft",
       boxAltEn: "Small World of Warcraft game box",
