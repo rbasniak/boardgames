@@ -352,6 +352,9 @@
 
   function render() {
     const route = currentRoute();
+    // Drop every game theme before rendering; the target game's renderInto adds its own back.
+    // (Pagan, Odin's Ravens and Not Enough Mana had no per-route removal below, so their themes leaked.)
+    document.body.classList.remove(...[...document.body.classList].filter((name) => name.startsWith("theme-")));
     if (route !== "avalon-the-riven-veil") {
       document.body.classList.remove("theme-avalon");
     }
