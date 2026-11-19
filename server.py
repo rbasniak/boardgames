@@ -78,6 +78,10 @@ MANUALS = {
     "/manuals/the-quacks-of-quedlinburg_core.pdf": ROOT / "manuals" / "the-quacks-of-quedlinburg_core.pdf",
     "/manuals/the-quacks-of-quedlinburg_herb-witches.pdf": ROOT / "manuals" / "the-quacks-of-quedlinburg_herb-witches.pdf",
     "/manuals/whitechapel_core.pdf": ROOT / "manuals" / "whitechapel_core.pdf",
+    "/manuals/wingspan_core.pdf": ROOT / "manuals" / "wingspan_core.pdf",
+    "/manuals/wingspan_europe.pdf": ROOT / "manuals" / "wingspan_europe.pdf",
+    "/manuals/wingspan_oceania.pdf": ROOT / "manuals" / "wingspan_oceania.pdf",
+    "/manuals/wingspan_asia.pdf": ROOT / "manuals" / "wingspan_asia.pdf",
 }
 
 
