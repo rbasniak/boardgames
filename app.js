@@ -237,6 +237,10 @@
     if (/^#\/point-galaxy(?:$|[/?])/.test(hash)) {
       return "point-galaxy";
     }
+    // Exact match so "#/whitechapel" never captures a longer route.
+    if (/^#\/whitechapel(?:$|[/?])/.test(hash)) {
+      return "whitechapel";
+    }
     // Exact match so "#/secret-hitler" never captures a longer route.
     if (/^#\/secret-hitler(?:$|[/?])/.test(hash)) {
       return "secret-hitler";
@@ -285,7 +289,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks", "theme-patchwork", "theme-point-galaxy", "theme-rebel-princess", "theme-salem", "theme-mdt", "theme-sh", "theme-quacks");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks", "theme-patchwork", "theme-point-galaxy", "theme-rebel-princess", "theme-salem", "theme-mdt", "theme-sh", "theme-quacks", "theme-wc");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -442,6 +446,9 @@
     if (route !== "rebel-princess") {
       document.body.classList.remove("theme-rebel-princess");
     }
+    if (route !== "whitechapel") {
+      document.body.classList.remove("theme-wc");
+    }
     if (route !== "secret-hitler") {
       document.body.classList.remove("theme-sh");
     }
@@ -453,6 +460,10 @@
     }
     if (route !== "salem-1692") {
       document.body.classList.remove("theme-salem");
+    }
+    if (route === "whitechapel" && window.LettersFromWhitechapel) {
+      window.LettersFromWhitechapel.renderInto(app);
+      return;
     }
     if (route === "secret-hitler" && window.SecretHitler) {
       window.SecretHitler.renderInto(app);
@@ -627,6 +638,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "whitechapel" && window.LettersFromWhitechapel) {
+      window.LettersFromWhitechapel.onClick(event);
+      return;
+    }
     if (route === "secret-hitler" && window.SecretHitler) {
       window.SecretHitler.onClick(event);
       return;
@@ -832,6 +847,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "whitechapel" && window.LettersFromWhitechapel) {
+      window.LettersFromWhitechapel.onChange(event);
+      return;
+    }
     if (route === "secret-hitler" && window.SecretHitler) {
       window.SecretHitler.onChange(event);
       return;

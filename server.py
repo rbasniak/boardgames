@@ -77,6 +77,7 @@ MANUALS = {
     "/manuals/secret-hitler_core.pdf": ROOT / "manuals" / "secret-hitler_core.pdf",
     "/manuals/the-quacks-of-quedlinburg_core.pdf": ROOT / "manuals" / "the-quacks-of-quedlinburg_core.pdf",
     "/manuals/the-quacks-of-quedlinburg_herb-witches.pdf": ROOT / "manuals" / "the-quacks-of-quedlinburg_herb-witches.pdf",
+    "/manuals/whitechapel_core.pdf": ROOT / "manuals" / "whitechapel_core.pdf",
 }
 
 
