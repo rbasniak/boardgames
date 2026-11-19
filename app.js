@@ -241,6 +241,10 @@
     if (/^#\/wingspan(?:$|[/?])/.test(hash)) {
       return "wingspan";
     }
+    // Exact match so "#/exploding-kittens" never captures a longer route.
+    if (/^#\/exploding-kittens(?:$|[/?])/.test(hash)) {
+      return "exploding-kittens";
+    }
     // Exact match so "#/wyrmspan" never captures a longer route.
     if (/^#\/wyrmspan(?:$|[/?])/.test(hash)) {
       return "wyrmspan";
@@ -478,6 +482,10 @@
     if (route !== "salem-1692") {
       document.body.classList.remove("theme-salem");
     }
+    if (route === "exploding-kittens" && window.ExplodingKittens) {
+      window.ExplodingKittens.renderInto(app);
+      return;
+    }
     if (route === "wyrmspan" && window.Wyrmspan) {
       window.Wyrmspan.renderInto(app);
       return;
@@ -663,6 +671,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "exploding-kittens" && window.ExplodingKittens) {
+      window.ExplodingKittens.onClick(event);
+      return;
+    }
     if (route === "wyrmspan" && window.Wyrmspan) {
       window.Wyrmspan.onClick(event);
       return;
@@ -880,6 +892,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "exploding-kittens" && window.ExplodingKittens) {
+      window.ExplodingKittens.onChange(event);
+      return;
+    }
     if (route === "wyrmspan" && window.Wyrmspan) {
       window.Wyrmspan.onChange(event);
       return;

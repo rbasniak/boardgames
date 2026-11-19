@@ -83,6 +83,8 @@ MANUALS = {
     "/manuals/wingspan_oceania.pdf": ROOT / "manuals" / "wingspan_oceania.pdf",
     "/manuals/wingspan_asia.pdf": ROOT / "manuals" / "wingspan_asia.pdf",
     "/manuals/wyrmspan_core.pdf": ROOT / "manuals" / "wyrmspan_core.pdf",
+    "/manuals/exploding-kittens_core.pdf": ROOT / "manuals" / "exploding-kittens_core.pdf",
+    "/manuals/exploding-kittens_streaking-kittens.pdf": ROOT / "manuals" / "exploding-kittens_streaking-kittens.pdf",
 }
 
 
