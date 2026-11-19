@@ -241,6 +241,10 @@
     if (/^#\/wingspan(?:$|[/?])/.test(hash)) {
       return "wingspan";
     }
+    // Exact match so "#/wyrmspan" never captures a longer route.
+    if (/^#\/wyrmspan(?:$|[/?])/.test(hash)) {
+      return "wyrmspan";
+    }
     // Exact match so "#/whitechapel" never captures a longer route.
     if (/^#\/whitechapel(?:$|[/?])/.test(hash)) {
       return "whitechapel";
@@ -293,7 +297,7 @@
   }
 
   function renderLanding() {
-    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks", "theme-patchwork", "theme-point-galaxy", "theme-rebel-princess", "theme-salem", "theme-mdt", "theme-sh", "theme-quacks", "theme-wc", "theme-wingspan");
+    document.body.classList.remove("theme-nem", "theme-avalon", "theme-pagan", "theme-odins-ravens", "theme-western-legends", "theme-lotr", "theme-witcher", "theme-cangaceiros", "theme-lotr-duel", "theme-coup", "theme-munchkin", "theme-pandemic", "theme-kelp", "theme-mind-mgmt", "theme-galileo", "theme-heat", "theme-bristol", "theme-love-letter", "theme-sky-team", "theme-deadwood", "theme-bang", "theme-seven-wonders", "theme-art-society", "theme-azul", "theme-azul-queens-garden", "theme-betrayal", "theme-carcassonne", "theme-cascadia", "theme-dixit", "theme-fit-to-print", "theme-hp-dada", "theme-knitting-circle", "theme-mysterium", "theme-parks", "theme-patchwork", "theme-point-galaxy", "theme-rebel-princess", "theme-salem", "theme-mdt", "theme-sh", "theme-quacks", "theme-wc", "theme-wingspan", "theme-wyrmspan");
     document.documentElement.lang = window.SniperElite ? window.SniperElite.language() : "pt-BR";
     document.title = t("Field Manual — Boardgame Rulebooks", "Manual de Campo — Livros de Regras");
     const description = document.querySelector('meta[name="description"]');
@@ -453,6 +457,9 @@
     if (route !== "wingspan") {
       document.body.classList.remove("theme-wingspan");
     }
+    if (route !== "wyrmspan") {
+      document.body.classList.remove("theme-wyrmspan");
+    }
     if (route !== "whitechapel") {
       document.body.classList.remove("theme-wc");
     }
@@ -467,6 +474,10 @@
     }
     if (route !== "salem-1692") {
       document.body.classList.remove("theme-salem");
+    }
+    if (route === "wyrmspan" && window.Wyrmspan) {
+      window.Wyrmspan.renderInto(app);
+      return;
     }
     if (route === "wingspan" && window.Wingspan) {
       window.Wingspan.renderInto(app);
@@ -649,6 +660,10 @@
 
   function onClick(event) {
     const route = currentRoute();
+    if (route === "wyrmspan" && window.Wyrmspan) {
+      window.Wyrmspan.onClick(event);
+      return;
+    }
     if (route === "wingspan" && window.Wingspan) {
       window.Wingspan.onClick(event);
       return;
@@ -862,6 +877,10 @@
 
   function onChange(event) {
     const route = currentRoute();
+    if (route === "wyrmspan" && window.Wyrmspan) {
+      window.Wyrmspan.onChange(event);
+      return;
+    }
     if (route === "wingspan" && window.Wingspan) {
       window.Wingspan.onChange(event);
       return;

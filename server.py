@@ -82,6 +82,7 @@ MANUALS = {
     "/manuals/wingspan_europe.pdf": ROOT / "manuals" / "wingspan_europe.pdf",
     "/manuals/wingspan_oceania.pdf": ROOT / "manuals" / "wingspan_oceania.pdf",
     "/manuals/wingspan_asia.pdf": ROOT / "manuals" / "wingspan_asia.pdf",
+    "/manuals/wyrmspan_core.pdf": ROOT / "manuals" / "wyrmspan_core.pdf",
 }
 
 
