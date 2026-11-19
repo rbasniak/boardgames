@@ -245,6 +245,10 @@
     if (/^#\/exploding-kittens(?:$|[/?])/.test(hash)) {
       return "exploding-kittens";
     }
+    // Exact match so "#/little-soldiers" never captures a longer route.
+    if (/^#\/little-soldiers(?:$|[/?])/.test(hash)) {
+      return "little-soldiers";
+    }
     // Exact match so "#/wyrmspan" never captures a longer route.
     if (/^#\/wyrmspan(?:$|[/?])/.test(hash)) {
       return "wyrmspan";
@@ -486,6 +490,10 @@
       window.ExplodingKittens.renderInto(app);
       return;
     }
+    if (route === "little-soldiers" && window.LittleSoldiers) {
+      window.LittleSoldiers.renderInto(app);
+      return;
+    }
     if (route === "wyrmspan" && window.Wyrmspan) {
       window.Wyrmspan.renderInto(app);
       return;
@@ -673,6 +681,10 @@
     const route = currentRoute();
     if (route === "exploding-kittens" && window.ExplodingKittens) {
       window.ExplodingKittens.onClick(event);
+      return;
+    }
+    if (route === "little-soldiers" && window.LittleSoldiers) {
+      window.LittleSoldiers.onClick(event);
       return;
     }
     if (route === "wyrmspan" && window.Wyrmspan) {
@@ -894,6 +906,10 @@
     const route = currentRoute();
     if (route === "exploding-kittens" && window.ExplodingKittens) {
       window.ExplodingKittens.onChange(event);
+      return;
+    }
+    if (route === "little-soldiers" && window.LittleSoldiers) {
+      window.LittleSoldiers.onChange(event);
       return;
     }
     if (route === "wyrmspan" && window.Wyrmspan) {

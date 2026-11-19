@@ -85,6 +85,9 @@ MANUALS = {
     "/manuals/wyrmspan_core.pdf": ROOT / "manuals" / "wyrmspan_core.pdf",
     "/manuals/exploding-kittens_core.pdf": ROOT / "manuals" / "exploding-kittens_core.pdf",
     "/manuals/exploding-kittens_streaking-kittens.pdf": ROOT / "manuals" / "exploding-kittens_streaking-kittens.pdf",
+    "/manuals/little-soldiers_core.pdf": ROOT / "manuals" / "little-soldiers_core.pdf",
+    "/manuals/little-soldiers_missions.pdf": ROOT / "manuals" / "little-soldiers_missions.pdf",
+    "/manuals/little-soldiers_modules.pdf": ROOT / "manuals" / "little-soldiers_modules.pdf",
 }
 
 
